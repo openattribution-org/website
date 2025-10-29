@@ -1,0 +1,268 @@
+/* Custom animations and styles */
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Base animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Section fade-in effect */
+section {
+    opacity: 0;
+    transition: opacity 0.8s ease-out;
+}
+
+section.fade-in {
+    opacity: 1;
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Hero animations */
+@media (prefers-reduced-motion: no-preference) {
+    .hero-content > * {
+        animation: slideInLeft 0.8s ease-out forwards;
+    }
+
+    .hero-content > *:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+
+    .hero-content > *:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .hero-content > *:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+
+    .hero-image {
+        animation: slideInRight 0.8s ease-out forwards;
+        animation-delay: 0.2s;
+    }
+}
+
+/* Form focus effects */
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+}
+
+/* Input validation states */
+input.border-coral-500,
+textarea.border-coral-500 {
+    animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* Button hover effects */
+button,
+a[class*="bg-coral"] {
+    position: relative;
+    overflow: hidden;
+}
+
+button::before,
+a[class*="bg-coral"]::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+button:hover::before,
+a[class*="bg-coral"]:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Card hover effects */
+.hover\:shadow-lg {
+    transition: all 0.3s ease;
+}
+
+/* Smooth transitions for all interactive elements */
+a,
+button,
+input,
+textarea,
+select {
+    transition: all 0.2s ease;
+}
+
+/* Navigation backdrop blur enhancement */
+nav {
+    transition: all 0.3s ease;
+}
+
+/* Gradient animation for hero background */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.bg-gradient-to-br {
+    background-size: 200% 200%;
+}
+
+/* Selection color */
+::selection {
+    background-color: #ff6b3d;
+    color: white;
+}
+
+::-moz-selection {
+    background-color: #ff6b3d;
+    color: white;
+}
+
+/* Placeholder image pulse effect */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+.aspect-square > div {
+    animation: pulse 3s ease-in-out infinite;
+}
+
+/* Mobile menu slide animation */
+#mobile-menu {
+    transition: all 0.3s ease;
+    max-height: 0;
+    overflow: hidden;
+}
+
+#mobile-menu:not(.hidden) {
+    max-height: 500px;
+}
+
+/* Footer links hover */
+footer a {
+    position: relative;
+}
+
+footer a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.3s ease;
+}
+
+footer a:hover::after {
+    width: 100%;
+}
+
+/* Accessibility - Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Loading state for form submission */
+button[type="submit"]:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Success/Error message animations */
+#form-success,
+#form-error {
+    animation: slideInLeft 0.4s ease-out;
+}
+
+/* Responsive typography adjustments */
+@media (max-width: 640px) {
+    h1 {
+        font-size: 2.5rem;
+        line-height: 1.2;
+    }
+}
+
+/* Focus visible for keyboard navigation */
+*:focus-visible {
+    outline: 2px solid #ff6b3d;
+    outline-offset: 2px;
+}
+
+/* Custom scrollbar (webkit only) */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #faf8f5;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ff6b3d;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #f04e1f;
+}
