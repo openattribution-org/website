@@ -2,7 +2,7 @@
 
 A coalition of publishers, content creators, brands, and technology providers working together to establish fair practices for AI content usage.
 
-> Publishers, brands, technology providers, and policymakers uniting to establish transparency, attribution, and fair compensation when AI systems use proprietary content.
+> This document serves as a reference overview for potential coalition members and collaborators.
 
 ## Executive Summary
 
@@ -153,4 +153,4 @@ Another important fair use factor is whether your use deprives the copyright own
 - **General Inquiries**: info@openattribution.org
 - **Partnership**: partners@openattribution.org
 - **Technical Support**: tech@openattribution.org
-- **Join the Coalition**: Contact us to learn more about membership 
+- **Join the Coalition**: Contact us to learn more about membership
