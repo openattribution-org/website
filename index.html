@@ -61,6 +61,16 @@
 </head>
 <body class="font-sans antialiased bg-cream text-gray-800">
 
+    <!-- Sticky CTA Button -->
+    <div id="sticky-cta" class="fixed bottom-8 right-8 z-40 hidden">
+        <a href="#contact" class="flex items-center gap-2 px-6 py-4 bg-coral-600 text-white rounded-full hover:bg-coral-700 transition shadow-2xl hover:shadow-3xl font-normal text-lg">
+            Register Your Interest
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+        </a>
+    </div>
+
     <!-- Navigation -->
     <nav class="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b border-coral-100">
         <div class="max-w-7xl mx-auto px-6 py-4">
@@ -102,12 +112,12 @@
                     <h1 class="text-5xl lg:text-7xl font-light leading-tight">
                         A Coalition for <span class="text-coral-600 font-normal">Fair AI</span> Content Usage
                     </h1>
-                    <p class="text-xl text-gray-600 font-light leading-relaxed">
-                        Publishers, brands, technology providers, and policymakers uniting to establish transparency, attribution, and fair compensation when AI systems use proprietary content.
+                    <p class="text-xl text-gray-700 font-light leading-relaxed">
+                        <span class="text-coral-600 font-normal">Publishers</span>, <span class="text-coral-600 font-normal">brands</span>, and <span class="text-coral-600 font-normal">technology providers</span> uniting to establish transparency, attribution, and fair compensation when AI systems use proprietary content.
                     </p>
                     <div class="p-4 bg-white/60 backdrop-blur-sm border-l-4 border-coral-600 rounded">
                         <p class="text-sm font-normal text-gray-700">
-                            <strong>Collective Bargaining:</strong> Content creators facing AI's extraction economy alone get one-off deals and declining traffic. Together, we negotiate from strength - building technical tools, shaping policy, and establishing compensation frameworks that work.
+                            <strong class="text-coral-600">Collective Bargaining:</strong> Publishers and content owners facing AI's extraction economy <span class="text-coral-600">alone</span> get one-off deals and declining traffic. <span class="text-coral-600 font-normal">Together</span>, we negotiate from strength - building technical tools, shaping policy, and establishing compensation frameworks that work.
                         </p>
                     </div>
                     <div class="flex flex-wrap gap-4">
@@ -121,8 +131,8 @@
                 </div>
                 <div class="relative">
                     <img
-                        src="img/hero.jpg"
-                        alt="Professional working on content attribution standards"
+                        src="img/journo.jpeg"
+                        alt="Journalist creating content in the field"
                         class="rounded-2xl shadow-2xl w-full h-auto object-cover"
                     >
                 </div>
@@ -130,48 +140,98 @@
         </div>
     </section>
 
-    <!-- Five Goals Section -->
+    <!-- Goals Section -->
     <section id="goals" class="py-20 px-6 bg-white">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-4xl lg:text-5xl font-light mb-6">Our Five <span class="text-coral-600">Goals</span></h2>
+                <h2 class="text-4xl lg:text-5xl font-light mb-6">Our <span class="text-coral-600">Goals</span></h2>
                 <p class="text-xl text-gray-600 font-light max-w-3xl mx-auto">
-                    OpenAttribution pursues five goals to ensure content creators can track, verify, and monetize their work when used by AI systems.
+                    OpenAttribution ensures publishers and content owners can track, verify, and monetize their work when used by AI systems.
                 </p>
             </div>
 
-            <ol class="space-y-6 max-w-4xl mx-auto">
-                <li class="p-6 rounded-xl bg-gradient-to-r from-coral-50 to-amber-50 border-l-4 border-coral-600">
-                    <h3 class="text-xl font-normal mb-2 text-coral-900">1. Transparency</h3>
-                    <p class="text-gray-600 font-light leading-relaxed">
-                        Content owners know when and where their information is used - consumers understand the sources
-                    </p>
-                </li>
-                <li class="p-6 rounded-xl bg-gradient-to-r from-amber-50 to-coral-50 border-l-4 border-amber-600">
-                    <h3 class="text-xl font-normal mb-2 text-amber-900">2. Attribution & Credit</h3>
-                    <p class="text-gray-600 font-light leading-relaxed">
-                        Proper credit when content informs AI outputs, enabling tracking and verification
-                    </p>
-                </li>
-                <li class="p-6 rounded-xl bg-gradient-to-r from-coral-50 to-amber-50 border-l-4 border-coral-600">
-                    <h3 class="text-xl font-normal mb-2 text-coral-900">3. Accuracy</h3>
-                    <p class="text-gray-600 font-light leading-relaxed">
-                        Faithful representation of product details, brand messaging, and published content
-                    </p>
-                </li>
-                <li class="p-6 rounded-xl bg-gradient-to-r from-amber-50 to-coral-50 border-l-4 border-amber-600">
-                    <h3 class="text-xl font-normal mb-2 text-amber-900">4. Fair Compensation</h3>
-                    <p class="text-gray-600 font-light leading-relaxed">
-                        Appropriate compensation when proprietary information drives value
-                    </p>
-                </li>
-                <li class="p-6 rounded-xl bg-gradient-to-r from-coral-50 to-amber-50 border-l-4 border-coral-600">
-                    <h3 class="text-xl font-normal mb-2 text-coral-900">5. Economic Viability</h3>
-                    <p class="text-gray-600 font-light leading-relaxed">
-                        Ensure content creation remains economically viable while AI has quality data
-                    </p>
-                </li>
-            </ol>
+            <!-- Circular Goals Diagram -->
+            <div class="relative max-w-5xl mx-auto hidden md:block" style="min-height: 700px;">
+                <!-- Center Circle -->
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-56 h-56 bg-gradient-to-br from-coral-600 to-coral-700 rounded-full flex items-center justify-center shadow-2xl z-10">
+                    <div class="text-center text-white px-6">
+                        <p class="text-2xl font-normal mb-1">Fair AI</p>
+                        <p class="text-base font-light">Content Usage</p>
+                    </div>
+                </div>
+
+                <!-- Goal 1: Transparency (Top - 90 degrees) -->
+                <div class="absolute top-6 left-1/2 transform -translate-x-1/2 w-44 h-44 bg-gradient-to-br from-coral-500 to-coral-600 rounded-full flex items-center justify-center shadow-xl z-5">
+                    <div class="text-center text-white px-4">
+                        <p class="text-base font-normal mb-1">Transparency</p>
+                        <p class="text-xs font-light">Know when content is used</p>
+                    </div>
+                </div>
+
+                <!-- Goal 2: Attribution (Top Right - 18 degrees) -->
+                <div class="absolute" style="top: 18%; right: 12%; width: 11rem; height: 11rem;">
+                    <div class="w-full h-full bg-gradient-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center shadow-xl">
+                        <div class="text-center text-white px-4">
+                            <p class="text-base font-normal mb-1">Attribution</p>
+                            <p class="text-xs font-light">Proper credit & tracking</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Goal 3: Accuracy (Bottom Right - 306 degrees) -->
+                <div class="absolute" style="bottom: 18%; right: 12%; width: 11rem; height: 11rem;">
+                    <div class="w-full h-full bg-gradient-to-br from-coral-500 to-coral-600 rounded-full flex items-center justify-center shadow-xl">
+                        <div class="text-center text-white px-4">
+                            <p class="text-base font-normal mb-1">Accuracy</p>
+                            <p class="text-xs font-light">Faithful representation</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Goal 4: Fair Compensation (Bottom Left - 234 degrees) -->
+                <div class="absolute" style="bottom: 18%; left: 12%; width: 11rem; height: 11rem;">
+                    <div class="w-full h-full bg-gradient-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center shadow-xl">
+                        <div class="text-center text-white px-4">
+                            <p class="text-base font-normal mb-1">Fair Compensation</p>
+                            <p class="text-xs font-light">Value for creators</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Goal 5: Economic Viability (Top Left - 162 degrees) -->
+                <div class="absolute" style="top: 18%; left: 12%; width: 11rem; height: 11rem;">
+                    <div class="w-full h-full bg-gradient-to-br from-coral-500 to-coral-600 rounded-full flex items-center justify-center shadow-xl">
+                        <div class="text-center text-white px-4">
+                            <p class="text-base font-normal mb-1">Economic Viability</p>
+                            <p class="text-xs font-light">Sustainable creation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile-friendly list fallback -->
+            <div class="md:hidden mt-12 space-y-4 max-w-md mx-auto">
+                <div class="p-4 rounded-xl bg-gradient-to-r from-coral-50 to-amber-50 border-l-4 border-coral-600">
+                    <h3 class="font-normal mb-1 text-coral-900">Transparency</h3>
+                    <p class="text-sm text-gray-600 font-light">Content owners know when and where their information is used</p>
+                </div>
+                <div class="p-4 rounded-xl bg-gradient-to-r from-amber-50 to-coral-50 border-l-4 border-amber-600">
+                    <h3 class="font-normal mb-1 text-amber-900">Attribution & Credit</h3>
+                    <p class="text-sm text-gray-600 font-light">Proper credit when content informs AI outputs</p>
+                </div>
+                <div class="p-4 rounded-xl bg-gradient-to-r from-coral-50 to-amber-50 border-l-4 border-coral-600">
+                    <h3 class="font-normal mb-1 text-coral-900">Accuracy</h3>
+                    <p class="text-sm text-gray-600 font-light">Faithful representation of content and brand messaging</p>
+                </div>
+                <div class="p-4 rounded-xl bg-gradient-to-r from-amber-50 to-coral-50 border-l-4 border-amber-600">
+                    <h3 class="font-normal mb-1 text-amber-900">Fair Compensation</h3>
+                    <p class="text-sm text-gray-600 font-light">Appropriate compensation when content drives value</p>
+                </div>
+                <div class="p-4 rounded-xl bg-gradient-to-r from-coral-50 to-amber-50 border-l-4 border-coral-600">
+                    <h3 class="font-normal mb-1 text-coral-900">Economic Viability</h3>
+                    <p class="text-sm text-gray-600 font-light">Ensure content creation remains economically viable</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -183,10 +243,29 @@
                 <p class="text-2xl text-gray-700 font-light max-w-4xl mx-auto mb-8">
                     AI Systems Are Consuming Content Without Attribution
                 </p>
-                <p class="text-lg text-gray-600 font-light max-w-3xl mx-auto">
-                    AI systems from ChatGPT to Claude to Gemini are consuming publisher content at massive scale while providing zero visibility into usage. Major publishers report 20-40% traffic declines as AI-powered search and chatbots answer questions directly without sending users to source websites.
-                </p>
             </div>
+
+            <!-- Visual: Content Creators -->
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="relative overflow-hidden rounded-2xl shadow-xl">
+                    <img src="img/hero.jpg" alt="Professional working on content attribution standards" class="w-full h-80 object-cover">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 to-transparent p-6">
+                        <p class="text-white font-normal text-lg">Content creators in the field</p>
+                        <p class="text-gray-200 text-sm font-light">Journalists, researchers, photographers</p>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden rounded-2xl shadow-xl">
+                    <img src="img/reader.jpeg" alt="Writer working on content" class="w-full h-80 object-cover">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 to-transparent p-6">
+                        <p class="text-white font-normal text-lg">Publishers and writers</p>
+                        <p class="text-gray-200 text-sm font-light">Creating quality content that powers AI</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-lg text-gray-600 font-light max-w-3xl mx-auto text-center mb-12">
+                AI systems from OpenAI to Anthropic to Google are consuming this content at massive scale while providing zero visibility into usage. Major publishers report 20-40% traffic declines as AI-powered search and chatbots answer questions directly without sending users to source websites.
+            </p>
 
             <div class="grid md:grid-cols-2 gap-8 mb-12">
                 <div class="p-8 rounded-xl bg-white shadow-lg border border-coral-100">
@@ -213,8 +292,73 @@
                 <div class="p-8 rounded-xl bg-white shadow-lg border border-amber-100">
                     <h3 class="text-xl font-normal mb-4 text-amber-900">Quality Degradation Risk</h3>
                     <p class="text-gray-600 font-light leading-relaxed">
-                        Without attribution and compensation, quality content creators stop creating. AI systems, which cannot innovate or judge quality themselves, become increasingly mediocre.
+                        Without attribution and compensation, publishers stop creating quality content. AI systems, which cannot innovate or judge quality themselves, become increasingly mediocre.
                     </p>
+                </div>
+            </div>
+
+            <!-- Visual Flow: The Broken System -->
+            <div class="mb-12 bg-white rounded-2xl p-8 shadow-lg border border-coral-100">
+                <h3 class="text-2xl font-normal mb-8 text-center">The Broken Flow</h3>
+                <div class="flex flex-col md:flex-row items-center justify-between gap-6 max-w-4xl mx-auto">
+                    <!-- Publishers & Content Owners -->
+                    <div class="flex-1 text-center">
+                        <div class="w-20 h-20 mx-auto bg-coral-100 rounded-full flex items-center justify-center mb-3">
+                            <svg class="w-10 h-10 text-coral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                            </svg>
+                        </div>
+                        <p class="font-normal">Publishers</p>
+                        <p class="text-sm text-gray-600">Articles, research, content</p>
+                    </div>
+
+                    <!-- Arrow -->
+                    <svg class="w-8 h-8 text-coral-600 transform md:rotate-0 rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                    </svg>
+
+                    <!-- AI Systems -->
+                    <div class="flex-1 text-center">
+                        <div class="w-20 h-20 mx-auto bg-amber-100 rounded-full flex items-center justify-center mb-3">
+                            <svg class="w-10 h-10 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            </svg>
+                        </div>
+                        <p class="font-normal">AI Systems</p>
+                        <p class="text-sm text-gray-600">Train & respond</p>
+                    </div>
+
+                    <!-- Arrow -->
+                    <svg class="w-8 h-8 text-coral-600 transform md:rotate-0 rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                    </svg>
+
+                    <!-- Revenue -->
+                    <div class="flex-1 text-center">
+                        <div class="w-20 h-20 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-3">
+                            <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <p class="font-normal">Revenue</p>
+                        <p class="text-sm text-gray-600">AI companies profit</p>
+                    </div>
+
+                    <!-- X Mark -->
+                    <div class="text-center">
+                        <svg class="w-12 h-12 text-coral-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </div>
+
+                    <!-- No return to publishers -->
+                    <div class="flex-1 text-center">
+                        <div class="w-20 h-20 mx-auto bg-gray-200 rounded-full flex items-center justify-center mb-3">
+                            <span class="text-3xl font-light text-gray-600">???</span>
+                        </div>
+                        <p class="font-normal">Publishers Get</p>
+                        <p class="text-sm text-coral-600">Power-based deals, not measured value</p>
+                    </div>
                 </div>
             </div>
 
@@ -223,22 +367,18 @@
                 <p class="text-gray-600 font-light leading-relaxed mb-4">
                     Search traffic that powered the web for decades is collapsing. Health sites down 10%. News sites seeing 56% to 69% of searches result in no clicks. As one CEO puts it: "AI is basically choking off traffic to most content sites."
                 </p>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                <div class="grid grid-cols-3 gap-6 mt-6 max-w-3xl mx-auto">
                     <div class="text-center p-4 bg-white rounded-lg">
                         <p class="text-3xl font-light text-coral-600 mb-1">20-40%</p>
                         <p class="text-sm text-gray-600">Publisher traffic lost</p>
                     </div>
                     <div class="text-center p-4 bg-white rounded-lg">
-                        <p class="text-3xl font-light text-amber-600 mb-1">56-69%</p>
+                        <p class="text-3xl font-light text-coral-600 mb-1">56-69%</p>
                         <p class="text-sm text-gray-600">Zero-click searches</p>
                     </div>
                     <div class="text-center p-4 bg-white rounded-lg">
-                        <p class="text-3xl font-light text-coral-600 mb-1">$0</p>
-                        <p class="text-sm text-gray-600">Current compensation</p>
-                    </div>
-                    <div class="text-center p-4 bg-white rounded-lg">
-                        <p class="text-3xl font-light text-amber-600 mb-1">Billions</p>
-                        <p class="text-sm text-gray-600">AI revenue from content</p>
+                        <p class="text-3xl font-light text-coral-600 mb-1">???</p>
+                        <p class="text-sm text-gray-600">Unmeasured value</p>
                     </div>
                 </div>
             </div>
@@ -272,64 +412,95 @@
                 <h3 class="text-2xl font-normal mb-6 text-center">What We're Working On:</h3>
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div class="p-6 rounded-xl bg-gradient-to-br from-coral-50 to-amber-50">
+                        <svg class="w-10 h-10 text-coral-600 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                        </svg>
                         <h4 class="text-lg font-normal mb-2 text-coral-900">Technical Standards</h4>
                         <p class="text-sm text-gray-600 font-light">
                             Building attribution systems like ACAS that track content usage
                         </p>
                     </div>
                     <div class="p-6 rounded-xl bg-gradient-to-br from-amber-50 to-coral-50">
+                        <svg class="w-10 h-10 text-amber-600 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path>
+                        </svg>
                         <h4 class="text-lg font-normal mb-2 text-amber-900">Policy Reform</h4>
                         <p class="text-sm text-gray-600 font-light">
                             Shaping fair use laws and regulations for the AI era
                         </p>
                     </div>
                     <div class="p-6 rounded-xl bg-gradient-to-br from-coral-50 to-amber-50">
+                        <svg class="w-10 h-10 text-coral-600 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
                         <h4 class="text-lg font-normal mb-2 text-coral-900">Business Models</h4>
                         <p class="text-sm text-gray-600 font-light">
-                            Creating real compensation paths for content creators
+                            Creating real compensation paths for publishers and content owners
                         </p>
                     </div>
                     <div class="p-6 rounded-xl bg-gradient-to-br from-amber-50 to-coral-50">
+                        <svg class="w-10 h-10 text-amber-600 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
                         <h4 class="text-lg font-normal mb-2 text-amber-900">AI Provider Partnerships</h4>
                         <p class="text-sm text-gray-600 font-light">
-                            Negotiating directly with ChatGPT, Claude, Gemini, and others
+                            Negotiating directly with OpenAI, Anthropic, Google, and others
                         </p>
                     </div>
                 </div>
             </div>
 
             <div class="bg-gradient-to-r from-coral-50 to-amber-50 rounded-2xl p-8 border-l-4 border-coral-600">
-                <h3 class="text-2xl font-normal mb-4">Coalition Roadmap</h3>
-                <ol class="space-y-4">
-                    <li class="flex gap-4">
-                        <span class="text-2xl font-light text-coral-600">1</span>
-                        <div>
-                            <h4 class="font-normal mb-1">Build the Coalition (Now)</h4>
-                            <p class="text-sm text-gray-600 font-light">Recruit major publishers, brands, and technology providers. Establish collective bargaining power through member commitments.</p>
+                <h3 class="text-2xl font-normal mb-6 text-center">Coalition Roadmap</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-xl p-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-coral-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-white text-xl font-normal">1</span>
+                            </div>
+                            <div>
+                                <h4 class="font-normal mb-2 text-lg">Build the Coalition</h4>
+                                <p class="text-sm text-gray-600 font-light">Recruit major publishers, brands, and technology providers. Establish collective bargaining power.</p>
+                            </div>
                         </div>
-                    </li>
-                    <li class="flex gap-4">
-                        <span class="text-2xl font-light text-amber-600">2</span>
-                        <div>
-                            <h4 class="font-normal mb-1">Engage AI Providers (3-6 months)</h4>
-                            <p class="text-sm text-gray-600 font-light">Open direct negotiations with OpenAI, Anthropic, Google, and others. Push for transparency and fair compensation frameworks.</p>
+                    </div>
+
+                    <div class="bg-white rounded-xl p-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-amber-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-white text-xl font-normal">2</span>
+                            </div>
+                            <div>
+                                <h4 class="font-normal mb-2 text-lg">Engage AI Providers</h4>
+                                <p class="text-sm text-gray-600 font-light">Open direct negotiations with OpenAI, Anthropic, Google. Push for transparency frameworks.</p>
+                            </div>
                         </div>
-                    </li>
-                    <li class="flex gap-4">
-                        <span class="text-2xl font-light text-coral-600">3</span>
-                        <div>
-                            <h4 class="font-normal mb-1">Deploy Technical Solutions (6-12 months)</h4>
-                            <p class="text-sm text-gray-600 font-light">Launch ACAS and other attribution tools. Track real usage data. Demonstrate the scale of content extraction.</p>
+                    </div>
+
+                    <div class="bg-white rounded-xl p-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-coral-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-white text-xl font-normal">3</span>
+                            </div>
+                            <div>
+                                <h4 class="font-normal mb-2 text-lg">Deploy Technical Solutions</h4>
+                                <p class="text-sm text-gray-600 font-light">Launch ACAS and other attribution tools. Track real usage data and demonstrate extraction scale.</p>
+                            </div>
                         </div>
-                    </li>
-                    <li class="flex gap-4">
-                        <span class="text-2xl font-light text-amber-600">4</span>
-                        <div>
-                            <h4 class="font-normal mb-1">Establish New Norms (Ongoing)</h4>
-                            <p class="text-sm text-gray-600 font-light">Create industry standards, influence regulation, and build compensation models that keep content creation economically viable.</p>
+                    </div>
+
+                    <div class="bg-white rounded-xl p-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-amber-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-white text-xl font-normal">4</span>
+                            </div>
+                            <div>
+                                <h4 class="font-normal mb-2 text-lg">Establish New Norms</h4>
+                                <p class="text-sm text-gray-600 font-light">Create industry standards, influence regulation, and build sustainable compensation models.</p>
+                            </div>
                         </div>
-                    </li>
-                </ol>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -395,33 +566,7 @@
             </div>
 
             <div class="bg-white rounded-2xl p-8 shadow-lg border border-coral-100 mb-12">
-                <h3 class="text-2xl font-normal mb-6">Founding Coalition</h3>
-
-                <div class="mb-6 p-6 bg-gradient-to-r from-coral-50 to-amber-50 rounded-xl">
-                    <p class="font-normal mb-2">Lead Partner: <span class="text-coral-600">impact.com</span></p>
-                    <p class="text-sm text-gray-600 font-light">Leading attribution platform sponsoring AI Content Attribution Standard (ACAS) development</p>
-                </div>
-
-                <h4 class="font-normal mb-4">Founding Members</h4>
-                <div class="grid md:grid-cols-2 gap-4 text-sm">
-                    <div>
-                        <p class="font-normal mb-2">Technology Partners:</p>
-                        <ul class="text-gray-600 font-light space-y-1 ml-4">
-                            <li>• impact.com (lead partner)</li>
-                            <li>• Evertune</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <p class="font-normal mb-2">Agencies:</p>
-                        <ul class="text-gray-600 font-light space-y-1 ml-4">
-                            <li>• Acceleration Partners</li>
-                            <li>• Scale Digital</li>
-                        </ul>
-                    </div>
-                </div>
-                <p class="text-sm text-gray-500 font-light mt-4">+ Publishers, brands, and additional partners announcing soon</p>
-
-                <div class="mt-6 p-4 bg-coral-50 border-l-4 border-coral-600 rounded">
+                <div class="p-4 bg-coral-50 border-l-4 border-coral-600 rounded">
                     <p class="font-normal text-sm mb-2">Following Successful Models</p>
                     <p class="text-sm text-gray-600 font-light">
                         Standards like C2PA have shown how industry collaboration can solve transparency challenges. With 500+ members including major tech companies, C2PA demonstrates the viability of coalition-driven standards. OpenAttribution follows this proven approach.
@@ -453,14 +598,14 @@
                     <details class="p-6 rounded-xl bg-gradient-to-r from-coral-50 to-amber-50 cursor-pointer hover:shadow-md transition">
                         <summary class="font-normal text-lg">How is AI content consumption different from human learning?</summary>
                         <p class="mt-4 text-gray-600 font-light leading-relaxed">
-                            The difference is scale, velocity, and transparency. Humans gradually absorb knowledge over years, show their credentials and biases, and compensate teachers. AI consumes billions of articles instantly, operates as a black box, and generates immediate revenue without compensating creators. Our existing frameworks were built for human-scale learning, not industrial-scale extraction.
+                            The difference is scale, velocity, and transparency. Humans gradually absorb knowledge over years, show their credentials and biases, and compensate teachers. AI consumes billions of articles instantly, operates as a black box, and generates immediate revenue while publishers negotiate one-off deals without knowing actual usage or value. Our existing frameworks were built for human-scale learning, not industrial-scale extraction.
                         </p>
                     </details>
 
                     <details class="p-6 rounded-xl bg-gradient-to-r from-amber-50 to-coral-50 cursor-pointer hover:shadow-md transition">
                         <summary class="font-normal text-lg">Won't attribution slow down AI innovation?</summary>
                         <p class="mt-4 text-gray-600 font-light leading-relaxed">
-                            Sustainable growth beats extractive growth. Without attribution and fair compensation, quality content creators withdraw. AI systems, which cannot judge quality or create genuinely new ideas, become increasingly unreliable. Attribution ensures the content ecosystem that makes AI valuable continues to thrive.
+                            Sustainable growth beats extractive growth. Without attribution and fair compensation, publishers and content owners withdraw. AI systems, which cannot judge quality or create genuinely new ideas, become increasingly unreliable. Attribution ensures the content ecosystem that makes AI valuable continues to thrive.
                         </p>
                     </details>
 
@@ -537,13 +682,13 @@
             <div class="p-6 bg-coral-50 border-l-4 border-coral-600 rounded-lg mb-8">
                 <p class="font-normal mb-2">The stakes are clear:</p>
                 <p class="text-sm text-gray-700 font-light">
-                    AI systems are consuming human knowledge at industrial scale. Without attribution, content creators can't track usage or negotiate compensation. Without quality content, AI systems degrade into unreliable pattern matching. We're building the infrastructure that enables both to thrive.
+                    AI systems are consuming human knowledge at industrial scale. Without attribution, content owners can't track usage or negotiate compensation. Without quality content, AI systems degrade into unreliable pattern matching. We're building the infrastructure that enables both to thrive.
                 </p>
             </div>
 
-            <form id="contact-form" class="space-y-6">
+            <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" class="space-y-6">
                 <!-- Web3Forms Access Key -->
-                <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+                <input type="hidden" name="access_key" value="f748f42f-efca-406f-8782-c63cdc2a6051">
 
                 <!-- Optional: Customize subject line -->
                 <input type="hidden" name="subject" value="New OpenAttribution Coalition Inquiry">
@@ -609,52 +754,14 @@
                 </div>
 
                 <div>
-                    <label for="content-volume" class="block text-sm font-normal text-gray-700 mb-2">Monthly Content Volume (if applicable)</label>
-                    <input
-                        type="text"
-                        id="content-volume"
-                        name="content-volume"
-                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-coral-500 focus:border-transparent transition font-light"
-                        placeholder="e.g., 10,000 articles"
-                    >
-                </div>
-
-                <div>
-                    <label for="contribution" class="block text-sm font-normal text-gray-700 mb-2">How can you contribute to the AI Content Attribution Standard?</label>
-                    <textarea
-                        id="contribution"
-                        name="contribution"
-                        rows="3"
-                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-coral-500 focus:border-transparent transition font-light"
-                        placeholder="Technical expertise, content volume, industry influence, legal resources, etc."
-                    ></textarea>
-                </div>
-
-                <div>
-                    <label for="primary-interest" class="block text-sm font-normal text-gray-700 mb-2">Primary Interest</label>
-                    <select
-                        id="primary-interest"
-                        name="primary-interest"
-                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-coral-500 focus:border-transparent transition font-light"
-                    >
-                        <option value="">Select your primary interest</option>
-                        <option value="tracking">Tracking my content usage in AI systems</option>
-                        <option value="accuracy">Ensuring accurate product representation</option>
-                        <option value="infrastructure">Building attribution infrastructure</option>
-                        <option value="standards">Shaping technical standards</option>
-                        <option value="legal">Legal/regulatory frameworks</option>
-                        <option value="business-models">Sustainable AI business models</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label for="message" class="block text-sm font-normal text-gray-700 mb-2">Additional Information</label>
+                    <label for="message" class="block text-sm font-normal text-gray-700 mb-2">Message</label>
                     <textarea
                         id="message"
                         name="message"
-                        rows="4"
+                        rows="5"
+                        required
                         class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-coral-500 focus:border-transparent transition font-light"
-                        placeholder="Tell us more about your interest in OpenAttribution..."
+                        placeholder="Tell us about your interest in joining OpenAttribution..."
                     ></textarea>
                     <span class="error-message text-coral-600 text-sm hidden"></span>
                 </div>
@@ -663,9 +770,9 @@
                     type="submit"
                     class="w-full px-8 py-4 bg-coral-600 text-white rounded-lg hover:bg-coral-700 transition shadow-lg hover:shadow-xl font-light text-lg"
                 >
-                    Submit Application
+                    Send Message
                 </button>
-                <p class="text-sm text-gray-500 text-center font-light">We'll review and respond within 48 hours</p>
+                <p class="text-sm text-gray-500 text-center font-light">We'll respond within 48 hours</p>
 
                 <div id="form-success" class="hidden p-4 bg-green-50 border border-green-200 rounded-lg text-green-700 text-center font-light">
                     Thanks for your interest! We'll be in touch soon.
@@ -676,62 +783,34 @@
                 </div>
             </form>
 
-            <div class="mt-12 grid md:grid-cols-2 gap-8">
-                <div class="p-6 bg-white rounded-xl shadow-md">
-                    <h3 class="text-xl font-normal mb-4">Quick Contact</h3>
-                    <div class="space-y-3 text-sm">
-                        <div>
-                            <p class="text-gray-500 font-light">General Inquiries</p>
-                            <a href="mailto:info@openattribution.org" class="text-coral-600 hover:underline">info@openattribution.org</a>
-                        </div>
-                        <div>
-                            <p class="text-gray-500 font-light">Partnership</p>
-                            <a href="mailto:partners@openattribution.org" class="text-coral-600 hover:underline">partners@openattribution.org</a>
-                        </div>
-                        <div>
-                            <p class="text-gray-500 font-light">Technical Support</p>
-                            <a href="mailto:tech@openattribution.org" class="text-coral-600 hover:underline">tech@openattribution.org</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-6 bg-gradient-to-r from-coral-50 to-amber-50 rounded-xl shadow-md">
-                    <h3 class="text-xl font-normal mb-4">Lead Partner</h3>
-                    <p class="font-normal mb-1">impact.com</p>
-                    <p class="text-sm text-gray-600 font-light mb-4">Sponsoring AI Content Attribution Standard (ACAS) development and implementation</p>
-                    <div class="text-sm">
-                        <p class="font-normal">Alex Springer</p>
-                        <p class="text-gray-600 font-light">Head of AI and Data Products</p>
-                        <a href="mailto:alex@impact.com" class="text-coral-600 hover:underline">alex@impact.com</a>
-                    </div>
+            <div class="mt-12 max-w-md mx-auto">
+                <div class="p-6 bg-white rounded-xl shadow-md text-center">
+                    <h3 class="text-xl font-normal mb-4">Contact</h3>
+                    <a href="mailto:info@openattribution.org" class="text-coral-600 hover:underline text-lg">info@openattribution.org</a>
                 </div>
             </div>
 
             <div class="mt-12 p-8 bg-gradient-to-r from-coral-50 to-amber-50 rounded-2xl border-l-4 border-coral-600 text-center">
-                <h3 class="text-2xl font-normal mb-4">The Window Is Closing</h3>
+                <h3 class="text-2xl font-normal mb-4">Why Join Now</h3>
                 <p class="text-gray-700 font-light mb-8 max-w-2xl mx-auto">
-                    Business models are solidifying. Legal precedents are being set. Every day without attribution infrastructure makes change exponentially harder.
+                    AI business models are being set now. The earlier we establish attribution standards, the easier it is to negotiate fair terms.
                 </p>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mb-6">
+                <div class="grid grid-cols-3 gap-6 max-w-2xl mx-auto mb-6">
                     <div>
                         <p class="text-3xl font-light text-coral-600 mb-1">20-40%</p>
                         <p class="text-sm text-gray-600">Publisher traffic lost to AI</p>
                     </div>
                     <div>
-                        <p class="text-3xl font-light text-amber-600 mb-1">Billions</p>
-                        <p class="text-sm text-gray-600">AI revenue without attribution</p>
+                        <p class="text-3xl font-light text-coral-600 mb-1">56-69%</p>
+                        <p class="text-sm text-gray-600">Zero-click searches</p>
                     </div>
                     <div>
-                        <p class="text-3xl font-light text-coral-600 mb-1">0</p>
-                        <p class="text-sm text-gray-600">Current visibility into usage</p>
-                    </div>
-                    <div>
-                        <p class="text-3xl font-light text-amber-600 mb-1">Now</p>
-                        <p class="text-sm text-gray-600">Last chance to establish standards</p>
+                        <p class="text-3xl font-light text-coral-600 mb-1">???</p>
+                        <p class="text-sm text-gray-600">Unmeasured value</p>
                     </div>
                 </div>
                 <p class="text-lg font-normal text-gray-800">
-                    Join us in creating the attribution infrastructure that ensures quality content and reliable AI can coexist.
+                    Join the coalition building fair practices for AI content usage.
                 </p>
             </div>
         </div>
@@ -746,7 +825,7 @@
                         <span class="text-coral-500">Open</span>Attribution
                     </h4>
                     <p class="font-light text-sm">
-                        Building transparent standards for content attribution in AI systems.
+                        A coalition establishing fair practices for AI content usage.
                     </p>
                 </div>
                 <div>
@@ -772,7 +851,6 @@
                     <ul class="space-y-2 text-sm font-light">
                         <li><a href="#contact" class="hover:text-coral-500 transition">Join Coalition</a></li>
                         <li><a href="mailto:info@openattribution.org" class="hover:text-coral-500 transition">Contact Us</a></li>
-                        <li><a href="mailto:partners@openattribution.org" class="hover:text-coral-500 transition">Partnerships</a></li>
                     </ul>
                 </div>
             </div>

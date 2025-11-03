@@ -67,7 +67,7 @@ Any person or organization creating unique content is a content owner and conten
 
 ## OpenAttribution Goals
 
-OpenAttribution pursues five goals to ensure content creators can track, verify, and monetize their work when used by AI systems.
+OpenAttribution pursues five goals to ensure publishers and content owners can track, verify, and monetize their work when used by AI systems.
 
 ### 1. Transparency
 
@@ -104,15 +104,15 @@ ACAS is one tool in our broader strategy. Technical standards alone won't solve 
 
 ## The Organization: OpenAttribution
 
-### Membership
+OpenAttribution is actively recruiting members across all stakeholder categories:
 
-| Category | Members |
-|----------|---------|
-| **Technology Providers** | impact.com (ACAS sponsor)<br>Evertune |
-| **Content Publishers** | (Recruiting) |
-| **Brands** | (Recruiting) |
-| **Agencies** | Acceleration Partners<br>Scale Digital |
-| **Model Builders** | (Recruiting) |
+- **Content Publishers** - Media companies, news organizations, editorial sites
+- **Brands** - Retailers, manufacturers, service providers whose product information powers AI
+- **Technology Providers** - Attribution platforms, CDNs, analytics companies
+- **Agencies** - Marketing and media agencies representing content creators
+- **AI Providers** - Companies building LLMs and AI chat systems
+
+Interested in joining? Contact info@openattribution.org
 
 ## Key Reference Documents
 
@@ -150,7 +150,5 @@ Another important fair use factor is whether your use deprives the copyright own
 ## Get Involved
 
 - **Website**: [openattribution.org](https://openattribution.org)
-- **General Inquiries**: info@openattribution.org
-- **Partnership**: partners@openattribution.org
-- **Technical Support**: tech@openattribution.org
+- **Contact**: info@openattribution.org
 - **Join the Coalition**: Contact us to learn more about membership

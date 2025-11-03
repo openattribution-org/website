@@ -119,23 +119,7 @@ contactForm.addEventListener('submit', async (e) => {
 
     // Get optional fields
     const stakeholder = document.getElementById('stakeholder').value;
-    const contentVolume = document.getElementById('content-volume').value;
-    const contribution = document.getElementById('contribution').value;
-    const primaryInterest = document.getElementById('primary-interest').value;
     const message = document.getElementById('message').value;
-
-    // Simulate form submission (replace with actual endpoint)
-    const formData = {
-        organization,
-        name,
-        email,
-        stakeholder,
-        contentVolume,
-        contribution,
-        primaryInterest,
-        message,
-        timestamp: new Date().toISOString()
-    };
 
     // Disable submit button during submission
     const submitButton = contactForm.querySelector('button[type="submit"]');
@@ -158,9 +142,6 @@ contactForm.addEventListener('submit', async (e) => {
                 email: email,
                 organization: organization,
                 organization_type: stakeholder,
-                content_volume: contentVolume,
-                contribution: contribution,
-                primary_interest: primaryInterest,
                 message: message,
                 from_name: `${name} (${organization})`
             })
@@ -227,4 +208,21 @@ const observer = new IntersectionObserver((entries) => {
 // Observe sections for animation
 document.querySelectorAll('section').forEach(section => {
     observer.observe(section);
+});
+
+// Sticky CTA button - show after scrolling past hero
+const stickyCta = document.getElementById('sticky-cta');
+let lastScrollTop = 0;
+
+window.addEventListener('scroll', () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const heroHeight = window.innerHeight * 0.8; // Show after scrolling ~80% of viewport
+
+    if (scrollTop > heroHeight) {
+        stickyCta.classList.remove('hidden');
+    } else {
+        stickyCta.classList.add('hidden');
+    }
+
+    lastScrollTop = scrollTop;
 });
