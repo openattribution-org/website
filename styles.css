@@ -291,3 +291,49 @@ button[type="submit"]:disabled {
         font-size: 1rem;
     }
 }
+
+/* Goal bubble popover animations */
+.goal-popover {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+}
+
+.goal-popover:not(.hidden) {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Prevent popover from being cut off */
+.goal-bubble {
+    overflow: visible;
+    z-index: 20;
+}
+
+/* Increase z-index when popover is active */
+.goal-bubble:hover,
+.goal-bubble:has(.goal-popover:not(.hidden)) {
+    z-index: 100;
+}
+
+/* Smooth scale transition for goal bubbles */
+.goal-bubble .rounded-full {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.goal-bubble:hover .rounded-full {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Mobile: add tap indication */
+@media (max-width: 768px) {
+    .goal-bubble .rounded-full {
+        cursor: pointer;
+    }
+
+    .goal-bubble:active .rounded-full {
+        transform: scale(0.95);
+    }
+}

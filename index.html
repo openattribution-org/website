@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OpenAttribution - A Coalition for Transparency in AI Content Usage</title>
-    <meta name="description" content="A coalition of publishers, brands, and technology providers working together to establish fair practices for AI content usage.">
+    <meta name="description" content="A coalition of publishers, brands, and data providers establishing transparency, attribution, and control when AI systems use proprietary information.">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -113,11 +113,11 @@
                         A Coalition for <span class="text-coral-600 font-normal">Transparency</span> in AI Content Usage
                     </h1>
                     <p class="text-xl text-gray-700 font-light leading-relaxed">
-                        <span class="text-coral-600 font-normal">Publishers</span>, <span class="text-coral-600 font-normal">brands</span>, and <span class="text-coral-600 font-normal">technology providers</span> uniting to establish transparency, attribution, and fair compensation when AI systems use proprietary content.
+                        <span class="text-coral-600 font-normal">Publishers</span>, <span class="text-coral-600 font-normal">brands</span>, and <span class="text-coral-600 font-normal">data providers</span> uniting to establish transparency, attribution, and control when AI systems use proprietary content and information.
                     </p>
                     <div class="p-4 bg-white/60 backdrop-blur-sm border-l-4 border-coral-600 rounded">
                         <p class="text-sm font-normal text-gray-700">
-                            <strong class="text-coral-600">Collective Bargaining:</strong> Publishers and content owners facing AI's extraction economy <span class="text-coral-600">alone</span> get one-off deals and declining traffic. <span class="text-coral-600 font-normal">Together</span>, we negotiate from strength - building technical tools, shaping policy, and establishing compensation frameworks that work.
+                            <strong class="text-coral-600">Collective Bargaining:</strong> Whether you publish articles, manufacture products, or provide proprietary data - facing AI's extraction economy <span class="text-coral-600">alone</span> means one-off deals, misrepresentation, and zero visibility. <span class="text-coral-600 font-normal">Together</span>, we negotiate from strength.
                         </p>
                     </div>
                     <div class="flex flex-wrap gap-4">
@@ -146,7 +146,7 @@
             <div class="text-center mb-16">
                 <h2 class="text-4xl lg:text-5xl font-light mb-6">Our <span class="text-coral-600">Goals</span></h2>
                 <p class="text-xl text-gray-600 font-light max-w-3xl mx-auto">
-                    OpenAttribution ensures publishers and content owners can track, verify, and monetize their work when used by AI systems.
+                    OpenAttribution ensures publishers, brands, and data providers can track, verify, control, and monetize how AI systems use their proprietary information.
                 </p>
             </div>
 
@@ -161,50 +161,98 @@
                 </div>
 
                 <!-- Goal 1: Transparency (Top - 90 degrees) -->
-                <div class="absolute top-6 left-1/2 transform -translate-x-1/2 w-44 h-44 bg-gradient-to-br from-coral-500 to-coral-600 rounded-full flex items-center justify-center shadow-xl z-5">
-                    <div class="text-center text-white px-4">
-                        <p class="text-base font-normal mb-1">Transparency</p>
-                        <p class="text-xs font-light">Know when content is used</p>
+                <div class="absolute top-6 left-1/2 transform -translate-x-1/2 w-44 h-44 goal-bubble group">
+                    <div class="w-full h-full bg-gradient-to-br from-coral-500 to-coral-600 rounded-full flex items-center justify-center shadow-xl cursor-pointer transition-transform hover:scale-105">
+                        <div class="text-center text-white px-4">
+                            <p class="text-base font-normal mb-1">Transparency</p>
+                            <p class="text-xs font-light">Know when content is used</p>
+                        </div>
+                    </div>
+                    <!-- Popover -->
+                    <div class="goal-popover hidden absolute top-full left-1/2 transform -translate-x-1/2 mt-4 w-64 bg-white rounded-lg shadow-2xl p-4 border border-coral-200 z-50">
+                        <div class="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white border-l border-t border-coral-200 rotate-45"></div>
+                        <h4 class="font-normal text-coral-900 mb-2">Transparency</h4>
+                        <p class="text-sm text-gray-600 font-light">Content owners should know when and where their information is used - and consumers should understand the sources of information they receive.</p>
                     </div>
                 </div>
 
                 <!-- Goal 2: Attribution (Top Right - 18 degrees) -->
-                <div class="absolute" style="top: 18%; right: 12%; width: 11rem; height: 11rem;">
-                    <div class="w-full h-full bg-gradient-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center shadow-xl">
+                <div class="absolute goal-bubble group" style="top: 18%; right: 12%; width: 11rem; height: 11rem;">
+                    <div class="w-full h-full bg-gradient-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center shadow-xl cursor-pointer transition-transform hover:scale-105">
                         <div class="text-center text-white px-4">
                             <p class="text-base font-normal mb-1">Attribution</p>
                             <p class="text-xs font-light">Proper credit & tracking</p>
                         </div>
                     </div>
+                    <!-- Popover -->
+                    <div class="goal-popover hidden absolute top-full left-1/2 transform -translate-x-1/2 mt-4 w-64 bg-white rounded-lg shadow-2xl p-4 border border-amber-200 z-50">
+                        <div class="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white border-l border-t border-amber-200 rotate-45"></div>
+                        <h4 class="font-normal text-amber-900 mb-2">Attribution & Credit</h4>
+                        <p class="text-sm text-gray-600 font-light">Brands and publishers deserve proper credit when their content informs AI outputs, enabling tracking, verification, and compensation.</p>
+                    </div>
                 </div>
 
                 <!-- Goal 3: Accuracy (Bottom Right - 306 degrees) -->
-                <div class="absolute" style="bottom: 18%; right: 12%; width: 11rem; height: 11rem;">
-                    <div class="w-full h-full bg-gradient-to-br from-coral-500 to-coral-600 rounded-full flex items-center justify-center shadow-xl">
+                <div class="absolute goal-bubble group" style="bottom: 18%; right: 12%; width: 11rem; height: 11rem;">
+                    <div class="w-full h-full bg-gradient-to-br from-coral-500 to-coral-600 rounded-full flex items-center justify-center shadow-xl cursor-pointer transition-transform hover:scale-105">
                         <div class="text-center text-white px-4">
                             <p class="text-base font-normal mb-1">Accuracy</p>
                             <p class="text-xs font-light">Faithful representation</p>
                         </div>
                     </div>
+                    <!-- Popover -->
+                    <div class="goal-popover hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 w-64 bg-white rounded-lg shadow-2xl p-4 border border-coral-200 z-50">
+                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white border-r border-b border-coral-200 rotate-45"></div>
+                        <h4 class="font-normal text-coral-900 mb-2">Accuracy</h4>
+                        <p class="text-sm text-gray-600 font-light">AI systems should faithfully represent product details, brand messaging, and published content without distortion.</p>
+                    </div>
                 </div>
 
                 <!-- Goal 4: Fair Compensation (Bottom Left - 234 degrees) -->
-                <div class="absolute" style="bottom: 18%; left: 12%; width: 11rem; height: 11rem;">
-                    <div class="w-full h-full bg-gradient-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center shadow-xl">
+                <div class="absolute goal-bubble group" style="bottom: 18%; left: 12%; width: 11rem; height: 11rem;">
+                    <div class="w-full h-full bg-gradient-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center shadow-xl cursor-pointer transition-transform hover:scale-105">
                         <div class="text-center text-white px-4">
                             <p class="text-base font-normal mb-1">Fair Compensation</p>
                             <p class="text-xs font-light">Value for creators</p>
                         </div>
                     </div>
+                    <!-- Popover -->
+                    <div class="goal-popover hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 w-64 bg-white rounded-lg shadow-2xl p-4 border border-amber-200 z-50">
+                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white border-r border-b border-amber-200 rotate-45"></div>
+                        <h4 class="font-normal text-amber-900 mb-2">Fair Compensation</h4>
+                        <p class="text-sm text-gray-600 font-light">Content creators and brands should be appropriately compensated when their proprietary information drives value.</p>
+                    </div>
                 </div>
 
                 <!-- Goal 5: Economic Viability (Top Left - 162 degrees) -->
-                <div class="absolute" style="top: 18%; left: 12%; width: 11rem; height: 11rem;">
-                    <div class="w-full h-full bg-gradient-to-br from-coral-500 to-coral-600 rounded-full flex items-center justify-center shadow-xl">
+                <div class="absolute goal-bubble group" style="top: 18%; left: 12%; width: 11rem; height: 11rem;">
+                    <div class="w-full h-full bg-gradient-to-br from-coral-500 to-coral-600 rounded-full flex items-center justify-center shadow-xl cursor-pointer transition-transform hover:scale-105">
                         <div class="text-center text-white px-4">
                             <p class="text-base font-normal mb-1">Economic Viability</p>
                             <p class="text-xs font-light">Sustainable creation</p>
                         </div>
+                    </div>
+                    <!-- Popover -->
+                    <div class="goal-popover hidden absolute top-full left-1/2 transform -translate-x-1/2 mt-4 w-64 bg-white rounded-lg shadow-2xl p-4 border border-coral-200 z-50">
+                        <div class="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white border-l border-t border-coral-200 rotate-45"></div>
+                        <h4 class="font-normal text-coral-900 mb-2">Economic Viability</h4>
+                        <p class="text-sm text-gray-600 font-light">Ensure content creation remains economically viable while AI systems have access to quality data.</p>
+                    </div>
+                </div>
+
+                <!-- Goal 6: Control & Verification (Bottom - 270 degrees) -->
+                <div class="absolute goal-bubble group" style="bottom: 6%; left: 50%; transform: translateX(-50%); width: 11rem; height: 11rem;">
+                    <div class="w-full h-full bg-gradient-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center shadow-xl cursor-pointer transition-transform hover:scale-105">
+                        <div class="text-center text-white px-4">
+                            <p class="text-base font-normal mb-1">Control & Verification</p>
+                            <p class="text-xs font-light">Verify representation</p>
+                        </div>
+                    </div>
+                    <!-- Popover -->
+                    <div class="goal-popover hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 w-64 bg-white rounded-lg shadow-2xl p-4 border border-amber-200 z-50">
+                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white border-r border-b border-amber-200 rotate-45"></div>
+                        <h4 class="font-normal text-amber-900 mb-2">Control & Verification</h4>
+                        <p class="text-sm text-gray-600 font-light">Brands and content owners should be able to verify how they're represented and correct misrepresentations, inaccuracies, or harmful associations.</p>
                     </div>
                 </div>
             </div>
@@ -231,6 +279,10 @@
                     <h3 class="font-normal mb-1 text-coral-900">Economic Viability</h3>
                     <p class="text-sm text-gray-600 font-light">Ensure content creation remains economically viable</p>
                 </div>
+                <div class="p-4 rounded-xl bg-gradient-to-r from-amber-50 to-coral-50 border-l-4 border-amber-600">
+                    <h3 class="font-normal mb-1 text-amber-900">Control & Verification</h3>
+                    <p class="text-sm text-gray-600 font-light">Verify how you're represented and correct misrepresentations or harmful associations</p>
+                </div>
             </div>
         </div>
     </section>
@@ -241,17 +293,17 @@
             <div class="text-center mb-12">
                 <h2 class="text-4xl lg:text-5xl font-light mb-6">The <span class="text-coral-600">Problem</span></h2>
                 <p class="text-2xl text-gray-700 font-light max-w-4xl mx-auto mb-8">
-                    AI Systems Are Consuming Content Without Attribution
+                    AI Systems Use Proprietary Information Without Transparency or Control
                 </p>
             </div>
 
-            <!-- Visual: Content Creators -->
+            <!-- Visual: Content Creators and Brands -->
             <div class="grid md:grid-cols-2 gap-8 mb-12">
                 <div class="relative overflow-hidden rounded-2xl shadow-xl">
-                    <img src="img/hero.jpg" alt="Professional working on content attribution standards" class="w-full h-80 object-cover">
+                    <img src="img/stamp.jpeg" alt="Wax seal stamp representing brand authenticity and verification" class="w-full h-80 object-cover">
                     <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 to-transparent p-6">
-                        <p class="text-white font-normal text-lg">Content creators in the field</p>
-                        <p class="text-gray-200 text-sm font-light">Journalists, researchers, photographers</p>
+                        <p class="text-white font-normal text-lg">Brand authenticity matters</p>
+                        <p class="text-gray-200 text-sm font-light">Legitimate businesses need verification and control</p>
                     </div>
                 </div>
                 <div class="relative overflow-hidden rounded-2xl shadow-xl">
@@ -264,35 +316,35 @@
             </div>
 
             <p class="text-lg text-gray-600 font-light max-w-3xl mx-auto text-center mb-12">
-                AI systems from OpenAI to Anthropic to Google are consuming this content at massive scale while providing zero visibility into usage. Major publishers report 20-40% traffic declines as AI-powered search and chatbots answer questions directly without sending users to source websites.
+                AI systems are consuming editorial content, product information, and proprietary data at massive scale with zero visibility. Publishers face 20-40% traffic declines, brands can't verify how they're represented, and data providers see their proprietary information scraped without attribution.
             </p>
 
             <div class="grid md:grid-cols-2 gap-8 mb-12">
                 <div class="p-8 rounded-xl bg-white shadow-lg border border-coral-100">
-                    <h3 class="text-xl font-normal mb-4 text-coral-900">Scale Without Precedent</h3>
+                    <h3 class="text-xl font-normal mb-4 text-coral-900">Content Used Without Credit</h3>
                     <p class="text-gray-600 font-light leading-relaxed">
-                        Decades of human knowledge consumed instantly, monetized immediately - breaking every framework we've developed for fair use and compensation
+                        AI takes your articles, research, and content, then rewrites and presents it as AI-generated responses. Users never see where the information came from, and you get no credit or traffic.
                     </p>
                 </div>
 
                 <div class="p-8 rounded-xl bg-white shadow-lg border border-amber-100">
-                    <h3 class="text-xl font-normal mb-4 text-amber-900">Reformulation Without Attribution</h3>
+                    <h3 class="text-xl font-normal mb-4 text-amber-900">Proprietary Data Scraped and Redistributed</h3>
                     <p class="text-gray-600 font-light leading-relaxed">
-                        AI synthesizes and presents content without users knowing the sources, biases, or reliability of the information
+                        Coupon codes, pricing information, product specs, availability data - information you spent time and money curating gets scraped and redistributed by AI without attribution or compensation.
                     </p>
                 </div>
 
                 <div class="p-8 rounded-xl bg-white shadow-lg border border-coral-100">
-                    <h3 class="text-xl font-normal mb-4 text-coral-900">Terminal Conversations</h3>
+                    <h3 class="text-xl font-normal mb-4 text-coral-900">No Way to Verify or Correct</h3>
                     <p class="text-gray-600 font-light leading-relaxed">
-                        AI systems measure success by keeping users in chat rather than sending them to sources. Unlike search, which profits by showing ads before sending users away, AI chats are designed to be the final destination. No pageview. No ad impression. No subscription. Just extraction.
+                        Brands can't verify how they're represented in AI responses. Wrong prices, outdated specs, associations with fraudulent AI-generated competitors - legitimate businesses have no way to correct misrepresentations that damage trust.
                     </p>
                 </div>
 
                 <div class="p-8 rounded-xl bg-white shadow-lg border border-amber-100">
-                    <h3 class="text-xl font-normal mb-4 text-amber-900">Quality Degradation Risk</h3>
+                    <h3 class="text-xl font-normal mb-4 text-amber-900">Traffic Capture, Not Referral</h3>
                     <p class="text-gray-600 font-light leading-relaxed">
-                        Without attribution and compensation, publishers stop creating quality content. AI systems, which cannot innovate or judge quality themselves, become increasingly mediocre.
+                        Unlike search engines that send users to websites, AI keeps users in chat. No traffic means no ad impressions, no subscriptions, no sales - just extraction of your content to keep users away from your business.
                     </p>
                 </div>
             </div>
@@ -357,7 +409,7 @@
                             <span class="text-3xl font-light text-gray-600">???</span>
                         </div>
                         <p class="font-normal">Publishers Get</p>
-                        <p class="text-sm text-coral-600">Power-based deals, not measured value</p>
+                        <p class="text-sm text-coral-600">One-off deals without measurement</p>
                     </div>
                 </div>
             </div>
@@ -515,6 +567,31 @@
                 </p>
             </div>
 
+            <!-- Visual: Coalition Members -->
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div class="relative overflow-hidden rounded-xl shadow-lg">
+                    <img src="img/tv_news.jpeg" alt="News reporter representing publishers and journalists" class="w-full h-64 object-cover">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 to-transparent p-4">
+                        <p class="text-white font-normal">Publishers</p>
+                        <p class="text-gray-200 text-sm font-light">Media, news, editorial</p>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden rounded-xl shadow-lg">
+                    <img src="img/etch.jpeg" alt="Craftsmanship representing brand authenticity" class="w-full h-64 object-cover">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 to-transparent p-4">
+                        <p class="text-white font-normal">Brands</p>
+                        <p class="text-gray-200 text-sm font-light">Retailers, manufacturers</p>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden rounded-xl shadow-lg">
+                    <img src="img/hero.jpg" alt="Professional working on data and attribution" class="w-full h-64 object-cover">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 to-transparent p-4">
+                        <p class="text-white font-normal">Data Providers</p>
+                        <p class="text-gray-200 text-sm font-light">Content, pricing, catalogs</p>
+                    </div>
+                </div>
+            </div>
+
             <div class="grid md:grid-cols-2 gap-8 mb-12">
                 <div class="p-8 rounded-xl bg-white shadow-lg">
                     <h3 class="text-xl font-normal mb-4 flex items-center gap-2">
@@ -536,7 +613,7 @@
                         Brands
                     </h3>
                     <p class="text-gray-600 font-light leading-relaxed">
-                        Your product information powers AI commerce responses with zero visibility. Without attribution, you can't verify accuracy, track usage, or protect brand representation.
+                        Your product information powers AI responses, but you can't verify accuracy or control how you're represented. Wrong prices, incorrect specs, association with AI-generated scam competitors - legitimate brands have no way to correct misrepresentations that damage trust and sales.
                     </p>
                 </div>
 
@@ -596,51 +673,37 @@
                 <h3 class="text-2xl font-normal mb-6">Frequently Asked Questions</h3>
                 <div class="space-y-4">
                     <details class="p-6 rounded-xl bg-gradient-to-r from-coral-50 to-amber-50 cursor-pointer hover:shadow-md transition">
-                        <summary class="font-normal text-lg">How is AI content consumption different from human learning?</summary>
+                        <summary class="font-normal text-lg">Is this just for content publishers?</summary>
                         <p class="mt-4 text-gray-600 font-light leading-relaxed">
-                            The difference is scale, velocity, and transparency. Humans gradually absorb knowledge over years, show their credentials and biases, and compensate teachers. AI consumes billions of articles instantly, operates as a black box, and generates immediate revenue while publishers negotiate one-off deals without knowing actual usage or value. Our existing frameworks were built for human-scale learning, not industrial-scale extraction.
+                            No. OpenAttribution is for anyone whose proprietary information powers AI responses: publishers losing traffic, brands that can't verify how they're represented, data providers seeing their curated information scraped, and technology companies building attribution infrastructure. If AI uses your information without transparency, this coalition is for you.
                         </p>
                     </details>
 
                     <details class="p-6 rounded-xl bg-gradient-to-r from-amber-50 to-coral-50 cursor-pointer hover:shadow-md transition">
-                        <summary class="font-normal text-lg">Won't attribution slow down AI innovation?</summary>
+                        <summary class="font-normal text-lg">What does joining the coalition mean?</summary>
                         <p class="mt-4 text-gray-600 font-light leading-relaxed">
-                            Sustainable growth beats extractive growth. Without attribution and fair compensation, publishers and content owners withdraw. AI systems, which cannot judge quality or create genuinely new ideas, become increasingly unreliable. Attribution ensures the content ecosystem that makes AI valuable continues to thrive.
+                            You join a group negotiating from collective strength rather than individually. We're building technical tools like ACAS, shaping policy, and engaging AI providers directly. The larger the coalition, the more leverage we have to establish transparency standards and fair compensation frameworks.
                         </p>
                     </details>
 
                     <details class="p-6 rounded-xl bg-gradient-to-r from-coral-50 to-amber-50 cursor-pointer hover:shadow-md transition">
-                        <summary class="font-normal text-lg">How is ACAS different from robots.txt?</summary>
+                        <summary class="font-normal text-lg">Do I need to be technical to participate?</summary>
                         <p class="mt-4 text-gray-600 font-light leading-relaxed">
-                            Robots.txt is binary - block or allow. ACAS enables measured access with attribution. Content owners can allow AI usage while tracking it, enabling various business models from licensing to revenue sharing. It's not about blocking AI, but creating transparency that enables fair value exchange.
+                            Not at all. While we're developing technical standards, most members are business leaders, content owners, and brand managers. Your participation strengthens collective bargaining power and helps shape policies that work for your business - no technical expertise required.
                         </p>
                     </details>
 
                     <details class="p-6 rounded-xl bg-gradient-to-r from-amber-50 to-coral-50 cursor-pointer hover:shadow-md transition">
-                        <summary class="font-normal text-lg">What's the incentive for AI companies to adopt ACAS?</summary>
+                        <summary class="font-normal text-lg">Why should I join now instead of waiting?</summary>
                         <p class="mt-4 text-gray-600 font-light leading-relaxed">
-                            Multiple pressures are converging: Legal (mounting fair use challenges), Technical (dependency on current content to avoid hallucinations), Economic (publishers blocking scrapers), and Competitive (alternative models emerging). Quality content makes AI valuable - attribution creates sustainable access.
+                            AI business models are being set right now. Early coalition members shape the standards and have first access to attribution data and compensation frameworks. Waiting means accepting whatever terms get established without your input. The window for influence is open now.
                         </p>
                     </details>
 
                     <details class="p-6 rounded-xl bg-gradient-to-r from-coral-50 to-amber-50 cursor-pointer hover:shadow-md transition">
-                        <summary class="font-normal text-lg">Does ACAS track user data?</summary>
+                        <summary class="font-normal text-lg">Is this anti-AI?</summary>
                         <p class="mt-4 text-gray-600 font-light leading-relaxed">
-                            No. ACAS is privacy-first and does not collect any personal information. It only tracks content usage patterns and attribution signals between AI systems and content sources. Users benefit from transparency without surveillance.
-                        </p>
-                    </details>
-
-                    <details class="p-6 rounded-xl bg-gradient-to-r from-amber-50 to-coral-50 cursor-pointer hover:shadow-md transition">
-                        <summary class="font-normal text-lg">How quickly can ACAS be implemented?</summary>
-                        <p class="mt-4 text-gray-600 font-light leading-relaxed">
-                            RAG attribution can be implemented in days - AI systems already know what content they retrieve at query time. Full implementation is incremental: start with real-time retrieval, add response attribution, then expand to training transparency as technical solutions mature.
-                        </p>
-                    </details>
-
-                    <details class="p-6 rounded-xl bg-gradient-to-r from-coral-50 to-amber-50 cursor-pointer hover:shadow-md transition">
-                        <summary class="font-normal text-lg">How does ACAS relate to standards like C2PA?</summary>
-                        <p class="mt-4 text-gray-600 font-light leading-relaxed">
-                            ACAS follows the successful coalition model of standards like C2PA, which brought together 500+ companies to establish content provenance. While C2PA focuses on media file authenticity (images, videos), ACAS addresses AI chat attribution. We're learning from C2PA's approach: industry collaboration, cryptographic verification, and incremental adoption.
+                            No. We're not blocking AI - we're creating sustainable frameworks so AI can continue accessing quality content while content owners get transparency and fair compensation. AI systems need quality data to avoid degradation. We need attribution to sustain creation. Both benefit from transparency.
                         </p>
                     </details>
                 </div>

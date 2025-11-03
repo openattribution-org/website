@@ -226,3 +226,82 @@ window.addEventListener('scroll', () => {
 
     lastScrollTop = scrollTop;
 });
+
+// Goal bubble popovers
+const goalBubbles = document.querySelectorAll('.goal-bubble');
+let activePopover = null;
+
+// Helper function to close all popovers
+function closeAllPopovers() {
+    goalBubbles.forEach(bubble => {
+        const popover = bubble.querySelector('.goal-popover');
+        if (popover) {
+            popover.classList.add('hidden');
+        }
+    });
+    activePopover = null;
+}
+
+// Function to show popover
+function showPopover(bubble) {
+    closeAllPopovers();
+    const popover = bubble.querySelector('.goal-popover');
+    if (popover) {
+        popover.classList.remove('hidden');
+        activePopover = popover;
+    }
+}
+
+// Function to hide popover
+function hidePopover(bubble) {
+    const popover = bubble.querySelector('.goal-popover');
+    if (popover) {
+        popover.classList.add('hidden');
+        if (activePopover === popover) {
+            activePopover = null;
+        }
+    }
+}
+
+goalBubbles.forEach(bubble => {
+    // Desktop: hover
+    bubble.addEventListener('mouseenter', () => {
+        if (window.innerWidth >= 768) { // md breakpoint
+            showPopover(bubble);
+        }
+    });
+
+    bubble.addEventListener('mouseleave', () => {
+        if (window.innerWidth >= 768) { // md breakpoint
+            hidePopover(bubble);
+        }
+    });
+
+    // Mobile: click/tap
+    bubble.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const popover = bubble.querySelector('.goal-popover');
+
+        if (popover) {
+            if (popover.classList.contains('hidden')) {
+                showPopover(bubble);
+            } else {
+                hidePopover(bubble);
+            }
+        }
+    });
+});
+
+// Close popovers when clicking outside
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.goal-bubble')) {
+        closeAllPopovers();
+    }
+});
+
+// Close popovers on escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeAllPopovers();
+    }
+});
