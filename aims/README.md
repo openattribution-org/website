@@ -48,7 +48,7 @@ The full specification is available in [SPECIFICATION.md](SPECIFICATION.md).
 
 This is an **incomplete draft specification** intended to invite collaboration.
 
-**Complete:** Content usage transparency, training data licensing provenance, commercial bias disclosure
+**Complete:** Content usage transparency, training data licensing provenance, deployment context disclosure
 
 **Requires expert contribution:**
 
