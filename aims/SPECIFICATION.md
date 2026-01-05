@@ -1155,7 +1155,7 @@ AIMS can enable:
 - **AI agents** to verify each other for secure collaboration
 - **Regulators** to audit AI systems with machine-readable documentation
 
-The web needed standards for identity (DNS), security (TLS), and content (HTTP) to scale. AI needs standards for provenance, transparency, and trust. AIMS is one proposal.
+The web got DNS for identity, TLS for security, HTTP for content. AI has nothing comparable for provenance and trust. This spec is one attempt at fixing that.
 
 We invite comment, contribution, and critique from AI developers, content publishers, standards bodies, policymakers, and civil society.
 
