@@ -26,10 +26,14 @@ description: "Complete AIMS specification in a single document"
 10. [Core Manifest Schema](#10-core-manifest-schema)
 11. [Use Cases](#11-use-cases)
 12. [Governance and Adoption](#12-governance-and-adoption)
-13. [Open Questions for Discussion](#13-open-questions-for-discussion)
+13. **[Open Questions for Discussion](#13-open-questions-for-discussion)** ← Community input needed
 14. [Conclusion](#14-conclusion)
 - [Appendix A: Related Standards Reference](#appendix-a-related-standards-reference)
 - [Appendix B: Glossary](#appendix-b-glossary)
+
+---
+
+> **This is a draft specification.** Key technical areas are explicitly left open for community input, including the DID method specification, verification protocol bindings, and Merkle proof formats. See [Section 13: Open Questions](#13-open-questions-for-discussion) for details.
 
 ---
 
@@ -45,7 +49,7 @@ This specification tackles three problems:
 
 3. **Content Access & Licensing:** What content can the system legally access? What usage rights does it hold for research, sharing, or redistribution? How can agents verify each other's licenses?
 
-AIMS builds on established W3C standards including Decentralized Identifiers (DIDs) and Verifiable Credentials. It integrates with Really Simple Licensing (RSL) for content rights and the Agent-to-Agent (A2A) protocol for inter-agent communication. OpenAttribution, a coalition of publishers, brands, and technology providers, developed this specification to provide a trust layer for the agentic AI ecosystem.
+AIMS builds on established W3C standards including Decentralized Identifiers (DIDs) and Verifiable Credentials. It integrates with Really Simple Licensing (RSL) for content rights and the Agent-to-Agent (A2A) protocol for inter-agent communication. OpenAttribution, a coalition of publishers, brands, and technology providers, developed this specification to establish trust between AI agents.
 
 ---
 
@@ -61,7 +65,7 @@ AI systems today are opaque. When one generates content, makes recommendations, 
 
 **Agent-to-Agent Trust:** AI agents increasingly work together. A user's personal assistant might interact with a retailer's product recommendation agent. Right now there's no way for agents to verify each other's identity, understand each other's data sources, or set appropriate trust boundaries.
 
-### 2.2 The Agentic Ecosystem Problem
+### 2.2 The Agent Interoperability Problem
 
 A user asks their personal AI assistant to help design a kitchen renovation. The assistant needs to interact with a home improvement retailer's AI agent to explore products, check availability, and compare options. This raises hard questions:
 
@@ -70,7 +74,7 @@ A user asks their personal AI assistant to help design a kitchen renovation. The
 - Does the retailer agent have access to proprietary content the user's agent can't directly use?
 - How should content licensing work when agents with different access rights share information?
 
-AIMS answers these questions through cryptographically verifiable manifests that travel with any AI system in the ecosystem, or can be looked up on demand.
+AIMS answers these questions through cryptographically verifiable manifests that travel with AI systems or can be looked up on demand.
 
 ---
 
@@ -88,7 +92,7 @@ The OpenAttribution AI Manifest Standard follows these principles:
 
 **Privacy by Design:** Support selective disclosure. An AI system should be able to prove it trained on licensed data without revealing its complete training corpus.
 
-**Ecosystem Neutrality:** The standard must work across AI providers, hosting platforms, and jurisdictions. No single entity controls the registry or verification infrastructure.
+**Platform Independence:** The standard must work across AI providers, hosting platforms, and jurisdictions. No single entity controls the registry or verification infrastructure.
 
 ---
 
@@ -98,7 +102,7 @@ The OpenAttribution AI Manifest Standard has four components that form a complet
 
 ### 4.1 AI System Identifier (Fingerprint)
 
-Every AI system in the AIMS ecosystem gets a stable, globally unique identifier based on the W3C Decentralized Identifier (DID) specification. This identifier anchors all manifest data cryptographically and is used for identity verification during inter-agent communication.
+Every AI system gets a stable, globally unique identifier based on the W3C Decentralized Identifier (DID) specification. This identifier anchors all manifest data cryptographically and is used for identity verification during inter-agent communication.
 
 **Identifier Format:**
 
@@ -957,7 +961,7 @@ The EU AI Act (Regulation 2024/1689) requires transparency documentation for hig
 
 ### 9.8 Model Cards
 
-Model Cards (Google Research, 2018) provide a documentation framework for ML models. AIMS manifests are complementary:
+Model Cards (Google Research, 2018) provide a documentation standard for ML models. AIMS manifests are complementary:
 
 - Model Cards are human-readable documentation
 - AIMS manifests are machine-readable and cryptographically verifiable
@@ -1088,7 +1092,7 @@ AIMS is designed for multi-stakeholder governance, potentially operating under a
 - Initial adoption by founding AI providers
 - Integration with RSL and A2A specifications
 
-**Phase 2: Ecosystem (2026-2027)**
+**Phase 2: Industry Adoption (2026-2027)**
 
 - Launch federated manifest registries
 - Develop auditor accreditation program
@@ -1125,7 +1129,7 @@ These questions are explicitly left open for community input. They represent are
 
 7. **Trade Secret Protection:** How do we balance transparency with legitimate intellectual property protection? What selective disclosure mechanisms are sufficient for regulatory compliance while preserving competitive advantage?
 
-### 13.3 Ecosystem Questions
+### 13.3 Adoption Questions
 
 8. **Gaming Resistance:** How do we prevent manifest claims from becoming performative compliance rather than genuine transparency? What third-party verification mechanisms are needed?
 
@@ -1139,7 +1143,7 @@ These questions are explicitly left open for community input. They represent are
 
 ## 14. Conclusion
 
-The OpenAttribution AI Manifest Standard provides a framework for AI system transparency: who built this system, what data trained it, how it was aligned, and what it can access at runtime.
+The OpenAttribution AI Manifest Standard specifies AI system transparency: who built this system, what data trained it, how it was aligned, and what it can access at runtime.
 
 This specification is a starting point, not a finished standard. The technical gaps identified in Section 13 are real. The protocol bindings in Section 8 need work. The DID method needs to be written. These are invitations for collaboration, not admissions of failure.
 
@@ -1151,7 +1155,7 @@ AIMS can enable:
 - **AI agents** to verify each other for secure collaboration
 - **Regulators** to audit AI systems with machine-readable documentation
 
-The web needed protocols for identity (DNS), security (TLS), and content (HTTP) to scale. The AI ecosystem needs protocols for provenance, transparency, and trust. AIMS is one proposal for filling that role.
+The web needed standards for identity (DNS), security (TLS), and content (HTTP) to scale. AI needs standards for provenance, transparency, and trust. AIMS is one proposal.
 
 We invite comment, contribution, and critique from AI developers, content publishers, standards bodies, policymakers, and civil society.
 
