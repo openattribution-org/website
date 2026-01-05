@@ -222,6 +222,10 @@ main {
 .intro {
     margin-bottom: var(--spacing-xl);
     padding: var(--spacing-lg) 0;
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .intro h2 {
@@ -231,6 +235,10 @@ main {
     font-weight: 300;
     line-height: 1.4;
     color: #1f2937;
+}
+
+.intro p {
+    text-align: left;
 }
 
 /* ===== Key Features ===== */
@@ -276,6 +284,7 @@ main {
     flex-wrap: wrap;
     gap: 1rem;
     margin: 2.5rem 0;
+    justify-content: center;
 }
 
 .btn-primary,
@@ -319,46 +328,61 @@ main {
 /* ===== Table of Contents ===== */
 .toc {
     margin: 3rem 0;
-    padding-top: 2rem;
-    border-top: 2px solid #f3f4f6;
+    padding: 2rem;
+    background: #faf8f5;
+    border-radius: 8px;
+    border: 1px solid #f3f4f6;
 }
 
 .toc > h2 {
     margin-top: 0;
     font-size: 1.75rem;
     font-weight: 400;
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
 .toc-section {
-    margin: 2rem 0;
+    margin: 1.5rem 0;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .toc-section h3 {
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     margin-bottom: 1rem;
-    color: #9ca3af;
+    color: #ff6b3d;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #ffe8e0;
 }
 
 .toc-list {
     list-style: none;
     padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 0.5rem;
 }
 
 .toc-list li {
-    margin: 0.75rem 0;
+    margin: 0;
 }
 
 .toc-list a {
-    display: block;
-    padding: 0.625rem 1rem;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
     border-radius: 6px;
     transition: all 0.2s;
     font-weight: 400;
     color: #4b5563;
     border-left: 3px solid transparent;
+    font-size: 0.9rem;
 }
 
 .toc-list a:hover {
@@ -373,6 +397,7 @@ main {
     counter-reset: item;
     list-style: none;
     padding: 0;
+    display: block;
 }
 
 .toc-list ol li {
@@ -382,8 +407,9 @@ main {
 .toc-list ol li a::before {
     content: counter(item) ". ";
     font-weight: 600;
-    color: var(--color-text-light);
+    color: #9ca3af;
     margin-right: 0.5rem;
+    min-width: 1.5rem;
 }
 
 /* ===== Status & Info Boxes ===== */
@@ -399,6 +425,7 @@ main {
     font-size: 1.5rem;
     font-weight: 400;
     margin-bottom: 1rem;
+    text-align: center;
 }
 
 .status-box,
@@ -409,6 +436,18 @@ main {
     padding: 1.5rem;
     border-radius: 8px;
     margin-top: 1rem;
+}
+
+.status-box p,
+.contributing p,
+.about p {
+    text-align: left;
+}
+
+.status-box ul,
+.contributing ul,
+.contributing ol {
+    text-align: left;
 }
 
 .status-box strong,
