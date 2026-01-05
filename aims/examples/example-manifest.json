@@ -1,0 +1,305 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/credentials/v2",
+    "https://openattribution.org/aims/v1"
+  ],
+  "@type": "AIManifest",
+  "@id": "did:aims:web:anthropic:claude-4-sonnet",
+  "version": "2025-12-19T00:00:00Z",
+  "previousVersion": "ipfs://bafybeif1234567890abcdef",
+  "issuer": {
+    "@id": "did:web:anthropic.com",
+    "name": "Anthropic",
+    "verificationMethod": "did:web:anthropic.com#key-1"
+  },
+
+  "foundation": {
+    "version": "2025-12-19T00:00:00Z",
+    "baseModel": {
+      "name": "claude-4-sonnet",
+      "version": "20251201",
+      "releaseDate": "2025-12-01",
+      "parentModel": null
+    },
+    "trainingData": {
+      "summary": {
+        "categories": {
+          "webCrawl": 0.45,
+          "books": 0.15,
+          "code": 0.12,
+          "academic": 0.08,
+          "licensedDatasets": 0.10,
+          "syntheticData": 0.05,
+          "conversational": 0.03,
+          "other": 0.02
+        },
+        "temporalRange": {
+          "earliest": "1900-01-01",
+          "latest": "2025-06-01",
+          "medianDate": "2019-03-15"
+        },
+        "languages": {
+          "en": 0.72,
+          "zh": 0.08,
+          "es": 0.04,
+          "fr": 0.03,
+          "de": 0.03,
+          "other": 0.10
+        },
+        "domains": {
+          "science": 0.15,
+          "technology": 0.20,
+          "law": 0.05,
+          "medicine": 0.08,
+          "finance": 0.06,
+          "arts": 0.10,
+          "general": 0.36
+        },
+        "tokenCount": 15000000000000
+      },
+      "commitments": {
+        "merkleRoot": "sha256:a1b2c3d4e5f6789012345678901234567890abcdef",
+        "algorithm": "sha256",
+        "leafCount": 2847293847,
+        "generated": "2025-06-15T00:00:00Z"
+      },
+      "rslCompliance": {
+        "compliant": true,
+        "policyVersion": "1.0",
+        "crawlPolicy": {
+          "respectsRobotsTxt": true,
+          "respectsRslHeaders": true,
+          "honoredSince": "2024-01-01"
+        },
+        "attestation": {
+          "issuer": "did:web:anthropic.com",
+          "issued": "2025-06-15T00:00:00Z",
+          "signature": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9..."
+        }
+      },
+      "licensingSummary": {
+        "publicDomain": 0.12,
+        "creativeCommons": 0.08,
+        "commercialLicense": 0.25,
+        "rslCompliant": 0.35,
+        "unknownStatus": 0.20
+      }
+    },
+    "auditEndpoint": {
+      "url": "https://api.anthropic.com/aims/audit/v1",
+      "authMethod": "oauth2",
+      "auditorRequirements": "https://anthropic.com/aims-auditor-program"
+    }
+  },
+
+  "tuning": {
+    "version": "2025-12-19T00:00:00Z",
+    "alignment": {
+      "methodology": {
+        "techniques": [
+          {
+            "name": "RLHF",
+            "description": "Reinforcement Learning from Human Feedback",
+            "applied": true
+          },
+          {
+            "name": "Constitutional AI",
+            "description": "Self-critique against defined principles",
+            "applied": true
+          },
+          {
+            "name": "DPO",
+            "description": "Direct Preference Optimization",
+            "applied": false
+          }
+        ],
+        "humanFeedbackScale": "large",
+        "syntheticFeedbackUsed": true
+      },
+      "valueFrameworks": {
+        "principles": [
+          "Helpfulness: Assist users in accomplishing their goals",
+          "Harmlessness: Avoid causing harm or enabling harmful actions",
+          "Honesty: Provide accurate information and acknowledge uncertainty"
+        ],
+        "prioritization": "When principles conflict, harmlessness takes precedence",
+        "documentationUrl": "https://anthropic.com/claude-values"
+      },
+      "safetyTraining": {
+        "categories": [
+          "Refusal of harmful requests",
+          "Bias mitigation",
+          "Factuality and uncertainty expression",
+          "Privacy protection"
+        ],
+        "redTeaming": {
+          "conducted": true,
+          "internalTeams": true,
+          "externalTeams": true,
+          "bugBounty": true
+        },
+        "evaluations": {
+          "safetyBenchmarks": ["TruthfulQA", "BBQ", "RealToxicityPrompts"],
+          "resultsUrl": "https://anthropic.com/claude-evals"
+        }
+      }
+    },
+    "contentPolicies": {
+      "prohibited": [
+        {
+          "category": "CSAM",
+          "description": "Child sexual abuse material",
+          "enforcement": "absolute"
+        },
+        {
+          "category": "weapons_mass_destruction",
+          "description": "Instructions for biological, chemical, nuclear, or radiological weapons",
+          "enforcement": "absolute"
+        },
+        {
+          "category": "malware",
+          "description": "Functional malicious code",
+          "enforcement": "absolute"
+        }
+      ],
+      "sensitiveTopics": [
+        {
+          "category": "medical_advice",
+          "handling": "Provides general information with disclaimer to consult professionals",
+          "caveats": true
+        },
+        {
+          "category": "legal_advice",
+          "handling": "Provides general information with disclaimer about jurisdiction-specific laws",
+          "caveats": true
+        },
+        {
+          "category": "political_content",
+          "handling": "Attempts balanced presentation of multiple viewpoints",
+          "caveats": true
+        },
+        {
+          "category": "self_harm",
+          "handling": "Redirects to crisis resources when appropriate",
+          "caveats": true
+        }
+      ],
+      "jurisdictionalVariations": [
+        {
+          "region": "EU",
+          "variations": [
+            "Enhanced privacy protections per GDPR",
+            "AI Act transparency compliance"
+          ]
+        }
+      ]
+    },
+    "promptingAgenda": {
+      "systemPromptSummary": {
+        "description": "High-level behavioral instructions",
+        "themes": [
+          "Helpful and conversational tone",
+          "Acknowledges uncertainty when appropriate",
+          "Declines harmful requests politely",
+          "Cites sources when making factual claims"
+        ],
+        "length": "medium",
+        "lastUpdated": "2025-12-01"
+      },
+      "persona": {
+        "hasPersona": true,
+        "name": "Claude",
+        "description": "An AI assistant created by Anthropic",
+        "traits": ["curious", "thoughtful", "direct"],
+        "claimsHumanity": false
+      },
+      "biasDeclarations": []
+    },
+    "knownLimitations": {
+      "factuality": {
+        "description": "May generate plausible-sounding but incorrect information",
+        "severity": "medium",
+        "mitigation": "Trained to express uncertainty; users should verify critical facts"
+      },
+      "recency": {
+        "description": "Knowledge has a training cutoff date",
+        "cutoffDate": "2025-06-01",
+        "mitigation": "Can be connected to real-time data sources via Capabilities Layer"
+      },
+      "reasoning": {
+        "description": "May make errors in complex multi-step reasoning",
+        "severity": "medium",
+        "mitigation": "Chain-of-thought prompting can help; users should verify logic"
+      },
+      "languages": {
+        "description": "Performance varies by language",
+        "strongLanguages": ["en", "fr", "de", "es", "zh"],
+        "limitedLanguages": ["low-resource languages generally"]
+      }
+    }
+  },
+
+  "capabilities": {
+    "version": "2025-12-19T00:00:00Z",
+    "scope": "deployment",
+    "dataSources": {
+      "webAccess": {
+        "enabled": true,
+        "searchEngines": ["google"],
+        "directFetch": true,
+        "domainRestrictions": {
+          "allowlist": null,
+          "blocklist": []
+        }
+      },
+      "knowledgeBases": [],
+      "realtimeFeeds": []
+    },
+    "tools": {
+      "mcpServers": [],
+      "externalApis": [],
+      "compute": {
+        "codeExecution": {
+          "enabled": true,
+          "languages": ["python", "javascript"],
+          "sandboxed": true,
+          "networkAccess": false
+        },
+        "fileManipulation": {
+          "enabled": true,
+          "formats": ["pdf", "docx", "csv", "images"]
+        }
+      }
+    },
+    "licensedContent": {
+      "partnerships": [],
+      "rslLicenses": {
+        "held": false,
+        "licenseCount": 0,
+        "categories": []
+      },
+      "redistributionPolicy": {
+        "default": "no-redistribution",
+        "exceptions": [
+          {
+            "contentType": "public-domain",
+            "policy": "unrestricted"
+          },
+          {
+            "contentType": "creative-commons",
+            "policy": "per-license-terms"
+          }
+        ]
+      }
+    }
+  },
+
+  "proof": {
+    "type": "DataIntegrityProof",
+    "cryptosuite": "ecdsa-rdfc-2019",
+    "created": "2025-12-19T00:00:00Z",
+    "verificationMethod": "did:web:anthropic.com#key-1",
+    "proofPurpose": "assertionMethod",
+    "proofValue": "z3FXQjecWufY46...truncated...example"
+  }
+}

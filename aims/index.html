@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIMS - OpenAttribution AI Manifest Standard</title>
+    <meta name="description" content="An open standard for AI system transparency, provenance, and agent-to-agent trust">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <!-- Documentation Stylesheet -->
+    <link rel="stylesheet" href="spec.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="doc-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="../index.html" class="back-link">← OpenAttribution</a>
+                    <h1>AIMS</h1>
+                    <span class="subtitle">AI Manifest Standard</span>
+                </div>
+                <div class="version">
+                    <span class="badge">Draft v0.1</span>
+                    <span class="date">December 2025</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="intro">
+            <h2>An Open Standard for AI System Transparency, Provenance, and Agent-to-Agent Trust</h2>
+            <p class="lead">
+                AIMS is an open, interoperable framework for declaring and verifying the provenance, capabilities, and data sources of AI systems. It provides transparency about training data origins, behavioral modifications, and runtime capabilities.
+            </p>
+
+            <div class="key-features">
+                <div class="feature">
+                    <h3>Training Data Transparency</h3>
+                    <p>Where did the model's training data come from?</p>
+                </div>
+                <div class="feature">
+                    <h3>Tuning and Alignment Disclosure</h3>
+                    <p>What behavioral modifications were applied?</p>
+                </div>
+                <div class="feature">
+                    <h3>Runtime Capabilities</h3>
+                    <p>What tools and licensed content can the system access?</p>
+                </div>
+            </div>
+
+            <p>
+                AIMS builds on W3C standards (DIDs, Verifiable Credentials) and integrates with RSL for content licensing and A2A for agent communication.
+            </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="quick-links">
+            <a href="SPECIFICATION.html" class="btn-primary">Read Full Specification</a>
+            <a href="spec/01-executive-summary.html" class="btn-secondary">Start Reading Section by Section</a>
+            <a href="examples/viewer.html" class="btn-secondary">View Example Manifest</a>
+        </div>
+
+        <!-- Table of Contents -->
+        <section class="toc">
+            <h2>Table of Contents</h2>
+
+            <div class="toc-section">
+                <h3>Specification</h3>
+                <ol class="toc-list">
+                    <li><a href="spec/01-executive-summary.html">Executive Summary</a></li>
+                    <li><a href="spec/02-problem-statement.html">Problem Statement</a></li>
+                    <li><a href="spec/03-design-principles.html">Design Principles</a></li>
+                    <li><a href="spec/04-architecture.html">Architecture Overview</a></li>
+                    <li><a href="spec/05-foundation-layer.html">Foundation Layer</a></li>
+                    <li><a href="spec/06-tuning-layer.html">Tuning Layer</a></li>
+                    <li><a href="spec/07-capabilities-layer.html">Capabilities Layer</a></li>
+                    <li><a href="spec/08-verification-protocol.html">Verification Protocol</a></li>
+                    <li><a href="spec/09-integration.html">Integration with RSL and A2A</a></li>
+                    <li><a href="spec/10-core-schema.html">Core Schema Reference</a></li>
+                    <li><a href="spec/11-use-cases.html">Use Cases and Examples</a></li>
+                    <li><a href="spec/12-governance.html">Governance and Evolution</a></li>
+                    <li><a href="spec/13-open-questions.html">Open Questions</a></li>
+                    <li><a href="spec/14-conclusion.html">Conclusion</a></li>
+                </ol>
+            </div>
+
+            <div class="toc-section">
+                <h3>Appendices</h3>
+                <ul class="toc-list">
+                    <li><a href="appendices/related-standards.html">Related Standards</a></li>
+                    <li><a href="appendices/glossary.html">Glossary</a></li>
+                </ul>
+            </div>
+
+            <div class="toc-section">
+                <h3>Examples</h3>
+                <ul class="toc-list">
+                    <li><a href="examples/viewer.html">Example Manifest (Interactive Viewer)</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Status -->
+        <section class="status">
+            <h2>Status</h2>
+            <div class="status-box">
+                <p>
+                    This is a <strong>draft specification</strong> intended to invite collaboration. Key areas explicitly left open for community input include:
+                </p>
+                <ul>
+                    <li>DID method specification (<code>did:aims</code>)</li>
+                    <li>Verification protocol bindings</li>
+                    <li>Merkle proof format for selective disclosure</li>
+                    <li>Conformance levels and testing</li>
+                </ul>
+                <p>
+                    See <a href="spec/13-open-questions.html">Open Questions</a> for the full list.
+                </p>
+            </div>
+        </section>
+
+        <!-- Contributing -->
+        <section class="contributing">
+            <h2>Contributing</h2>
+            <p>We welcome contributions from AI developers, content publishers, standards bodies, policymakers, and civil society organizations.</p>
+            <p>To contribute:</p>
+            <ol>
+                <li>Open an issue to discuss proposed changes</li>
+                <li>Submit a pull request with your contribution</li>
+                <li>Join the discussion in existing issues</li>
+            </ol>
+            <p>
+                <a href="https://github.com/openattribution-org/openattribution-org.github.io" class="link-external">View on GitHub →</a>
+            </p>
+        </section>
+
+        <!-- About -->
+        <section class="about">
+            <h2>About OpenAttribution</h2>
+            <p>
+                OpenAttribution is a coalition of publishers, brands, and technology providers developing trust infrastructure for the agentic AI ecosystem.
+            </p>
+            <p>
+                <a href="../index.html">Learn more about OpenAttribution →</a>
+            </p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="doc-footer">
+        <div class="container">
+            <p>&copy; 2025 OpenAttribution Initiative. Licensed under <a href="#license">Apache 2.0</a>.</p>
+            <p><a href="../index.html">OpenAttribution Home</a> | <a href="https://github.com/openattribution-org/openattribution-org.github.io">GitHub</a> | <a href="mailto:info@openattribution.org">Contact</a></p>
+        </div>
+    </footer>
+</body>
+</html>

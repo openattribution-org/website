@@ -1,0 +1,44 @@
+# Jekyll Configuration for OpenAttribution GitHub Pages
+
+# Site settings
+title: OpenAttribution
+description: A coalition for transparency in AI content usage
+url: https://openattribution.org
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    default_lang: json
+
+# Exclude from processing
+exclude:
+  - README.md
+  - LICENSE
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+
+# Include markdown files in aims directory
+include:
+  - aims
+
+# Defaults for AIMS spec pages
+defaults:
+  - scope:
+      path: "aims/spec"
+      type: "pages"
+    values:
+      layout: "spec"
+  - scope:
+      path: "aims/appendices"
+      type: "pages"
+    values:
+      layout: "spec"
+
+# Disable Jekyll plugins we don't need
+plugins: []
