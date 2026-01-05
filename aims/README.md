@@ -35,8 +35,9 @@ The full specification is available in [SPECIFICATION.md](SPECIFICATION.md).
 
 ### Supporting Materials
 
-- [Related Standards](SPECIFICATION.md#appendix-a-related-standards-reference)
-- [Glossary](SPECIFICATION.md#appendix-b-glossary)
+- [How AIMS Relates to Other Standards](SPECIFICATION.md#appendix-a-how-aims-relates-to-other-standards) - RSL, A2A, MCP explained
+- [Related Standards](SPECIFICATION.md#appendix-b-related-standards-reference)
+- [Glossary](SPECIFICATION.md#appendix-c-glossary)
 - [Example Manifest](examples/example-manifest.json)
 
 ## Status

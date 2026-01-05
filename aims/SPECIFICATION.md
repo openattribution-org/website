@@ -28,8 +28,9 @@ description: "Complete AIMS specification in a single document"
 12. [Governance and Adoption](#12-governance-and-adoption)
 13. **[Open Questions for Discussion](#13-open-questions-for-discussion)** ← Community input needed
 14. [Conclusion](#14-conclusion)
-- [Appendix A: Related Standards Reference](#appendix-a-related-standards-reference)
-- [Appendix B: Glossary](#appendix-b-glossary)
+- [Appendix A: How AIMS Relates to Other Standards](#appendix-a-how-aims-relates-to-other-standards)
+- [Appendix B: Related Standards Reference](#appendix-b-related-standards-reference)
+- [Appendix C: Glossary](#appendix-c-glossary)
 
 ---
 
@@ -1158,7 +1159,126 @@ We invite comment, contribution, and critique from AI developers, content publis
 
 ---
 
-## Appendix A: Related Standards Reference
+## Appendix A: How AIMS Relates to Other Standards
+
+AIMS works alongside several other standards in the AI space. Here's what each one does and how they fit together.
+
+### RSL (Really Simple Licensing)
+
+**What it does:** Machine-readable licensing terms for web content
+
+**Who uses it:** Content publishers, website owners
+
+**Problem it solves:** "How do I tell AI systems what they can/can't do with my content?"
+
+**How it works:**
+- Publishers declare licensing terms via robots.txt, HTTP headers, HTML meta tags, RSS feeds
+- Specifies allowed uses: training, inference, commercial, research
+- Sets pricing and payment requirements
+- Open License Protocol (OLP) handles runtime license negotiation between agents
+
+**Example:** NYTimes.com declares: "AI training allowed with paid license. Inference requires separate agreement. Contact licensing@nytimes.com"
+
+**Relationship to AIMS:**
+- RSL lives on the content side (publishers state terms)
+- AIMS lives on the AI side (systems declare what licenses they hold)
+- AIMS Foundation Layer references RSL compliance for training data
+- AIMS Content Access Layer declares which RSL licenses the AI system holds
+- Together: RSL states the rules, AIMS proves compliance
+
+### A2A (Agent-to-Agent Protocol)
+
+**What it does:** Standardizes how AI agents communicate and work together
+
+**Who uses it:** AI developers building agents that need to collaborate
+
+**Problem it solves:** "How do agents from different vendors discover each other's capabilities and coordinate tasks?"
+
+**How it works:**
+- Agent Card (at `.well-known/agent-card.json`) advertises functional capabilities
+- Defines skills: what tasks the agent can perform
+- Specifies I/O modes: text, JSON, images, audio
+- Provides endpoint URLs and protocol features (streaming, push notifications)
+
+**Example:** Shopping Assistant's Agent Card says: "I can search products, compare prices, check inventory. I accept text input and return JSON."
+
+**Relationship to AIMS:**
+- A2A answers: "What can this agent DO?" (functional capabilities)
+- AIMS answers: "What IS this agent?" (provenance, licensing, biases)
+- A2A handles task coordination
+- AIMS handles trust and transparency
+- Agents typically have both: A2A Card for interoperability + AIMS Manifest for trust
+- AIMS verification can slot into A2A's authentication flow
+
+**Key distinction:** A2A is about functional interface. AIMS is about transparency and licensing. You need both for secure agent collaboration.
+
+### MCP (Model Context Protocol)
+
+**What it does:** Standardizes how AI systems connect to tools and data sources
+
+**Who uses it:** AI developers integrating external tools, databases, APIs
+
+**Problem it solves:** "How do I give my AI system access to external data and tools in a standard way?"
+
+**How it works:**
+- Defines server/client protocol for AI-to-tool connections
+- MCP servers expose tools, prompts, and data sources
+- AI applications connect to multiple MCP servers
+- Examples: filesystem access, database queries, API integrations, calendar access
+
+**Example:** Claude Desktop connects to MCP servers for GitHub (read/write repos), filesystem (access local files), Postgres (query databases).
+
+**Relationship to AIMS:**
+- MCP is about HOW AI systems connect to tools
+- AIMS is about WHAT AI systems can access and their rights to use it
+- AIMS Content Access Layer can reference MCP server configurations
+- Makes it transparent which MCP tools an AI system has access to
+- MCP handles the connection; AIMS declares the access rights
+
+**Key distinction:** MCP is plumbing for tool access. AIMS is transparency about what tools you have and what you're allowed to do with them.
+
+### How They All Work Together
+
+**Real-world scenario:** User's personal agent helps plan a trip
+
+1. **A2A:** User's agent discovers airline's booking agent via Agent Card
+   - Sees it offers "search flights" and "book tickets" skills
+   - Establishes connection using A2A protocol
+
+2. **AIMS:** User's agent checks airline agent's manifest
+   - Verifies it's the legitimate airline agent (DID verification)
+   - Sees it has access to real-time flight data
+   - Notes bias: recommendations prioritize airline's own flights
+   - Checks what content licenses it holds
+
+3. **RSL:** Airline agent checks licensing before sharing content
+   - User's agent requests flight details
+   - Airline agent checks if user's agent has appropriate RSL licenses
+   - Uses OLP to verify licensing status
+
+4. **MCP:** Airline agent uses MCP to access backend systems
+   - MCP server for flight inventory database
+   - MCP server for booking API
+   - MCP server for payment processing
+
+**The stack:**
+- **A2A:** Enables agent communication and task coordination
+- **AIMS:** Provides trust, transparency, and licensing verification
+- **RSL:** Declares content licensing terms
+- **MCP:** Connects agents to their tools and data sources
+
+### Quick Reference Table
+
+| Standard | Side | Answers | Format |
+|----------|------|---------|--------|
+| **RSL** | Content | "What can you do with my content?" | XML licensing terms in HTTP headers/robots.txt |
+| **AIMS** | AI System | "What trained me? What can I access?" | JSON-LD manifest with cryptographic signatures |
+| **A2A** | Agent | "What tasks can I perform?" | JSON Agent Card + task protocol |
+| **MCP** | Tool | "How do I connect to external systems?" | Server/client protocol for tool access |
+
+---
+
+## Appendix B: Related Standards Reference
 
 | Standard | Organization | Publication | Relevance |
 |----------|--------------|-------------|-----------|
@@ -1173,7 +1293,7 @@ We invite comment, contribution, and critique from AI developers, content publis
 
 ---
 
-## Appendix B: Glossary
+## Appendix C: Glossary
 
 **AIMS:** OpenAttribution AI Manifest Standard, the specification defined in this document.
 
