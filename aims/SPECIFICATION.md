@@ -20,7 +20,7 @@ description: "Complete AIMS specification in a single document"
 4. [Architecture Overview](#4-architecture-overview)
 5. [Foundation Layer Specification](#5-foundation-layer-specification)
 6. [Tuning Layer Specification](#6-tuning-layer-specification)
-7. [Capabilities Layer Specification](#7-capabilities-layer-specification)
+7. [Content Access Layer Specification](#7-content-access-layer-specification)
 8. [Agent Verification Protocol](#8-agent-verification-protocol)
 9. [Integration with Existing Standards](#9-integration-with-existing-standards)
 10. [Core Manifest Schema](#10-core-manifest-schema)
@@ -35,7 +35,7 @@ description: "Complete AIMS specification in a single document"
 
 ## 1. Executive Summary
 
-The OpenAttribution AI Manifest Standard (AIMS) is an open, interoperable framework for declaring and verifying the provenance, capabilities, and data sources of large language models and the AI systems built on top of them. AI agents now routinely interact with each other and with content across the web. A standardized transparency and attribution framework has become necessary.
+The OpenAttribution AI Manifest Standard (AIMS) specifies what data trained an AI model, what content it can legally access, and what usage rights it holds. AI agents now routinely interact with each other and with content across the web. They need a way to verify each other's training sources, licensing status, and content access rights.
 
 This specification tackles three problems:
 
@@ -43,7 +43,7 @@ This specification tackles three problems:
 
 2. **Tuning and Alignment Disclosure:** What behavioral modifications, value alignments, and content policies were applied through fine-tuning and system prompting?
 
-3. **Runtime Capabilities:** What data sources, tools, and licensed content can an AI system access during inference? How can agents verify this about each other?
+3. **Content Access & Licensing:** What content can the system legally access? What usage rights does it hold for research, sharing, or redistribution? How can agents verify each other's licenses?
 
 AIMS builds on established W3C standards including Decentralized Identifiers (DIDs) and Verifiable Credentials. It integrates with Really Simple Licensing (RSL) for content rights and the Agent-to-Agent (A2A) protocol for inter-agent communication. OpenAttribution, a coalition of publishers, brands, and technology providers, developed this specification to provide a trust layer for the agentic AI ecosystem.
 
@@ -133,7 +133,7 @@ The AI Manifest is the core payload. It's a structured JSON-LD document describi
 
 - **Foundation Layer:** Base model training data provenance (Section 5)
 - **Tuning Layer:** Behavioral modifications and alignment (Section 6)
-- **Capabilities Layer:** Runtime access, tools, and licensed content (Section 7)
+- **Content Access Layer:** Runtime content access, licensing, and usage rights (Section 7)
 
 ### 4.4 Verification Protocol
 
@@ -507,7 +507,7 @@ Documented weaknesses and failure modes:
   "recency": {
     "description": "Knowledge has a training cutoff date",
     "cutoffDate": "2025-06-01",
-    "mitigation": "Can be connected to real-time data sources via Capabilities Layer"
+    "mitigation": "Can be connected to real-time data sources via Content Access Layer"
   },
   "reasoning": {
     "description": "May make errors in complex multi-step reasoning",
@@ -524,17 +524,17 @@ Documented weaknesses and failure modes:
 
 ---
 
-## 7. Capabilities Layer Specification
+## 7. Content Access Layer Specification
 
-The Capabilities Layer documents what an AI system can access at inference time: tools, data sources, external systems, and licensed content. This is the most dynamic layer, potentially changing per deployment, per session, or per user context.
+The Content Access Layer documents what content an AI system can legally access at inference time: data sources, licensed content partnerships, and usage rights. This is the most dynamic layer, potentially changing per deployment, per session, or per user context.
 
-*Core questions: What can this system do? What content is it authorized to use?*
+*Core questions: What content can this system legally access? What are its usage rights?*
 
 ### 7.1 Why Licensed Content Matters
 
 When AI agents interact, content licensing creates problems. Consider: Agent A has a license to access Reuters news content. Agent B does not. Agent A summarizes a Reuters article for Agent B. Has Agent B now received content it isn't licensed for?
 
-The Capabilities Layer makes these licensing boundaries explicit. Agents can check each other's manifests before deciding what information to share.
+The Content Access Layer makes these licensing boundaries explicit. Agents can check each other's manifests before deciding what information to share.
 
 ### 7.2 Schema Structure
 
@@ -802,7 +802,7 @@ Caching behavior and TTLs are implementation-dependent but should balance freshn
 Manifest contents inform trust decisions. Based on the retrieved manifest, an agent can determine:
 
 - Whether to proceed with the interaction
-- What information can be shared (considering licensing constraints in the Capabilities Layer)
+- What information can be shared (considering licensing constraints in the Content Access Layer)
 - How to handle content with redistribution restrictions
 - Whether the counterparty's data sources are relevant to the task
 
@@ -869,7 +869,7 @@ AI Manifests can be packaged as Verifiable Credentials (W3C Recommendation, May 
 RSL (v1.0, November 2025) provides machine-readable licensing terms for web content. AIMS integrates with RSL at two levels:
 
 - The **Foundation Layer** can reference RSL compliance for training data
-- The **Capabilities Layer** can declare RSL licenses held for runtime content access
+- The **Content Access Layer** can declare RSL licenses held for runtime content access
 
 The Open License Protocol (OLP) handles agent-to-agent license negotiation.
 
@@ -906,7 +906,7 @@ The AIMS Manifest describes provenance, transparency, and licensing:
 
 - **Foundation Layer**: Training data sources, licensing status, cryptographic commitments
 - **Tuning Layer**: Behavioral alignment, content policies, known biases
-- **Capabilities Layer**: Licensed content partnerships, data source access rights, RSL compliance
+- **Content Access Layer**: Licensed content partnerships, data source access rights, RSL compliance
 - **Verification**: Cryptographic identity and manifest integrity
 
 Example scenario showing both:
@@ -938,7 +938,7 @@ An agent would typically publish both:
 
 ### 9.5 Model Context Protocol (MCP)
 
-MCP (developed by Anthropic) standardizes how AI systems connect to tools and data sources. The AIMS Capabilities Layer can reference MCP server configurations, making it transparent which MCP tools an AI system can access.
+MCP (developed by Anthropic) standardizes how AI systems connect to tools and data sources. The AIMS Content Access Layer can reference MCP server configurations, making it transparent which MCP tools an AI system can access.
 
 ### 9.6 C2PA Content Credentials
 
@@ -1042,7 +1042,7 @@ A news publisher wants to verify whether an AI search engine has properly licens
 The publisher queries the AI system's manifest to check:
 
 1. Its Foundation Layer RSL compliance attestations
-2. Whether the publisher's domain appears in licensed content declarations in the Capabilities Layer
+2. Whether the publisher's domain appears in licensed content declarations in the Content Access Layer
 3. Audit endpoints for third-party verification
 
 If no license is present, the publisher has documentation to support licensing discussions or enforcement actions.
@@ -1121,7 +1121,7 @@ These questions are explicitly left open for community input. They represent are
 
 5. **Verification Granularity:** What level of training data detail should be verifiable? Per-document attribution may be computationally prohibitive. What aggregation levels provide meaningful transparency?
 
-6. **Manifest Freshness:** For dynamic Capabilities Layers, how often should manifests update? What's the right balance between accuracy and caching efficiency?
+6. **Manifest Freshness:** For dynamic Content Access Layers, how often should manifests update? What's the right balance between accuracy and caching efficiency?
 
 7. **Trade Secret Protection:** How do we balance transparency with legitimate intellectual property protection? What selective disclosure mechanisms are sufficient for regulatory compliance while preserving competitive advantage?
 
@@ -1178,7 +1178,7 @@ We invite comment, contribution, and critique from AI developers, content publis
 
 **Agent:** An AI system capable of autonomous action and interaction with other systems.
 
-**Capabilities Layer:** Manifest section describing runtime data access and tool integrations (Section 7).
+**Content Access Layer:** Manifest section describing runtime content access, licensing, and usage rights (Section 7).
 
 **DID:** Decentralized Identifier, a W3C standard for globally unique, cryptographically verifiable identifiers.
 

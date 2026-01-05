@@ -8,11 +8,11 @@ Draft Specification v0.1 | December 2025
 
 ## What is AIMS?
 
-AIMS is an open, interoperable framework for declaring and verifying the provenance, capabilities, and data sources of AI systems. It provides:
+AIMS specifies what data trained an AI model, what content it can legally access, and what usage rights it holds. It provides:
 
 - **Training Data Transparency** — Where did the model's training data come from?
 - **Tuning and Alignment Disclosure** — What behavioral modifications were applied?
-- **Runtime Capabilities** — What tools and licensed content can the system access?
+- **Content Access & Licensing** — What content can it legally access and what are its usage rights?
 
 AIMS builds on W3C standards (DIDs, Verifiable Credentials) and integrates with RSL for content licensing and A2A for agent communication.
 
@@ -29,7 +29,7 @@ The full specification is available in [SPECIFICATION.md](SPECIFICATION.md).
 | [Architecture](SPECIFICATION.md#4-architecture-overview) | Core components |
 | [Foundation Layer](SPECIFICATION.md#5-foundation-layer-specification) | Training data provenance |
 | [Tuning Layer](SPECIFICATION.md#6-tuning-layer-specification) | Behavioral modifications |
-| [Capabilities Layer](SPECIFICATION.md#7-capabilities-layer-specification) | Runtime access and licensing |
+| [Content Access Layer](SPECIFICATION.md#7-content-access-layer-specification) | Licensed content access and usage rights |
 | [Verification Protocol](SPECIFICATION.md#8-agent-verification-protocol) | Agent-to-agent trust |
 | [Open Questions](SPECIFICATION.md#13-open-questions-for-discussion) | Areas needing community input |
 

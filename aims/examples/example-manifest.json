@@ -224,7 +224,7 @@
       "recency": {
         "description": "Knowledge has a training cutoff date",
         "cutoffDate": "2025-06-01",
-        "mitigation": "Can be connected to real-time data sources via Capabilities Layer"
+        "mitigation": "Can be connected to real-time data sources via Content Access Layer"
       },
       "reasoning": {
         "description": "May make errors in complex multi-step reasoning",
