@@ -1154,6 +1154,8 @@ The web got DNS for identity, TLS for security, HTTP for content. AI has nothing
 
 We invite comment, contribution, and critique from AI developers, content publishers, standards bodies, policymakers, and civil society.
 
+**Contribute:** [AIMS on GitHub](https://github.com/openattribution-org/openattribution-org.github.io/tree/main/aims)
+
 ---
 
 ## Appendix A: Related Standards Reference
