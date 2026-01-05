@@ -40,31 +40,35 @@ description: "Complete AIMS specification in a single document"
 
 ## 1. Executive Summary
 
-The OpenAttribution AI Manifest Standard (AIMS) specifies what data trained an AI model, what content it can legally access, and what usage rights it holds. AI agents now routinely interact with each other and with content across the web. They need a way to verify each other's training sources, licensing status, and content access rights.
+The OpenAttribution AI Manifest Standard (AIMS) is a focused standard for **AI training data licensing provenance, runtime content access rights, and agent-to-agent cryptographic trust**. While other standards document model performance (Model Cards), dataset composition (Dataset Cards), and agent capabilities (A2A Agent Cards), AIMS answers the licensing and provenance questions those standards don't address.
+
+AI agents now routinely interact with each other and with content across the web. They need a way to verify each other's identity, understand licensing status for training data and runtime content access, and establish trust boundaries before sharing information.
 
 This specification tackles three problems:
 
-1. **Training Data Transparency:** Where did the base model's training data come from? What's its licensing status? What biases might be baked in?
+1. **Training Data Licensing Provenance:** What's the licensing status of the data that trained this model? Can it prove RSL compliance or other licensing agreements? What cryptographic commitments enable selective audit disclosure?
 
-2. **Tuning and Alignment Disclosure:** What behavioral modifications, value alignments, and content policies were applied through fine-tuning and system prompting?
+2. **Runtime Content Access Rights:** What content can this system legally access during inference? What content partnerships and licenses does it hold? What are its redistribution rights when sharing information with other agents?
 
-3. **Content Access & Licensing:** What content can the system legally access? What usage rights does it hold for research, sharing, or redistribution? How can agents verify each other's licenses?
+3. **Agent-to-Agent Trust:** How can AI agents cryptographically verify each other's identity and understand each other's licensing boundaries before exchanging sensitive information?
 
-AIMS builds on established W3C standards including Decentralized Identifiers (DIDs) and Verifiable Credentials. It integrates with Really Simple Licensing (RSL) for content rights and the Agent-to-Agent (A2A) protocol for inter-agent communication. OpenAttribution, a coalition of publishers, brands, and technology providers, developed this specification to establish trust between AI agents.
+AIMS builds on established W3C standards including Decentralized Identifiers (DIDs) and Verifiable Credentials. It integrates with Really Simple Licensing (RSL) and other licensing standards for content rights, and works alongside the Agent-to-Agent (A2A) protocol for inter-agent communication. OpenAttribution, a coalition of publishers, brands, and technology providers, developed this specification to establish trust between AI agents.
+
+**Relationship to Other Standards:** AIMS complements Model Cards (performance and ethical evaluation), Dataset Cards (training data composition), and A2A Agent Cards (functional capabilities). Organizations should publish AIMS manifests for licensing transparency alongside these other documentation standards.
 
 ---
 
 ## 2. Problem Statement
 
-### 2.1 The Transparency Gap
+### 2.1 The Licensing and Provenance Gap
 
-AI systems today are opaque. When one generates content, makes recommendations, or interacts with users, there's no standardized way to know what data trained it, what behavioral constraints govern its responses, or what external sources it can pull from.
+AI systems today lack standardized ways to declare and verify the licensing status of their training data and runtime content access. When AI systems generate content, make recommendations, or interact with other agents, there's no machine-readable way to understand their licensing boundaries.
 
-**Copyright and Licensing Compliance:** Content creators and publishers can't tell whether their work trained an AI model, or on what terms. RSL provides machine-readable licensing for web content, but AI systems have no corresponding way to declare their training data provenance or prove compliance.
+**Copyright and Licensing Compliance:** Content creators and publishers can't tell whether their work trained an AI model, or on what terms. RSL provides machine-readable licensing for web content, but AI systems have no corresponding way to declare their training data licensing provenance or prove compliance with licensing agreements.
 
-**Bias and Safety Assessment:** Organizations can't properly assess an AI system's biases without knowing what's in its training data. The EU AI Act demands transparency documentation for high-risk AI systems. Current model cards only partially meet these requirements.
+**Content Access Rights:** When AI systems access licensed content at runtime (news archives, proprietary databases, content partnerships), there's no standard way to declare what content they can legally access or what redistribution rights they hold. This creates problems when agents share information with each other.
 
-**Agent-to-Agent Trust:** AI agents increasingly work together. A user's personal assistant might interact with a retailer's product recommendation agent. Right now there's no way for agents to verify each other's identity, understand each other's data sources, or set appropriate trust boundaries.
+**Agent-to-Agent Trust:** AI agents increasingly work together. A user's personal assistant might interact with a retailer's product recommendation agent. Right now there's no way for agents to cryptographically verify each other's identity or understand each other's licensing boundaries before sharing potentially licensed information.
 
 ### 2.2 The Agent Interoperability Problem
 
@@ -148,9 +152,11 @@ The Verification Protocol defines how AI systems authenticate to each other and 
 
 ## 5. Foundation Layer Specification
 
-The Foundation Layer documents where a base model's training data came from. Modern LLMs train on billions of documents, so this layer uses hierarchical abstraction: high-level summaries for public disclosure, cryptographic commitments for selective verification by auditors.
+The Foundation Layer documents the **licensing provenance** of a base model's training data. This layer focuses specifically on licensing status, compliance attestations, and cryptographic commitments for selective disclosure.
 
-*Core question: What went into building this model?*
+**Scope:** This layer documents licensing and provenance. For detailed dataset composition (temporal distribution, language breakdown, annotation procedures, collection methodology), see Dataset Cards / Datasheets for Datasets (Section 9.9).
+
+*Core question: What's the licensing status of the data that trained this model?*
 
 ### 5.1 Schema Structure
 
@@ -165,75 +171,64 @@ The Foundation Layer documents where a base model's training data came from. Mod
       "parentModel": "did:aims:... (optional)"
     },
     "trainingData": {
-      "summary": { ... },
+      "datasets": [ ... ],
       "commitments": { ... },
-      "rslCompliance": { ... }
+      "licensingCompliance": { ... }
     }
   }
 }
 ```
 
-### 5.2 Training Data Summary
+### 5.2 Training Datasets
 
-High-level categorical breakdown for public disclosure. End users and basic integrations will see this.
-
-#### 5.2.1 Data Categories
-
-Percentage breakdown by source type:
-
-| Category | Description |
-|----------|-------------|
-| `webCrawl` | General web content |
-| `books` | Published books and long-form text |
-| `code` | Source code repositories |
-| `academic` | Research papers, journals |
-| `licensedDatasets` | Commercially licensed training sets |
-| `syntheticData` | AI-generated training content |
-| `conversational` | Dialog and chat data |
-| `other` | Uncategorized sources |
-
-#### 5.2.2 Temporal Distribution
-
-Date ranges of source content creation or publication:
+List of datasets used for training, with references to Dataset Cards for compositional details and AIMS-specific licensing information.
 
 ```json
-"temporalRange": {
-  "earliest": "1900-01-01",
-  "latest": "2025-06-01",
-  "medianDate": "2019-03-15"
-}
+"datasets": [
+  {
+    "name": "Common Crawl 2024-Q2",
+    "datasetCard": "https://commoncrawl.org/dataset-card",
+    "description": "Web crawl of publicly accessible internet content",
+    "sourceType": "webCrawl",
+    "licensingStatus": {
+      "rslCompliant": true,
+      "licensingNotes": "RSL compliance verified for crawl period"
+    }
+  },
+  {
+    "name": "Project Gutenberg",
+    "datasetCard": "https://gutenberg.org/dataset-card",
+    "description": "Public domain books",
+    "sourceType": "books",
+    "licensingStatus": {
+      "status": "publicDomain",
+      "licensingNotes": "All content is in the public domain"
+    }
+  },
+  {
+    "name": "GitHub Public Repositories",
+    "datasetCard": "https://github.com/datasets/public-code/dataset-card",
+    "description": "Open source code under permissive licenses",
+    "sourceType": "code",
+    "licensingStatus": {
+      "licenses": ["MIT", "Apache-2.0", "BSD-3-Clause"],
+      "licensingNotes": "Filtered to permissive OSS licenses only"
+    }
+  }
+]
 ```
 
-#### 5.2.3 Language Distribution
+**Dataset Card References:** The `datasetCard` URL should point to a Datasheet for Datasets (Gebru et al., 2018) or HuggingFace Dataset Card that documents:
+- Dataset composition and statistics
+- Collection methodology
+- Annotation procedures
+- Temporal, geographic, and linguistic distributions
+- Known biases and limitations
 
-Percentage breakdown by language:
-
-```json
-"languages": {
-  "en": 0.72,
-  "zh": 0.08,
-  "es": 0.04,
-  "fr": 0.03,
-  "de": 0.03,
-  "other": 0.10
-}
-```
-
-#### 5.2.4 Domain Coverage
-
-Rough representation across knowledge domains (values are relative, not percentages):
-
-```json
-"domains": {
-  "science": 0.15,
-  "technology": 0.20,
-  "law": 0.05,
-  "medicine": 0.08,
-  "finance": 0.06,
-  "arts": 0.10,
-  "general": 0.36
-}
-```
+**AIMS Licensing Layer:** The `licensingStatus` field adds licensing-specific information not typically in Dataset Cards:
+- RSL compliance status
+- Licensing agreements
+- Permission documentation
 
 ### 5.3 Cryptographic Commitments
 
@@ -266,9 +261,13 @@ URL for authorized third-party auditors to verify detailed provenance claims. Ac
 }
 ```
 
-### 5.4 RSL Compliance
+### 5.4 Licensing Compliance
 
-Declaration of compliance with Really Simple Licensing terms for web-crawled content:
+Declarations of compliance with content licensing standards and agreements.
+
+#### 5.4.1 RSL Compliance
+
+For systems that crawled web content, declaration of compliance with Really Simple Licensing terms:
 
 ```json
 "rslCompliance": {
@@ -287,7 +286,28 @@ Declaration of compliance with Really Simple Licensing terms for web-crawled con
 }
 ```
 
-#### 5.4.1 Licensing Summary
+#### 5.4.2 Other Licensing Standards
+
+For compliance with other licensing frameworks:
+
+```json
+"otherLicensingStandards": [
+  {
+    "standard": "Creative Commons",
+    "compliance": true,
+    "version": "4.0",
+    "notes": "All CC-licensed content used per license terms"
+  },
+  {
+    "standard": "Open Source Initiative",
+    "compliance": true,
+    "licenses": ["MIT", "Apache-2.0", "GPL-3.0"],
+    "notes": "Code datasets filtered to OSI-approved licenses"
+  }
+]
+```
+
+#### 5.4.3 Licensing Summary
 
 Aggregate statistics on the licensing status of training data:
 
@@ -297,7 +317,8 @@ Aggregate statistics on the licensing status of training data:
   "creativeCommons": 0.08,
   "commercialLicense": 0.25,
   "rslCompliant": 0.35,
-  "unknownStatus": 0.20
+  "proprietaryLicensed": 0.15,
+  "unknownStatus": 0.05
 }
 ```
 
@@ -322,210 +343,144 @@ The `parentModel` DID lets consumers look up the base model's Foundation Layer a
 
 ---
 
-## 6. Tuning Layer Specification
+## 6. Commercial Alignment Layer Specification
 
-The Tuning Layer documents modifications applied to a base model that shape its behavior, values, and response characteristics. This covers both fine-tuning (weight changes) and inference-time controls (system prompts, content filters).
+The Commercial Alignment Layer documents intentional commercial and operational biases that affect an AI system's behavior. This layer is focused specifically on disclosing affiliations and priorities that are relevant to agent-to-agent trust decisions.
 
-*Core question: How was this model shaped to behave?*
+**Scope:** This layer documents only commercial/operational alignment. For comprehensive documentation of model alignment methodology, safety training, content policies, known limitations, and ethical considerations, see Model Cards (Section 9.8).
 
-### 6.1 Schema Structure
+*Core question: What commercial or operational biases affect this system's behavior?*
+
+### 6.1 Why This Matters for Agent Trust
+
+When a user's personal assistant interacts with a retailer's product recommendation agent, the personal assistant needs to know: "Does this agent have commercial incentives that might bias its recommendations?" Similarly, when agents collaborate on tasks, understanding commercial affiliations helps set appropriate trust boundaries.
+
+This layer is intentionally narrow. It does NOT attempt to document general model safety, alignment methodology, or content policies—those belong in Model Cards.
+
+### 6.2 Schema Structure
 
 ```json
 {
-  "tuning": {
+  "commercialAlignment": {
     "version": "2025-12-19T00:00:00Z",
-    "alignment": { ... },
-    "contentPolicies": { ... },
-    "promptingAgenda": { ... },
-    "knownLimitations": { ... }
+    "modelCardUrl": "https://example.com/model-card",
+    "brandAffiliation": { ... },
+    "operationalBiases": [ ... ],
+    "domainFocus": "string"
   }
 }
 ```
 
-### 6.2 Alignment Documentation
+### 6.3 Brand Affiliation
 
-#### 6.2.1 Methodology
-
-Description of alignment techniques applied:
+For AI systems operated by or on behalf of commercial entities:
 
 ```json
-"alignment": {
-  "methodology": {
-    "techniques": [
-      { "name": "RLHF", "description": "Reinforcement Learning from Human Feedback", "applied": true },
-      { "name": "Constitutional AI", "description": "Self-critique against defined principles", "applied": true },
-      { "name": "DPO", "description": "Direct Preference Optimization", "applied": false }
+"brandAffiliation": {
+  "organization": "The Home Depot, Inc.",
+  "relationship": "operated_by",
+  "description": "This agent is operated by Home Depot to assist customers with home improvement product selection and project planning"
+}
+```
+
+Possible values for `relationship`:
+- `operated_by`: The organization directly operates this AI system
+- `developed_for`: The system was custom-developed for this organization
+- `licensed_to`: The organization licenses this system from another provider
+- `independent`: No commercial affiliation
+
+### 6.4 Operational Biases
+
+Intentional biases introduced to serve the system's commercial or operational purpose:
+
+```json
+"operationalBiases": [
+  {
+    "type": "product_prioritization",
+    "description": "Product recommendations prioritize Home Depot inventory over competitors",
+    "rationale": "System designed to assist Home Depot customers in finding products available for purchase"
+  },
+  {
+    "type": "content_source_priority",
+    "description": "Research citations prioritize peer-reviewed journals over web content",
+    "rationale": "Academic research assistant designed for scholarly use"
+  }
+]
+```
+
+Common bias types (not exhaustive):
+- `product_prioritization`: Favors certain products or brands
+- `content_source_priority`: Favors certain information sources
+- `geographic_focus`: Optimized for specific regions or markets
+- `domain_specialization`: Prioritizes certain knowledge domains
+
+### 6.5 Domain Focus
+
+High-level description of the system's operational focus:
+
+```json
+"domainFocus": "home improvement and residential construction"
+```
+
+### 6.6 Example: Brand-Affiliated Agent
+
+```json
+{
+  "commercialAlignment": {
+    "version": "2025-12-19T00:00:00Z",
+    "modelCardUrl": "https://homedepot.com/ai/product-assistant/model-card",
+    "brandAffiliation": {
+      "organization": "The Home Depot, Inc.",
+      "relationship": "operated_by",
+      "description": "Shopping assistant for Home Depot customers"
+    },
+    "operationalBiases": [
+      {
+        "type": "product_prioritization",
+        "description": "Recommendations prioritize Home Depot inventory",
+        "rationale": "System serves Home Depot customers finding in-stock products"
+      },
+      {
+        "type": "geographic_focus",
+        "description": "Product availability based on US and Canada stores",
+        "rationale": "Home Depot operates primarily in North America"
+      }
     ],
-    "humanFeedbackScale": "large",
-    "syntheticFeedbackUsed": true
+    "domainFocus": "home improvement, construction materials, and tool selection"
   }
 }
 ```
 
-#### 6.2.2 Value Frameworks
-
-Declared ethical principles and value alignments. These describe what the system was trained toward:
+### 6.7 Example: Independent General-Purpose Agent
 
 ```json
-"valueFrameworks": {
-  "principles": [
-    "Helpfulness: Assist users in accomplishing their goals",
-    "Harmlessness: Avoid causing harm or enabling harmful actions",
-    "Honesty: Provide accurate information and acknowledge uncertainty"
-  ],
-  "prioritization": "When principles conflict, harmlessness takes precedence",
-  "documentationUrl": "https://anthropic.com/claude-values"
-}
-```
-
-#### 6.2.3 Safety Training
-
-```json
-"safetyTraining": {
-  "categories": [
-    "Refusal of harmful requests",
-    "Bias mitigation",
-    "Factuality and uncertainty expression",
-    "Privacy protection"
-  ],
-  "redTeaming": {
-    "conducted": true,
-    "internalTeams": true,
-    "externalTeams": true,
-    "bugBounty": true
-  },
-  "evaluations": {
-    "safetyBenchmarks": ["TruthfulQA", "BBQ", "RealToxicityPrompts"],
-    "resultsUrl": "https://anthropic.com/claude-evals"
+{
+  "commercialAlignment": {
+    "version": "2025-12-19T00:00:00Z",
+    "modelCardUrl": "https://anthropic.com/claude/model-card",
+    "brandAffiliation": {
+      "organization": "Anthropic",
+      "relationship": "operated_by",
+      "description": "General-purpose AI assistant"
+    },
+    "operationalBiases": [],
+    "domainFocus": "general-purpose conversational assistance"
   }
 }
 ```
 
-### 6.3 Content Policies
+### 6.8 Reference to Model Cards
 
-#### 6.3.1 Prohibited Content
+For comprehensive documentation of:
+- Alignment methodology (RLHF, Constitutional AI, etc.)
+- Safety training and red teaming
+- Content policies and prohibited content
+- Ethical frameworks and value alignment
+- Known limitations and failure modes
+- Disaggregated performance evaluation
+- Bias mitigation techniques
 
-Categories of content the system refuses to generate or assist with:
-
-```json
-"prohibited": [
-  { "category": "CSAM", "description": "Child sexual abuse material", "enforcement": "absolute" },
-  { "category": "weapons_mass_destruction", "description": "Instructions for biological, chemical, nuclear, or radiological weapons", "enforcement": "absolute" },
-  { "category": "malware", "description": "Functional malicious code", "enforcement": "absolute" }
-]
-```
-
-#### 6.3.2 Sensitive Topics
-
-Topics subject to special handling, caveats, or guardrails:
-
-```json
-"sensitiveTopics": [
-  { "category": "medical_advice", "handling": "Provides general information with disclaimer to consult professionals", "caveats": true },
-  { "category": "legal_advice", "handling": "Provides general information with disclaimer about jurisdiction-specific laws", "caveats": true },
-  { "category": "political_content", "handling": "Attempts balanced presentation of multiple viewpoints", "caveats": true },
-  { "category": "self_harm", "handling": "Redirects to crisis resources when appropriate", "caveats": true }
-]
-```
-
-#### 6.3.3 Jurisdictional Variations
-
-Region-specific policy adaptations:
-
-```json
-"jurisdictionalVariations": [
-  { "region": "EU", "variations": ["Enhanced privacy protections per GDPR", "AI Act transparency compliance"] },
-  { "region": "CN", "variations": ["Content restrictions per local regulations"], "available": false }
-]
-```
-
-### 6.4 Prompting Agenda
-
-Inference-time behavioral shaping. Full system prompts are typically proprietary, but this section describes intent.
-
-#### 6.4.1 System Prompt Summary
-
-```json
-"promptingAgenda": {
-  "systemPromptSummary": {
-    "description": "High-level behavioral instructions",
-    "themes": [
-      "Helpful and conversational tone",
-      "Acknowledges uncertainty when appropriate",
-      "Declines harmful requests politely",
-      "Cites sources when making factual claims"
-    ],
-    "length": "medium",
-    "lastUpdated": "2025-12-01"
-  }
-}
-```
-
-#### 6.4.2 Persona Declaration
-
-If the system adopts a persona:
-
-```json
-"persona": {
-  "hasPersona": true,
-  "name": "Claude",
-  "description": "An AI assistant created by Anthropic",
-  "traits": ["curious", "thoughtful", "direct"],
-  "claimsHumanity": false
-}
-```
-
-For brand-specific agents:
-
-```json
-"persona": {
-  "hasPersona": true,
-  "name": "Home Depot Product Assistant",
-  "description": "A shopping assistant for Home Depot customers",
-  "traits": ["knowledgeable about home improvement", "helpful", "product-focused"],
-  "brandAssociation": "The Home Depot, Inc."
-}
-```
-
-#### 6.4.3 Bias Declarations
-
-Known or intentional biases that affect system behavior:
-
-```json
-"biasDeclarations": [
-  { "type": "intentional", "description": "Recommendations prioritize Home Depot products over competitors", "reason": "System is operated by Home Depot for their customers" },
-  { "type": "known_limitation", "description": "May have reduced performance on low-resource languages", "mitigation": "Documented in model card; ongoing improvement efforts" }
-]
-```
-
-### 6.5 Known Limitations
-
-Documented weaknesses and failure modes:
-
-```json
-"knownLimitations": {
-  "factuality": {
-    "description": "May generate plausible-sounding but incorrect information",
-    "severity": "medium",
-    "mitigation": "Trained to express uncertainty; users should verify critical facts"
-  },
-  "recency": {
-    "description": "Knowledge has a training cutoff date",
-    "cutoffDate": "2025-06-01",
-    "mitigation": "Can be connected to real-time data sources via Content Access Layer"
-  },
-  "reasoning": {
-    "description": "May make errors in complex multi-step reasoning",
-    "severity": "medium",
-    "mitigation": "Chain-of-thought prompting can help; users should verify logic"
-  },
-  "languages": {
-    "description": "Performance varies by language",
-    "strongLanguages": ["en", "fr", "de", "es", "zh"],
-    "limitedLanguages": ["low-resource languages generally"]
-  }
-}
-```
+Organizations should publish Model Cards (see Section 9.8) and reference them via the `modelCardUrl` field.
 
 ---
 
@@ -616,45 +571,37 @@ Proprietary or curated knowledge repositories:
 ]
 ```
 
-### 7.5 Tools
+### 7.5 Tools and Capabilities
 
-#### 7.5.1 MCP Servers
+**For detailed tool and capability documentation,** see:
+- **A2A Agent Card** (Section 9.4): Describes functional capabilities, skills, and I/O modes
+- **Model Context Protocol** (Section 9.5): Documents MCP server connections
 
-Model Context Protocol servers the system connects to:
+**AIMS Focus:** The Content Access Layer documents only tool/capability aspects relevant to licensing and content access rights.
 
 ```json
-"tools": {
-  "mcpServers": [
-    { "name": "filesystem", "description": "Read/write access to user's local files", "permissions": ["read", "write"], "scope": "user-authorized directories only" },
-    { "name": "github", "description": "GitHub API access", "permissions": ["read", "write"], "scope": "user-authorized repositories" }
+"toolsAndCapabilities": {
+  "agentCardUrl": "https://example.com/.well-known/agent-card.json",
+  "mcpConfigUrl": "https://example.com/mcp-config.json",
+  "licensingNotes": [
+    {
+      "tool": "Reuters News MCP Server",
+      "licensingStatus": "Licensed for inference access only",
+      "restrictions": "Cannot redistribute raw content to other agents"
+    },
+    {
+      "tool": "Getty Images API",
+      "licensingStatus": "Licensed for thumbnail display only",
+      "restrictions": "Full-resolution images require separate licensing"
+    }
   ]
 }
 ```
 
-#### 7.5.2 External APIs
-
-```json
-"externalApis": [
-  { "name": "Google Calendar", "description": "Read/write calendar events", "authMethod": "oauth2", "userAuthorization": "required" }
-]
-```
-
-#### 7.5.3 Compute Capabilities
-
-```json
-"compute": {
-  "codeExecution": {
-    "enabled": true,
-    "languages": ["python", "javascript"],
-    "sandboxed": true,
-    "networkAccess": false
-  },
-  "fileManipulation": {
-    "enabled": true,
-    "formats": ["pdf", "docx", "csv", "images"]
-  }
-}
-```
+**What Goes Here vs. A2A/MCP:**
+- **A2A Agent Card:** Lists all skills, capabilities, I/O modes, endpoints
+- **MCP Configuration:** Details of MCP server connections, permissions, scopes
+- **AIMS (here):** Notes about which tools access licensed content and what usage restrictions apply
 
 ### 7.6 Licensed Content
 
@@ -955,20 +902,68 @@ The EU AI Act (Regulation 2024/1689) requires transparency documentation for hig
 - Article 13 (transparency to deployers)
 - Article 53 (obligations for GPAI model providers)
 
-### 9.8 Model Cards
+### 9.8 Model Cards for Model Reporting
 
-Model Cards (Google Research, 2018) provide a documentation standard for ML models. AIMS manifests are complementary:
+Model Cards (Mitchell et al., 2019) provide standardized transparency documentation for machine learning models, with emphasis on:
+- Disaggregated evaluation across demographic and phenotypic groups
+- Intended and out-of-scope use cases
+- Quantitative performance metrics with confidence intervals
+- Ethical considerations in model development
+- Known limitations and failure modes
 
-- Model Cards are human-readable documentation
-- AIMS manifests are machine-readable and cryptographically verifiable
+**Relationship to AIMS:**
 
-Organizations may publish both.
+| Standard | Focus | Key Questions Answered |
+|----------|-------|----------------------|
+| **Model Cards** | Performance & ethics | "How well does it work? For whom? What are the limitations?" |
+| **AIMS Foundation** | Licensing provenance | "What's the licensing status of training data?" |
+| **AIMS Commercial Alignment** | Commercial biases | "What commercial incentives might bias this system?" |
+| **AIMS Content Access** | Runtime licensing | "What content can it legally access and redistribute?" |
+
+Model Cards document empirical performance and ethical considerations. AIMS documents licensing provenance and content access rights. These are complementary transparency mechanisms addressing different stakeholder needs.
+
+**Integration Points:**
+- AIMS manifests reference Model Card URLs via `modelCardUrl` field
+- Model Cards may reference AIMS manifests for licensing transparency
+- Organizations deploying AI systems should publish both
+
+**Example references:**
+- HuggingFace Model Cards: https://huggingface.co/docs/hub/model-cards
+- Model Card Guidebook: https://huggingface.co/docs/hub/en/model-card-guidebook
+- Original Paper: Mitchell et al. (2019), "Model Cards for Model Reporting"
+
+### 9.9 Dataset Cards (Datasheets for Datasets)
+
+Dataset Cards, also known as "Datasheets for Datasets" (Gebru et al., 2018), provide standardized documentation for datasets used in machine learning:
+- Dataset composition and statistics
+- Collection methodology and annotation procedures
+- Temporal, geographic, and linguistic distributions
+- Recommended uses and known limitations
+- Privacy and ethical considerations
+
+**Relationship to AIMS:**
+
+| Standard | Focus | Key Questions Answered |
+|----------|-------|----------------------|
+| **Dataset Cards** | Dataset composition | "What's in the dataset? How was it collected? What biases exist?" |
+| **AIMS Foundation** | Licensing status | "What's the licensing status of this training data?" |
+
+Dataset Cards document what's in a dataset and how it was created. AIMS adds a licensing layer on top, documenting compliance with RSL and other licensing standards.
+
+**Integration Points:**
+- AIMS Foundation Layer references Dataset Card URLs via `datasetCard` field for each training dataset
+- Dataset Cards document composition; AIMS documents licensing status
+- Together they provide comprehensive training data transparency
+
+**Example references:**
+- HuggingFace Dataset Cards: https://huggingface.co/docs/hub/datasets-cards
+- Original Paper: Gebru et al. (2018), "Datasheets for Datasets"
 
 ---
 
 ## 10. Core Manifest Schema
 
-The following JSON-LD schema shows how the three layers compose into a complete manifest. This is a draft specification subject to community review.
+The following JSON-LD schema shows how the three layers compose into a complete manifest, with references to complementary standards. This is a draft specification subject to community review.
 
 ```json
 {
@@ -985,9 +980,63 @@ The following JSON-LD schema shows how the three layers compose into a complete 
     "name": "Anthropic",
     "verificationMethod": "did:web:anthropic.com#key-1"
   },
-  "foundation": { /* See Section 5 */ },
-  "tuning": { /* See Section 6 */ },
-  "capabilities": { /* See Section 7 */ },
+
+  "foundation": {
+    "baseModel": {
+      "name": "Claude 4 Sonnet",
+      "version": "2025-12-19",
+      "releaseDate": "2025-12-19T00:00:00Z"
+    },
+    "trainingData": {
+      "datasets": [
+        {
+          "name": "Common Crawl 2024-Q2",
+          "datasetCard": "https://commoncrawl.org/dataset-card",
+          "sourceType": "webCrawl",
+          "licensingStatus": {
+            "rslCompliant": true
+          }
+        }
+      ],
+      "commitments": {
+        "merkleRoot": "sha256:a1b2c3d4...",
+        "auditEndpoint": "https://api.anthropic.com/aims/audit/v1"
+      },
+      "licensingCompliance": {
+        "rslCompliance": { "compliant": true },
+        "licensingSummary": {
+          "publicDomain": 0.12,
+          "rslCompliant": 0.35,
+          "commercialLicense": 0.25,
+          "unknownStatus": 0.28
+        }
+      }
+    }
+  },
+
+  "commercialAlignment": {
+    "modelCardUrl": "https://anthropic.com/claude/model-card",
+    "brandAffiliation": {
+      "organization": "Anthropic",
+      "relationship": "operated_by"
+    },
+    "operationalBiases": [],
+    "domainFocus": "general-purpose conversational assistance"
+  },
+
+  "capabilities": {
+    "scope": "deployment",
+    "toolsAndCapabilities": {
+      "agentCardUrl": "https://api.anthropic.com/.well-known/agent-card.json",
+      "mcpConfigUrl": "https://api.anthropic.com/mcp-config.json"
+    },
+    "licensedContent": {
+      "partnerships": [],
+      "rslLicenses": { "held": false },
+      "redistributionPolicy": { "default": "no-redistribution" }
+    }
+  },
+
   "proof": {
     "type": "DataIntegrityProof",
     "cryptosuite": "ecdsa-rdfc-2019",
@@ -1009,10 +1058,20 @@ The following JSON-LD schema shows how the three layers compose into a complete 
 | `version` | ISO-8601 timestamp of this manifest version |
 | `previousVersion` | Content-addressed link to prior version (for audit trail) |
 | `issuer` | Organization publishing this manifest |
-| `foundation` | Training data provenance (Section 5) |
-| `tuning` | Behavioral modifications (Section 6) |
-| `capabilities` | Runtime access and licensing (Section 7) |
+| `foundation` | Training data licensing provenance (Section 5) |
+| `commercialAlignment` | Commercial/operational biases (Section 6) |
+| `capabilities` | Runtime content access and licensing (Section 7) |
 | `proof` | Cryptographic signature over the manifest |
+
+### External Standard References
+
+Notice the manifest includes URLs linking to complementary standards:
+- `datasetCard`: Links to Dataset Cards (Datasheets for Datasets) for training data composition
+- `modelCardUrl`: Links to Model Card for performance evaluation and ethical considerations
+- `agentCardUrl`: Links to A2A Agent Card for functional capabilities and skills
+- `mcpConfigUrl`: Links to MCP configuration for tool/server connection details
+
+**Layered Transparency:** AIMS provides licensing and provenance transparency. Other standards provide performance, composition, and capability transparency. Together they enable comprehensive AI system transparency.
 
 > **Note:** A normative JSON Schema for validation is planned for a future version of this specification.
 
@@ -1317,6 +1376,95 @@ AIMS works alongside several other standards in the AI space. Here's what each o
 
 **RSL:** Really Simple Licensing, a standard for machine-readable content licensing.
 
-**Tuning Layer:** Manifest section describing behavioral modifications applied to the base model (Section 6).
+**Commercial Alignment Layer:** Manifest section describing commercial and operational biases (Section 6). Formerly called "Tuning Layer."
 
 **Verifiable Credential:** A W3C standard for cryptographically signed, tamper-evident digital credentials.
+
+---
+
+## Appendix D: AIMS Scope Boundaries
+
+This appendix clarifies what AIMS covers versus what other standards handle. AIMS is intentionally focused on licensing provenance, content access rights, and agent trust—not general model documentation.
+
+### What AIMS Covers
+
+| Area | AIMS Responsibility | Key Questions |
+|------|-------------------|---------------|
+| **Training Data Licensing** | Licensing status, RSL compliance, cryptographic commitments | "Is the training data licensed? Can you prove it?" |
+| **Runtime Content Access** | Licensed content partnerships, access rights, redistribution policies | "What content can this system legally access at inference time?" |
+| **Agent Identity & Trust** | Cryptographic identity verification, manifest integrity | "Is this the legitimate agent? Can I verify its identity?" |
+| **Commercial Biases** | Brand affiliations, intentional commercial priorities | "Does this agent have commercial incentives that bias its behavior?" |
+| **Audit Infrastructure** | Merkle commitments, audit endpoints for selective disclosure | "How can third parties verify licensing claims?" |
+
+### What Other Standards Cover
+
+| Standard | Responsibility | Key Questions | AIMS Relationship |
+|----------|---------------|---------------|-------------------|
+| **Model Cards** | Performance evaluation, ethical considerations, limitations, disaggregated metrics | "How well does it work? For whom? What are its limitations?" | AIMS references via `modelCardUrl` |
+| **Dataset Cards** | Dataset composition, collection methodology, biases, statistics | "What's in the dataset? How was it collected?" | AIMS references via `datasetCard` URL |
+| **A2A Agent Cards** | Functional capabilities, skills, I/O modes, endpoints | "What tasks can this agent perform?" | AIMS references via `agentCardUrl` |
+| **MCP** | Tool/server connections, permissions, integration details | "How does this system connect to external tools?" | AIMS references via `mcpConfigUrl` |
+
+### Clear Scope Divisions
+
+#### Training Data: Dataset Cards + AIMS
+- **Dataset Card:** Composition (temporal, language, domain distributions), collection methodology, annotation process
+- **AIMS:** Licensing status, RSL compliance, licensing agreements, cryptographic commitments
+
+#### Model Behavior: Model Cards + AIMS
+- **Model Card:** Alignment methodology, safety training, content policies, ethical frameworks, performance metrics, limitations
+- **AIMS:** Commercial/operational biases relevant to agent trust (brand affiliation, product prioritization)
+
+#### Agent Capabilities: A2A + AIMS
+- **A2A Agent Card:** Functional capabilities, skills, I/O modes, what the agent can DO
+- **AIMS:** Content access rights, what the agent can legally ACCESS
+
+#### Tool Integration: MCP + AIMS
+- **MCP:** Connection details, server configurations, permissions, scopes
+- **AIMS:** Licensing notes for tools that access licensed content
+
+### What AIMS Explicitly Does NOT Cover
+
+❌ **Model performance evaluation** → Use Model Cards
+❌ **Disaggregated fairness metrics** → Use Model Cards
+❌ **Dataset composition statistics** → Use Dataset Cards
+❌ **General alignment methodology** → Use Model Cards
+❌ **Safety training details** → Use Model Cards
+❌ **Content policy specifics** → Use Model Cards
+❌ **Functional capabilities** → Use A2A Agent Cards
+❌ **Tool connection details** → Use MCP
+
+### Implementation Guidance
+
+**For AI System Publishers:**
+1. Publish AIMS manifest for licensing/provenance transparency
+2. Publish Model Card for performance/ethics transparency
+3. Reference Dataset Cards for training data composition
+4. Publish A2A Agent Card for functional interoperability
+5. Link them all together via URL references
+
+**For Content Creators/Publishers:**
+- Query AIMS manifests to verify licensing compliance
+- Model Cards won't tell you about licensing—that's AIMS territory
+- Check both Foundation Layer (training) and Content Access Layer (runtime)
+
+**For Regulators:**
+- AIMS provides licensing and provenance audit trails
+- Model Cards provide performance and ethical evaluation
+- Both are needed for comprehensive transparency
+
+**For Agent Developers:**
+- Use AIMS for trust decisions (licensing boundaries, commercial biases)
+- Use A2A for capability discovery (what can this agent do?)
+- Use Model Cards for risk assessment (what are the limitations?)
+
+### Summary
+
+**AIMS = Licensing + Provenance + Trust**
+
+Everything else belongs in other standards. This focused scope makes AIMS:
+- Easier to implement
+- Less controversial (not prescribing ethics)
+- More likely to be adopted
+- Clearly differentiated from existing work
+- Complementary rather than competitive
