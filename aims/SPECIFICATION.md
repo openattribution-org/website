@@ -28,7 +28,7 @@ description: "Complete AIMS specification in a single document"
 10. [Core Manifest Schema](#10-core-manifest-schema)
 11. [Use Cases](#11-use-cases)
 12. [Governance and Adoption](#12-governance-and-adoption)
-13. **[Open Questions for Discussion](#13-open-questions-for-discussion)** ← Community input needed
+13. [Open Questions for Discussion](#13-open-questions-for-discussion)
 14. [Conclusion](#14-conclusion)
 - [Appendix A: How AIMS Relates to Other Standards](#appendix-a-how-aims-relates-to-other-standards)
 - [Appendix B: Related Standards Reference](#appendix-b-related-standards-reference)
