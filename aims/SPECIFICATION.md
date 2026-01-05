@@ -861,7 +861,7 @@ AIMS uses DIDs as the core identifier for AI systems. The DID specification (W3C
 
 ### 9.2 W3C Verifiable Credentials
 
-AI Manifests can be packaged as Verifiable Credentials (W3C Recommendation, May 2025), which gets you cryptographic signing, selective disclosure, revocation checking, and credential chaining for derivative models.
+AI Manifests can be packaged as Verifiable Credentials (W3C Recommendation, May 2025), which provides cryptographic signing, selective disclosure, revocation checking, and credential chaining for derivative models.
 
 ### 9.3 Really Simple Licensing (RSL)
 
@@ -1142,13 +1142,13 @@ The OpenAttribution AI Manifest Standard specifies what trained an AI system, ho
 
 This specification is incomplete by design. Section 13 lists real technical gaps: the DID method isn't written, protocol bindings need work, verification procedures are sketched not specified. We're asking for help, not apologizing for incompleteness.
 
-What this gets you:
+AIMS enables:
 
-- **Content creators** can see if their work trained a model
-- **AI developers** can prove responsible data practices
-- **Organizations** can assess systems for bias and safety
-- **AI agents** can verify each other before sharing information
-- **Regulators** get machine-readable audit trails
+- **Content creators** to see if their work trained a model
+- **AI developers** to prove responsible data practices
+- **Organizations** to assess systems for bias and safety
+- **AI agents** to verify each other before sharing information
+- **Regulators** to get machine-readable audit trails
 
 The web got DNS for identity, TLS for security, HTTP for content. AI has nothing comparable for provenance and trust. This spec is one attempt at fixing that.
 
