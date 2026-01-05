@@ -8,7 +8,9 @@ description: "Complete AIMS specification in a single document"
 
 **An Open Standard for AI System Transparency, Provenance, and Agent-to-Agent Trust**
 
-**Draft Specification v0.1** | December 2025
+**Incomplete Draft Specification v0.1** | December 2025
+
+> **Note on Completeness:** This specification is complete for content usage transparency and training data licensing provenance. Sections requiring cryptographic expertise (DID method specification, Merkle proof formats, verification protocol bindings) are marked as incomplete and require expert contribution. See [Section 13](#13-open-questions-for-discussion) for areas needing community input.
 
 ---
 
@@ -34,7 +36,7 @@ description: "Complete AIMS specification in a single document"
 
 ---
 
-> **This is a draft specification.** Key technical areas are explicitly left open for community input, including the DID method specification, verification protocol bindings, and Merkle proof formats. See [Section 13: Open Questions](#13-open-questions-for-discussion) for details.
+> **This is an incomplete draft specification.** The specification is complete for content usage transparency and training data licensing provenance. Cryptographic components (DID method specification, verification protocol bindings, Merkle proof formats) require expert contribution. See [Section 13: Open Questions](#13-open-questions-for-discussion) for details.
 
 ---
 
@@ -44,7 +46,7 @@ The OpenAttribution AI Manifest Standard (AIMS) is a focused standard for **AI t
 
 AI agents now routinely interact with each other and with content across the web. They need a way to verify each other's identity, understand licensing status for training data and runtime content access, and establish trust boundaries before sharing information.
 
-This specification tackles three problems:
+This specification addresses three technical requirements:
 
 1. **Training Data Licensing Provenance:** What's the licensing status of the data that trained this model? Can it prove RSL compliance or other licensing agreements? What cryptographic commitments enable selective audit disclosure?
 
@@ -52,7 +54,7 @@ This specification tackles three problems:
 
 3. **Agent-to-Agent Trust:** How can AI agents cryptographically verify each other's identity and understand each other's licensing boundaries before exchanging sensitive information?
 
-AIMS builds on established W3C standards including Decentralized Identifiers (DIDs) and Verifiable Credentials. It integrates with Really Simple Licensing (RSL) and other licensing standards for content rights, and works alongside the Agent-to-Agent (A2A) protocol for inter-agent communication. OpenAttribution, a coalition of publishers, brands, and technology providers, developed this specification to establish trust between AI agents.
+AIMS builds on established W3C standards including Decentralized Identifiers (DIDs) and Verifiable Credentials. It integrates with Really Simple Licensing (RSL) and other licensing standards for content rights, and works alongside the Agent-to-Agent (A2A) protocol for inter-agent communication.
 
 **Relationship to Other Standards:** AIMS complements Model Cards (performance and ethical evaluation), Dataset Cards (training data composition), and A2A Agent Cards (functional capabilities). Organizations should publish AIMS manifests for licensing transparency alongside these other documentation standards.
 
@@ -62,21 +64,21 @@ AIMS builds on established W3C standards including Decentralized Identifiers (DI
 
 ### 2.1 The Licensing and Provenance Gap
 
-AI systems today lack standardized ways to declare and verify the licensing status of their training data and runtime content access. When AI systems generate content, make recommendations, or interact with other agents, there's no machine-readable way to understand their licensing boundaries.
+AI systems today lack standardized ways to declare and verify the licensing status of their training data and runtime content access. When AI systems generate content, make recommendations, or interact with other agents, no machine-readable method exists to understand their licensing boundaries.
 
-**Copyright and Licensing Compliance:** Content creators and publishers can't tell whether their work trained an AI model, or on what terms. RSL provides machine-readable licensing for web content, but AI systems have no corresponding way to declare their training data licensing provenance or prove compliance with licensing agreements.
+**Copyright and Licensing Compliance:** Content creators and publishers cannot tell whether their work trained an AI model. They also cannot determine the licensing terms. RSL provides machine-readable licensing for web content. However, AI systems have no corresponding standard to declare their training data licensing provenance or prove compliance with licensing agreements.
 
-**Content Access Rights:** When AI systems access licensed content at runtime (news archives, proprietary databases, content partnerships), there's no standard way to declare what content they can legally access or what redistribution rights they hold. This creates problems when agents share information with each other.
+**Content Access Rights:** When AI systems access licensed content at runtime (news archives, proprietary databases, content partnerships), no standard method exists to declare what content they can legally access. There is also no standard for declaring redistribution rights. This creates problems when agents share information with each other.
 
-**Agent-to-Agent Trust:** AI agents increasingly work together. A user's personal assistant might interact with a retailer's product recommendation agent. Right now there's no way for agents to cryptographically verify each other's identity or understand each other's licensing boundaries before sharing potentially licensed information.
+**Agent-to-Agent Trust:** AI agents increasingly work together. A user's personal assistant might interact with a retailer's product recommendation agent. Currently, no method exists for agents to cryptographically verify each other's identity. Agents also cannot understand each other's licensing boundaries before sharing potentially licensed information.
 
 ### 2.2 The Agent Interoperability Problem
 
 A user asks their personal AI assistant to help design a kitchen renovation. The assistant needs to interact with a home improvement retailer's AI agent to explore products, check availability, and compare options. This raises hard questions:
 
-- How does the user's agent verify it's talking to the legitimate retailer agent and not an imposter?
+- How does the user's agent verify it is talking to the legitimate retailer agent and not an imposter?
 - What data sources inform the retailer agent's recommendations?
-- Does the retailer agent have access to proprietary content the user's agent can't directly use?
+- Does the retailer agent have access to proprietary content the user's agent cannot directly use?
 - How should content licensing work when agents with different access rights share information?
 
 AIMS answers these questions through cryptographically verifiable manifests that travel with AI systems or can be looked up on demand.
@@ -91,7 +93,7 @@ The OpenAttribution AI Manifest Standard follows these principles:
 
 **Progressive Disclosure:** Support different levels of detail. Some consumers need high-level categorical summaries. Others need cryptographic commitments for selective audit disclosure. Not everyone needs terabytes of training data metadata.
 
-**Verifiable Claims:** Every manifest assertion should be cryptographically signed and verifiable. Claims without verification mechanisms are just documentation, not trust infrastructure.
+**Verifiable Claims:** Every manifest assertion should be cryptographically signed and verifiable. Claims without verification mechanisms are documentation only and cannot be independently validated.
 
 **Layered Architecture:** Keep stable identity (the fingerprint/DID) separate from dynamic content (the manifest). Manifests change over time. Identifiers persist.
 
@@ -123,11 +125,11 @@ did:aims:<method>:<organization>:<system-id>
 
 The DID resolves to a DID Document containing the public keys needed to verify signed manifests and the service endpoints for manifest lookup.
 
-> **Note:** The full `did:aims` method specification (syntax, CRUD operations, resolution algorithm) is left for future work or community contribution. See Section 13, Open Questions.
+> **Note: Requires Cryptographic Expertise** — The full `did:aims` method specification (syntax, CRUD operations, resolution algorithm) requires expert contribution. See Section 13, Open Questions.
 
 ### 4.2 Manifest Store
 
-The Manifest Store is a distributed registry where AI Manifests get published and retrieved. Multiple implementations can coexist: centralized registries run by industry consortia, decentralized solutions using content-addressed storage (IPFS, blockchain anchoring), or simple HTTPS endpoints hosted by AI providers.
+The Manifest Store is a distributed registry. AI providers publish manifests to the store. Clients retrieve manifests from the store. Multiple implementations can coexist: centralized registries run by industry consortia, decentralized solutions using content-addressed storage (IPFS, blockchain anchoring), or simple HTTPS endpoints hosted by AI providers.
 
 **Key Properties:**
 
@@ -232,11 +234,13 @@ List of datasets used for training, with references to Dataset Cards for composi
 
 ### 5.3 Cryptographic Commitments
 
-Detailed provenance that can't be fully disclosed publicly but must remain verifiable.
+> **Note: Requires Cryptographic Expertise** — This section describes cryptographic commitment mechanisms that enable selective disclosure of training data provenance. The Merkle proof generation, format, and verification procedures require expert contribution to complete.
+
+Detailed provenance that cannot be fully disclosed publicly but must remain verifiable.
 
 #### 5.3.1 Merkle Root
 
-A hash commitment to the complete training data manifest. With this, a system can prove specific sources were or weren't included without revealing the full dataset.
+A hash commitment to the complete training data manifest. This enables a system to prove specific sources were or were not included without revealing the full dataset.
 
 ```json
 "commitments": {
@@ -246,8 +250,6 @@ A hash commitment to the complete training data manifest. With this, a system ca
   "generated": "2025-06-15T00:00:00Z"
 }
 ```
-
-> **Note:** Merkle proof generation, format, and verification procedures are left for future specification.
 
 #### 5.3.2 Audit Endpoint
 
@@ -492,7 +494,7 @@ The Content Access Layer documents what content an AI system can legally access 
 
 ### 7.1 Why Licensed Content Matters
 
-When AI agents interact, content licensing creates problems. Consider: Agent A has a license to access Reuters news content. Agent B does not. Agent A summarizes a Reuters article for Agent B. Has Agent B now received content it isn't licensed for?
+When AI agents interact, content licensing creates problems. Consider: Agent A has a license to access Reuters news content. Agent B does not. Agent A summarizes a Reuters article for Agent B. Has Agent B now received content it is not licensed for?
 
 The Content Access Layer makes these licensing boundaries explicit. Agents can check each other's manifests before deciding what information to share.
 
@@ -707,7 +709,9 @@ The Open License Protocol (part of RSL) handles dynamic license negotiation at r
 
 ## 8. Agent Verification Protocol
 
-When AI agents interact, they need to establish identity and understand each other's capabilities before exchanging sensitive information. This section describes the verification model. Detailed protocol bindings are left for future specification or community contribution.
+> **Note: Requires Cryptographic Expertise** — This section describes the conceptual verification model. Detailed protocol bindings, attestation formats, and cryptographic signature schemes require expert contribution to complete.
+
+When AI agents interact, they need to establish identity and understand each other's capabilities before exchanging sensitive information. This section describes the verification model.
 
 ### 8.1 Overview
 
@@ -803,9 +807,9 @@ AIMS complements existing standards rather than replacing them.
 
 ### 9.1 W3C Decentralized Identifiers (DIDs)
 
-AIMS uses DIDs as the core identifier for AI systems. The DID specification (W3C Recommendation, July 2022) provides globally unique, cryptographically verifiable identifiers that don't depend on centralized registries. AIMS defines a new DID method (`did:aims`) with resolution semantics specific to AI system manifests.
+AIMS uses DIDs as the core identifier for AI systems. The DID specification (W3C Recommendation, July 2022) provides globally unique, cryptographically verifiable identifiers that do not depend on centralized registries. AIMS defines a new DID method (`did:aims`) with resolution semantics specific to AI system manifests.
 
-> **Note:** The full `did:aims` method specification is left for future work.
+> **Note: Requires Cryptographic Expertise** — The full `did:aims` method specification (syntax, CRUD operations, resolution algorithm, security considerations) requires expert contribution to complete.
 
 ### 9.2 W3C Verifiable Credentials
 
@@ -948,7 +952,7 @@ Dataset Cards, also known as "Datasheets for Datasets" (Gebru et al., 2018), pro
 | **Dataset Cards** | Dataset composition | "What's in the dataset? How was it collected? What biases exist?" |
 | **AIMS Foundation** | Licensing status | "What's the licensing status of this training data?" |
 
-Dataset Cards document what's in a dataset and how it was created. AIMS adds a licensing layer on top, documenting compliance with RSL and other licensing standards.
+Dataset Cards document dataset contents and creation methodology. AIMS adds a licensing layer on top, documenting compliance with RSL and other licensing standards.
 
 **Integration Points:**
 - AIMS Foundation Layer references Dataset Card URLs via `datasetCard` field for each training dataset
@@ -1164,35 +1168,37 @@ AIMS is designed for multi-stakeholder governance, potentially operating under a
 
 ## 13. Open Questions for Discussion
 
-These questions are explicitly left open for community input. They represent areas where the specification needs further work or where multiple valid approaches exist.
+This specification is complete for content usage transparency and training data licensing provenance. The following areas require cryptographic expertise and community input.
 
-### 13.1 Technical Specification Gaps
+### 13.1 Technical Specification Gaps Requiring Cryptographic Expertise
 
-1. **DID Method Specification:** The `did:aims` method is referenced but not specified. A complete DID method requires: method-specific identifier syntax, CRUD operations, resolution algorithm, and security considerations.
+1. **DID Method Specification:** The `did:aims` method is referenced but not specified. A complete DID method requires: method-specific identifier syntax, CRUD operations, resolution algorithm, and security considerations. **Requires cryptographic expertise.**
 
-2. **Merkle Proof Verification:** The Foundation Layer mentions a Merkle root for selective disclosure, but proof generation, format, and verification procedures are not defined.
+2. **Merkle Proof Verification:** The Foundation Layer mentions a Merkle root for selective disclosure, but proof generation, format, and verification procedures are not defined. **Requires cryptographic expertise.**
 
-3. **Revocation:** How do you revoke a manifest? What if a signing key is compromised? What's the revocation distribution mechanism?
+3. **Revocation:** How do you revoke a manifest? What if a signing key is compromised? What is the revocation distribution mechanism? **Requires cryptographic expertise.**
+
+4. **Verification Protocol Bindings:** Section 8 describes the conceptual verification model, but detailed protocol bindings, attestation formats, and signature schemes need specification. **Requires cryptographic expertise.**
 
 ### 13.2 Design Tradeoffs
 
-4. **Recursive Provenance:** When AI-generated content becomes training data for new models, how deep should provenance chains extend? What are the practical limits of tracking synthetic data origins?
+5. **Recursive Provenance:** When AI-generated content becomes training data for new models, how deep should provenance chains extend? What are the practical limits of tracking synthetic data origins?
 
-5. **Verification Granularity:** What level of training data detail should be verifiable? Per-document attribution may be computationally prohibitive. What aggregation levels provide meaningful transparency?
+6. **Verification Granularity:** What level of training data detail should be verifiable? Per-document attribution may be computationally prohibitive. What aggregation levels provide meaningful transparency?
 
-6. **Manifest Freshness:** For dynamic Content Access Layers, how often should manifests update? What's the right balance between accuracy and caching efficiency?
+7. **Manifest Freshness:** For dynamic Content Access Layers, how often should manifests update? What is the right balance between accuracy and caching efficiency?
 
-7. **Trade Secret Protection:** How do we balance transparency with legitimate intellectual property protection? What selective disclosure mechanisms are sufficient for regulatory compliance while preserving competitive advantage?
+8. **Trade Secret Protection:** How do we balance transparency with legitimate intellectual property protection? What selective disclosure mechanisms are sufficient for regulatory compliance while preserving competitive advantage?
 
 ### 13.3 Adoption Questions
 
-8. **Gaming Resistance:** How do we prevent manifest claims from becoming performative compliance rather than genuine transparency? What third-party verification mechanisms are needed?
+9. **Gaming Resistance:** How do we prevent manifest claims from becoming performative compliance rather than genuine transparency? What third-party verification mechanisms are needed?
 
-9. **Liability Allocation:** If an AI system's manifest is inaccurate, who bears liability? The issuing organization? The registry? How do we create appropriate incentives for accuracy?
+10. **Liability Allocation:** If an AI system's manifest is inaccurate, who bears liability? The issuing organization? The registry? How do we create appropriate incentives for accuracy?
 
-10. **Transitive Licensing:** If Agent A has a license and summarizes content for Agent B, does the summary inherit licensing restrictions?
+11. **Transitive Licensing:** If Agent A has a license and summarizes content for Agent B, does the summary inherit licensing restrictions?
 
-11. **Incentive Alignment:** Why would AI providers publish manifests voluntarily before regulation requires it? What's the value proposition for early adopters?
+12. **Incentive Alignment:** Why would AI providers publish manifests voluntarily before regulation requires it? What is the value proposition for early adopters?
 
 ---
 
@@ -1200,7 +1206,7 @@ These questions are explicitly left open for community input. They represent are
 
 The OpenAttribution AI Manifest Standard specifies what trained an AI system, how it was aligned, and what it can access at runtime.
 
-This specification is incomplete by design. Section 13 lists real technical gaps: the DID method isn't written, protocol bindings need work, verification procedures are sketched not specified. We're asking for help, not apologizing for incompleteness.
+This specification is complete for content usage transparency and training data licensing provenance. Cryptographic components require expert contribution. Section 13 lists technical gaps: the DID method specification, protocol bindings, and verification procedures need cryptographic expertise.
 
 AIMS enables:
 
@@ -1210,7 +1216,7 @@ AIMS enables:
 - **AI agents** to verify each other before sharing information
 - **Regulators** to get machine-readable audit trails
 
-The web got DNS for identity, TLS for security, HTTP for content. AI has nothing comparable for provenance and trust. This spec is one attempt at fixing that.
+Similar to DNS for identity resolution, TLS for transport security, and HTTP for content delivery, AI systems require standardized provenance verification.
 
 We invite comment, contribution, and critique from AI developers, content publishers, standards bodies, policymakers, and civil society.
 
@@ -1376,7 +1382,7 @@ AIMS works alongside several other standards in the AI space. Here's what each o
 
 **RSL:** Really Simple Licensing, a standard for machine-readable content licensing.
 
-**Commercial Alignment Layer:** Manifest section describing commercial and operational biases (Section 6). Formerly called "Tuning Layer."
+**Commercial Alignment Layer:** Manifest section describing commercial and operational biases (Section 6).
 
 **Verifiable Credential:** A W3C standard for cryptographically signed, tamper-evident digital credentials.
 

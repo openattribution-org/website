@@ -2,7 +2,9 @@
 
 **An Open Standard for AI System Transparency, Provenance, and Agent-to-Agent Trust**
 
-Draft Specification v0.1 | December 2025
+Incomplete Draft Specification v0.1 | December 2025
+
+> **Note on Completeness:** This specification is complete for content usage transparency and training data licensing provenance. Sections requiring cryptographic expertise (DID method specification, Merkle proof formats, verification protocol bindings) require expert contribution.
 
 ---
 
@@ -44,12 +46,16 @@ The full specification is available in [SPECIFICATION.md](SPECIFICATION.md).
 
 ## Status
 
-This is a **draft specification** intended to invite collaboration. Key areas explicitly left open for community input include:
+This is an **incomplete draft specification** intended to invite collaboration.
+
+**Complete:** Content usage transparency, training data licensing provenance, commercial bias disclosure
+
+**Requires expert contribution:**
 
 - DID method specification (`did:aims`)
 - Verification protocol bindings
 - Merkle proof format for selective disclosure
-- Conformance levels and testing
+- Cryptographic signature schemes
 
 See [Open Questions](SPECIFICATION.md#13-open-questions-for-discussion) for the full list.
 
@@ -75,4 +81,4 @@ To contribute:
 
 ## About OpenAttribution
 
-OpenAttribution is a coalition of publishers, brands, and technology providers developing trust infrastructure for the agentic AI ecosystem.
+OpenAttribution is a coalition of publishers, brands, and technology providers developing standards for content licensing and AI transparency.
