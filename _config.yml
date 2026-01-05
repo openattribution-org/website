@@ -23,9 +23,14 @@ exclude:
   - node_modules
   - vendor
 
-# Include markdown files in aims directory
+# Include markdown files and static assets in aims directory
 include:
   - aims
+  - "*.json"
+
+# Keep static files during build
+keep_files:
+  - aims/examples
 
 # Defaults for AIMS spec pages
 defaults:
