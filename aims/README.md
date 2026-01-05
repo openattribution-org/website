@@ -18,28 +18,25 @@ AIMS builds on W3C standards (DIDs, Verifiable Credentials) and integrates with 
 
 ## Specification
 
-The full specification is available as:
+The full specification is available in [SPECIFICATION.md](SPECIFICATION.md).
 
-- [Single document](SPECIFICATION.md) — Complete spec in one file
-- [Section-by-section](spec/) — Individual files for each section
-
-### Quick Links
+### Key Sections
 
 | Section | Description |
 |---------|-------------|
-| [Executive Summary](spec/01-executive-summary.md) | Overview of AIMS |
-| [Problem Statement](spec/02-problem-statement.md) | What problems AIMS solves |
-| [Architecture](spec/04-architecture.md) | Core components |
-| [Foundation Layer](spec/05-foundation-layer.md) | Training data provenance |
-| [Tuning Layer](spec/06-tuning-layer.md) | Behavioral modifications |
-| [Capabilities Layer](spec/07-capabilities-layer.md) | Runtime access and licensing |
-| [Verification Protocol](spec/08-verification-protocol.md) | Agent-to-agent trust |
-| [Open Questions](spec/13-open-questions.md) | Areas needing community input |
+| [Executive Summary](SPECIFICATION.md#1-executive-summary) | Overview of AIMS |
+| [Problem Statement](SPECIFICATION.md#2-problem-statement) | What problems AIMS solves |
+| [Architecture](SPECIFICATION.md#4-architecture-overview) | Core components |
+| [Foundation Layer](SPECIFICATION.md#5-foundation-layer-specification) | Training data provenance |
+| [Tuning Layer](SPECIFICATION.md#6-tuning-layer-specification) | Behavioral modifications |
+| [Capabilities Layer](SPECIFICATION.md#7-capabilities-layer-specification) | Runtime access and licensing |
+| [Verification Protocol](SPECIFICATION.md#8-agent-verification-protocol) | Agent-to-agent trust |
+| [Open Questions](SPECIFICATION.md#13-open-questions-for-discussion) | Areas needing community input |
 
 ### Supporting Materials
 
-- [Related Standards](appendices/related-standards.md)
-- [Glossary](appendices/glossary.md)
+- [Related Standards](SPECIFICATION.md#appendix-a-related-standards-reference)
+- [Glossary](SPECIFICATION.md#appendix-b-glossary)
 - [Example Manifest](examples/example-manifest.json)
 
 ## Status
@@ -51,7 +48,7 @@ This is a **draft specification** intended to invite collaboration. Key areas ex
 - Merkle proof format for selective disclosure
 - Conformance levels and testing
 
-See [Open Questions](spec/13-open-questions.md) for the full list.
+See [Open Questions](SPECIFICATION.md#13-open-questions-for-discussion) for the full list.
 
 ## Contributing
 

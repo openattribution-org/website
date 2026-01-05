@@ -866,7 +866,7 @@ AI Manifests can be packaged as Verifiable Credentials (W3C Recommendation, May 
 
 ### 9.3 Really Simple Licensing (RSL)
 
-RSL (v1.0, December 2025) provides machine-readable licensing terms for web content. AIMS integrates with RSL at two levels:
+RSL (v1.0, November 2025) provides machine-readable licensing terms for web content. AIMS integrates with RSL at two levels:
 
 - The **Foundation Layer** can reference RSL compliance for training data
 - The **Capabilities Layer** can declare RSL licenses held for runtime content access
@@ -875,7 +875,66 @@ The Open License Protocol (OLP) handles agent-to-agent license negotiation.
 
 ### 9.4 Agent-to-Agent Protocol (A2A)
 
-A2A (originally launched by Google, now under Linux Foundation governance) standardizes inter-agent communication. AIMS extends the A2A Agent Card concept with full provenance manifests. The AIMS verification handshake can slot into A2A's authentication flow, providing richer trust semantics than A2A's baseline capability advertisement.
+A2A (originally launched by Google in April 2025, now under Linux Foundation governance as of June 2025) standardizes inter-agent communication. AIMS is complementary to A2A, not competitive with it. They solve different problems:
+
+**A2A Agent Card answers: "What can this agent do?"**
+
+The A2A Agent Card (available at `.well-known/agent-card.json`) describes an agent's functional capabilities:
+
+- **Skills**: Specific tasks the agent can perform (e.g., "search the web", "book appointments")
+- **Input/Output Modes**: Supported media types (text, JSON, images, audio)
+- **Endpoint URL**: Where to reach the agent's A2A service
+- **Capabilities**: Protocol features like streaming or push notifications
+- **Examples**: Sample prompts for each skill
+
+Example A2A Agent Card:
+```json
+{
+  "name": "Shopping Assistant",
+  "skills": [
+    {"id": "product_search", "name": "Search products", "inputModes": ["text"]},
+    {"id": "price_compare", "name": "Compare prices", "inputModes": ["text"]}
+  ],
+  "url": "https://api.retailer.com/agent",
+  "capabilities": {"streaming": true}
+}
+```
+
+**AIMS Manifest answers: "What is this agent? Where did it come from? What can it ethically access?"**
+
+The AIMS Manifest describes provenance, transparency, and licensing:
+
+- **Foundation Layer**: Training data sources, licensing status, cryptographic commitments
+- **Tuning Layer**: Behavioral alignment, content policies, known biases
+- **Capabilities Layer**: Licensed content partnerships, data source access rights, RSL compliance
+- **Verification**: Cryptographic identity and manifest integrity
+
+Example scenario showing both:
+
+A user's personal agent connects to a retailer's shopping agent:
+
+1. **A2A handshake** establishes the functional interface:
+   - "I offer product search and price comparison skills"
+   - "I accept text input and return JSON"
+
+2. **AIMS verification** establishes trust boundaries:
+   - "I was trained on retailer product data and public web content"
+   - "I have a known bias: recommendations prioritize our products"
+   - "I hold licensed access to manufacturer spec sheets and images"
+   - "I'm RSL-compliant for web-crawled training data"
+
+The personal agent can now make informed decisions: use the retailer agent's product search skill (A2A), but understand that recommendations are biased toward that retailer (AIMS), and verify that product images are properly licensed (AIMS).
+
+**Integration Points:**
+
+- AIMS verification handshake can slot into A2A's authentication flow
+- A2A Agent Card can reference an AIMS Manifest URL for transparency-conscious clients
+- Both standards use DIDs for agent identity
+- AIMS provides the trust layer A2A needs for sensitive inter-agent collaboration
+
+An agent would typically publish both:
+- **Agent Card** at `.well-known/agent-card.json` (A2A)
+- **AIMS Manifest** in the Manifest Store, referenced via DID (AIMS)
 
 ### 9.5 Model Context Protocol (MCP)
 
@@ -1100,16 +1159,16 @@ We invite comment, contribution, and critique from AI developers, content publis
 
 ## Appendix A: Related Standards Reference
 
-| Standard | Organization | Relevance |
-|----------|--------------|-----------|
-| Decentralized Identifiers (DIDs) v1.1 | W3C | Core identifier format |
-| Verifiable Credentials v2.0 | W3C | Manifest signing and packaging |
-| Really Simple Licensing (RSL) v1.0 | RSL Collective | Content licensing |
-| Agent-to-Agent Protocol (A2A) | Linux Foundation | Inter-agent communication |
-| Model Context Protocol (MCP) | Anthropic | Agent-to-tool connectivity |
-| C2PA Content Credentials v2.2 | C2PA | Media asset provenance |
-| EU AI Act (2024/1689) | European Union | Regulatory requirements |
-| Model Cards | Google Research | ML model documentation |
+| Standard | Organization | Publication | Relevance |
+|----------|--------------|-------------|-----------|
+| [Decentralized Identifiers (DIDs) v1.0](https://www.w3.org/TR/did-core/) | W3C | July 2022 | Core identifier format |
+| [Verifiable Credentials v2.0](https://www.w3.org/TR/vc-data-model-2.0/) | W3C | May 2025 | Manifest signing and packaging |
+| [Really Simple Licensing (RSL) v1.0](https://rslstandard.org/rsl) | RSL Collective | November 2025 | Content licensing |
+| [Agent-to-Agent Protocol (A2A)](https://github.com/a2aproject/A2A) | Linux Foundation | June 2025 | Inter-agent communication |
+| [Model Context Protocol (MCP)](https://modelcontextprotocol.io) | Anthropic | 2024 | Agent-to-tool connectivity |
+| [C2PA Content Credentials v2.2](https://c2pa.org/specifications/) | C2PA | Current | Media asset provenance |
+| [EU AI Act (2024/1689)](https://eur-lex.europa.eu/eli/reg/2024/1689/oj) | European Union | July 2024 | Regulatory requirements |
+| [Model Cards](https://arxiv.org/abs/1810.03993) | Google Research | 2018 | ML model documentation |
 
 ---
 
