@@ -91,7 +91,7 @@
     }
   },
 
-  "commercialAlignment": {
+  "deploymentContext": {
     "version": "2025-12-19T00:00:00Z",
     "modelCardUrl": "https://anthropic.com/claude/model-card",
     "brandAffiliation": {

@@ -21,7 +21,7 @@ description: "Complete AIMS specification in a single document"
 3. [Design Principles](#3-design-principles)
 4. [Architecture Overview](#4-architecture-overview)
 5. [Foundation Layer Specification](#5-foundation-layer-specification)
-6. [Commercial Alignment Layer Specification](#6-commercial-alignment-layer-specification)
+6. [Deployment Context Layer Specification](#6-deployment-context-layer-specification)
 7. [Content Access Layer Specification](#7-content-access-layer-specification)
 8. [Agent Verification Protocol](#8-agent-verification-protocol)
 9. [Integration with Existing Standards](#9-integration-with-existing-standards)
@@ -143,7 +143,7 @@ The Manifest Store is a distributed registry. AI providers publish manifests to 
 The AI Manifest is the core payload. It's a structured JSON-LD document describing an AI system's licensing provenance and content access rights. It can be cryptographically signed as a Verifiable Credential. The manifest has three layers:
 
 - **Foundation Layer:** Training data licensing provenance (Section 5)
-- **Commercial Alignment Layer:** Commercial and operational biases (Section 6)
+- **Deployment Context Layer:** Commercial and operational biases (Section 6)
 - **Content Access Layer:** Runtime content access, licensing, and usage rights (Section 7)
 
 ### 4.4 Verification Protocol
@@ -345,9 +345,9 @@ The `parentModel` DID lets consumers look up the base model's Foundation Layer a
 
 ---
 
-## 6. Commercial Alignment Layer Specification
+## 6. Deployment Context Layer Specification
 
-The Commercial Alignment Layer documents intentional commercial and operational biases that affect an AI system's behavior. This layer is focused specifically on disclosing affiliations and priorities that are relevant to agent-to-agent trust decisions.
+The Deployment Context Layer documents intentional commercial and operational biases that affect an AI system's behavior. This layer is focused specifically on disclosing affiliations and priorities that are relevant to agent-to-agent trust decisions.
 
 **Scope:** This layer documents only commercial/operational alignment. For comprehensive documentation of model alignment methodology, safety training, content policies, known limitations, and ethical considerations, see Model Cards (Section 9.8).
 
@@ -363,7 +363,7 @@ This layer is intentionally narrow. It does NOT attempt to document general mode
 
 ```json
 {
-  "commercialAlignment": {
+  "deploymentContext": {
     "version": "2025-12-19T00:00:00Z",
     "modelCardUrl": "https://example.com/model-card",
     "brandAffiliation": { ... },
@@ -428,7 +428,7 @@ High-level description of the system's operational focus:
 
 ```json
 {
-  "commercialAlignment": {
+  "deploymentContext": {
     "version": "2025-12-19T00:00:00Z",
     "modelCardUrl": "https://homedepot.com/ai/product-assistant/model-card",
     "brandAffiliation": {
@@ -457,7 +457,7 @@ High-level description of the system's operational focus:
 
 ```json
 {
-  "commercialAlignment": {
+  "deploymentContext": {
     "version": "2025-12-19T00:00:00Z",
     "modelCardUrl": "https://anthropic.com/claude/model-card",
     "brandAffiliation": {
@@ -856,7 +856,7 @@ Example A2A Agent Card:
 The AIMS Manifest describes provenance, transparency, and licensing:
 
 - **Foundation Layer**: Training data licensing status, RSL compliance, cryptographic commitments
-- **Commercial Alignment Layer**: Commercial and operational biases relevant to agent trust
+- **Deployment Context Layer**: Commercial and operational biases relevant to agent trust
 - **Content Access Layer**: Licensed content partnerships, runtime access rights, RSL compliance
 - **Verification**: Cryptographic identity and manifest integrity
 
@@ -921,7 +921,7 @@ Model Cards (Mitchell et al., 2019) provide standardized transparency documentat
 |----------|-------|----------------------|
 | **Model Cards** | Performance & ethics | "How well does it work? For whom? What are the limitations?" |
 | **AIMS Foundation** | Licensing provenance | "What's the licensing status of training data?" |
-| **AIMS Commercial Alignment** | Commercial biases | "What commercial incentives might bias this system?" |
+| **AIMS Deployment Context** | Deployment context and biases | "What commercial or operational factors affect this system?" |
 | **AIMS Content Access** | Runtime licensing | "What content can it legally access and redistribute?" |
 
 Model Cards document empirical performance and ethical considerations. AIMS documents licensing provenance and content access rights. These are complementary transparency mechanisms addressing different stakeholder needs.
@@ -1018,7 +1018,7 @@ The following JSON-LD schema shows how the three layers compose into a complete 
     }
   },
 
-  "commercialAlignment": {
+  "deploymentContext": {
     "modelCardUrl": "https://anthropic.com/claude/model-card",
     "brandAffiliation": {
       "organization": "Anthropic",
@@ -1063,7 +1063,7 @@ The following JSON-LD schema shows how the three layers compose into a complete 
 | `previousVersion` | Content-addressed link to prior version (for audit trail) |
 | `issuer` | Organization publishing this manifest |
 | `foundation` | Training data licensing provenance (Section 5) |
-| `commercialAlignment` | Commercial/operational biases (Section 6) |
+| `deploymentContext` | Commercial/operational biases (Section 6) |
 | `capabilities` | Runtime content access and licensing (Section 7) |
 | `proof` | Cryptographic signature over the manifest |
 
@@ -1093,7 +1093,7 @@ The user's agent verifies the retailer agent's identity via DID handshake (Secti
 
 1. This is the legitimate Home Depot agent
 2. It has access to current inventory data
-3. Its recommendations may prioritize Home Depot products (a disclosed bias in the Commercial Alignment Layer)
+3. Its recommendations may prioritize Home Depot products (a disclosed bias in the Deployment Context Layer)
 4. It holds licenses to specialty content like design guides
 
 The user's agent can now make informed decisions about which recommendations to trust and what information to share.
@@ -1127,7 +1127,7 @@ This manifest can be submitted to regulators as part of conformity assessment, w
 
 A company fine-tunes an open-source base model and deploys it as a specialized product assistant.
 
-The derivative model's manifest references the base model's DID in its Foundation Layer (Section 5.5), creating a provenance chain. The Commercial Alignment Layer documents the company's brand affiliation and commercial priorities. Users interacting with the product assistant can trace its lineage back to the base model while understanding what commercial customizations were applied.
+The derivative model's manifest references the base model's DID in its Foundation Layer (Section 5.5), creating a provenance chain. The Deployment Context Layer documents the company's brand affiliation and commercial priorities. Users interacting with the product assistant can trace its lineage back to the base model while understanding what commercial customizations were applied.
 
 ---
 
@@ -1382,7 +1382,7 @@ AIMS works alongside several other standards in the AI space. Here's what each o
 
 **RSL:** Really Simple Licensing, a standard for machine-readable content licensing.
 
-**Commercial Alignment Layer:** Manifest section describing commercial and operational biases (Section 6).
+**Deployment Context Layer:** Manifest section describing commercial and operational biases (Section 6).
 
 **Verifiable Credential:** A W3C standard for cryptographically signed, tamper-evident digital credentials.
 

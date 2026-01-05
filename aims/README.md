@@ -30,7 +30,7 @@ The full specification is available in [SPECIFICATION.md](SPECIFICATION.md).
 | [Problem Statement](SPECIFICATION.md#2-problem-statement) | Licensing and provenance gaps AIMS addresses |
 | [Architecture](SPECIFICATION.md#4-architecture-overview) | Core components |
 | [Foundation Layer](SPECIFICATION.md#5-foundation-layer-specification) | Training data licensing provenance |
-| [Commercial Alignment Layer](SPECIFICATION.md#6-commercial-alignment-layer-specification) | Commercial and operational biases |
+| [Deployment Context Layer](SPECIFICATION.md#6-deployment-context-layer-specification) | Commercial and operational biases |
 | [Content Access Layer](SPECIFICATION.md#7-content-access-layer-specification) | Runtime content access rights and licensing |
 | [Verification Protocol](SPECIFICATION.md#8-agent-verification-protocol) | Cryptographic agent identity verification |
 | [Integration with Standards](SPECIFICATION.md#9-integration-with-existing-standards) | How AIMS relates to Model Cards, Dataset Cards, A2A, MCP |
