@@ -19,7 +19,7 @@ description: "Complete AIMS specification in a single document"
 3. [Design Principles](#3-design-principles)
 4. [Architecture Overview](#4-architecture-overview)
 5. [Foundation Layer Specification](#5-foundation-layer-specification)
-6. [Tuning Layer Specification](#6-tuning-layer-specification)
+6. [Commercial Alignment Layer Specification](#6-commercial-alignment-layer-specification)
 7. [Content Access Layer Specification](#7-content-access-layer-specification)
 8. [Agent Verification Protocol](#8-agent-verification-protocol)
 9. [Integration with Existing Standards](#9-integration-with-existing-standards)
@@ -138,10 +138,10 @@ The Manifest Store is a distributed registry where AI Manifests get published an
 
 ### 4.3 AI Manifest
 
-The AI Manifest is the core payload. It's a structured JSON-LD document describing an AI system's provenance, tuning, and capabilities. It can be cryptographically signed as a Verifiable Credential. The manifest has three layers:
+The AI Manifest is the core payload. It's a structured JSON-LD document describing an AI system's licensing provenance and content access rights. It can be cryptographically signed as a Verifiable Credential. The manifest has three layers:
 
-- **Foundation Layer:** Base model training data provenance (Section 5)
-- **Tuning Layer:** Behavioral modifications and alignment (Section 6)
+- **Foundation Layer:** Training data licensing provenance (Section 5)
+- **Commercial Alignment Layer:** Commercial and operational biases (Section 6)
 - **Content Access Layer:** Runtime content access, licensing, and usage rights (Section 7)
 
 ### 4.4 Verification Protocol
@@ -851,9 +851,9 @@ Example A2A Agent Card:
 
 The AIMS Manifest describes provenance, transparency, and licensing:
 
-- **Foundation Layer**: Training data sources, licensing status, cryptographic commitments
-- **Tuning Layer**: Behavioral alignment, content policies, known biases
-- **Content Access Layer**: Licensed content partnerships, data source access rights, RSL compliance
+- **Foundation Layer**: Training data licensing status, RSL compliance, cryptographic commitments
+- **Commercial Alignment Layer**: Commercial and operational biases relevant to agent trust
+- **Content Access Layer**: Licensed content partnerships, runtime access rights, RSL compliance
 - **Verification**: Cryptographic identity and manifest integrity
 
 Example scenario showing both:
@@ -1089,7 +1089,7 @@ The user's agent verifies the retailer agent's identity via DID handshake (Secti
 
 1. This is the legitimate Home Depot agent
 2. It has access to current inventory data
-3. Its recommendations may prioritize Home Depot products (a disclosed bias in the Tuning Layer)
+3. Its recommendations may prioritize Home Depot products (a disclosed bias in the Commercial Alignment Layer)
 4. It holds licenses to specialty content like design guides
 
 The user's agent can now make informed decisions about which recommendations to trust and what information to share.
@@ -1123,7 +1123,7 @@ This manifest can be submitted to regulators as part of conformity assessment, w
 
 A company fine-tunes an open-source base model and deploys it as a specialized product assistant.
 
-The derivative model's manifest references the base model's DID in its Foundation Layer (Section 5.5), creating a provenance chain. The Tuning Layer documents the company's fine-tuning data and behavioral modifications. Users interacting with the product assistant can trace its lineage back to the base model while understanding what customizations were applied.
+The derivative model's manifest references the base model's DID in its Foundation Layer (Section 5.5), creating a provenance chain. The Commercial Alignment Layer documents the company's brand affiliation and commercial priorities. Users interacting with the product assistant can trace its lineage back to the base model while understanding what commercial customizations were applied.
 
 ---
 
