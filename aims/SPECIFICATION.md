@@ -98,7 +98,7 @@ The OpenAttribution AI Manifest Standard follows these principles:
 
 ## 4. Architecture Overview
 
-The OpenAttribution AI Manifest Standard has four components that form a complete trust and transparency layer.
+The OpenAttribution AI Manifest Standard has four components:
 
 ### 4.1 AI System Identifier (Fingerprint)
 
@@ -861,12 +861,7 @@ AIMS uses DIDs as the core identifier for AI systems. The DID specification (W3C
 
 ### 9.2 W3C Verifiable Credentials
 
-AI Manifests can be packaged as Verifiable Credentials (W3C Recommendation, May 2025). This provides:
-
-- Cryptographic signing by the issuing organization
-- Selective disclosure of manifest sections
-- Revocation and status checking
-- Credential chaining for derivative models
+AI Manifests can be packaged as Verifiable Credentials (W3C Recommendation, May 2025), which gets you cryptographic signing, selective disclosure, revocation checking, and credential chaining for derivative models.
 
 ### 9.3 Really Simple Licensing (RSL)
 
@@ -1143,17 +1138,17 @@ These questions are explicitly left open for community input. They represent are
 
 ## 14. Conclusion
 
-The OpenAttribution AI Manifest Standard specifies AI system transparency: who built this system, what data trained it, how it was aligned, and what it can access at runtime.
+The OpenAttribution AI Manifest Standard specifies what trained an AI system, how it was aligned, and what it can access at runtime.
 
-This specification is a starting point, not a finished standard. The technical gaps identified in Section 13 are real. The protocol bindings in Section 8 need work. The DID method needs to be written. These are invitations for collaboration, not admissions of failure.
+This specification is incomplete by design. Section 13 lists real technical gaps: the DID method isn't written, protocol bindings need work, verification procedures are sketched not specified. We're asking for help, not apologizing for incompleteness.
 
-AIMS can enable:
+What this gets you:
 
-- **Content creators** to understand how their work is used in AI training
-- **AI developers** to demonstrate responsible data practices
-- **Organizations** to assess AI systems for bias, safety, and regulatory compliance
-- **AI agents** to verify each other for secure collaboration
-- **Regulators** to audit AI systems with machine-readable documentation
+- **Content creators** can see if their work trained a model
+- **AI developers** can prove responsible data practices
+- **Organizations** can assess systems for bias and safety
+- **AI agents** can verify each other before sharing information
+- **Regulators** get machine-readable audit trails
 
 The web got DNS for identity, TLS for security, HTTP for content. AI has nothing comparable for provenance and trust. This spec is one attempt at fixing that.
 
