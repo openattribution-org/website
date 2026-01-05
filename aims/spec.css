@@ -244,22 +244,24 @@ main {
 /* ===== Key Features ===== */
 .key-features {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
-    margin: 2rem 0;
+    margin: 2rem auto;
+    max-width: 900px;
 }
 
 .feature {
     padding: 1.5rem;
-    background: linear-gradient(135deg, #fff5f2 0%, #fef3c7 100%);
-    border-left: 4px solid #ff6b3d;
-    border-radius: 8px;
+    background: #fafaf9;
+    border-left: 3px solid #ff6b3d;
+    border-radius: 6px;
     transition: all 0.3s ease;
 }
 
 .feature:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 107, 61, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background: #fff;
 }
 
 .feature h3 {
@@ -276,6 +278,12 @@ main {
     margin-bottom: 0;
     font-weight: 300;
     line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .key-features {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* ===== Buttons ===== */
@@ -431,7 +439,7 @@ main {
 .status-box,
 .contributing,
 .about {
-    background: linear-gradient(135deg, #fff5f2 0%, #fef3c7 100%);
+    background: #fafaf9;
     border-left: 4px solid #ff6b3d;
     padding: 1.5rem;
     border-radius: 8px;
