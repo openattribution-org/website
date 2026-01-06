@@ -502,7 +502,7 @@ The Content Access Layer makes these licensing boundaries explicit. Agents can c
 
 ```json
 {
-  "capabilities": {
+  "contentAccess": {
     "version": "2025-12-19T00:00:00Z",
     "scope": "deployment | session | user",
     "dataSources": { ... },
@@ -512,9 +512,9 @@ The Content Access Layer makes these licensing boundaries explicit. Agents can c
 }
 ```
 
-### 7.3 Capability Scope
+### 7.3 Content Access Scope
 
-Capabilities can be declared at different levels:
+Content access rights can be declared at different levels:
 
 | Scope | Description | Update Frequency |
 |-------|-------------|------------------|
@@ -847,7 +847,7 @@ Example A2A Agent Card:
     {"id": "price_compare", "name": "Compare prices", "inputModes": ["text"]}
   ],
   "url": "https://api.retailer.com/agent",
-  "capabilities": {"streaming": true}
+  "contentAccess": {"streaming": true}
 }
 ```
 
@@ -1028,7 +1028,7 @@ The following JSON-LD schema shows how the three layers compose into a complete 
     "domainFocus": "general-purpose conversational assistance"
   },
 
-  "capabilities": {
+  "contentAccess": {
     "scope": "deployment",
     "toolsAndCapabilities": {
       "agentCardUrl": "https://api.anthropic.com/.well-known/agent-card.json",
@@ -1064,7 +1064,7 @@ The following JSON-LD schema shows how the three layers compose into a complete 
 | `issuer` | Organization publishing this manifest |
 | `foundation` | Training data licensing provenance (Section 5) |
 | `deploymentContext` | Commercial/operational biases (Section 6) |
-| `capabilities` | Runtime content access and licensing (Section 7) |
+| `contentAccess` | Runtime content access and licensing (Section 7) |
 | `proof` | Cryptographic signature over the manifest |
 
 ### External Standard References
@@ -1372,7 +1372,7 @@ AIMS works alongside several other standards in the AI space. Here's what each o
 
 **Foundation Layer:** Manifest section describing base model training data provenance (Section 5).
 
-**Manifest:** The complete transparency document for an AI system, comprising Foundation, Tuning, and Capabilities layers.
+**Manifest:** The complete transparency document for an AI system, comprising Foundation, Deployment Context, and Content Access layers.
 
 **Manifest Store:** Registry where AI Manifests are published and retrieved.
 
