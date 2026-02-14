@@ -440,8 +440,19 @@ function displayResults(data) {
                 : '<span class="text-green-700 font-medium">✓</span>';
         };
 
+        // Get robots.txt URL
+        const robotsUrl = new URL(result.url);
+        const robotsTxtUrl = `${robotsUrl.protocol}//${robotsUrl.host}/robots.txt`;
+
         row.innerHTML = `
-            <td class="py-3 px-4 max-w-xs truncate" title="${result.url}">${result.url}</td>
+            <td class="py-3 px-4">
+                <div class="flex items-center gap-2">
+                    <span class="truncate max-w-xs" title="${result.url}">${result.url}</span>
+                    <a href="${robotsTxtUrl}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 text-xs whitespace-nowrap" title="View robots.txt">
+                        robots.txt ↗
+                    </a>
+                </div>
+            </td>
             <td class="py-3 px-4 text-center">${pathAllowed}</td>
             <td class="py-3 px-4 text-center">${rslText}</td>
             <td class="py-3 px-4 text-center">${getBotStatus('GPTBot')}</td>
