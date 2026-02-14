@@ -558,7 +558,8 @@ if (shareBtnMobile) {
         if (!currentResults || currentResults.length === 0) return;
 
         const url = currentResults[0].url;
-        const shareText = `PolicyCheck results for ${url} - Check AI crawler policies at ${window.location.href}`;
+        const shareText = `PolicyCheck results for ${url}`;
+        const shareUrl = 'https://openattribution.org/policycheck/';
 
         // Try native share API first (mobile)
         if (navigator.share) {
@@ -566,7 +567,7 @@ if (shareBtnMobile) {
                 await navigator.share({
                     title: 'PolicyCheck Results',
                     text: shareText,
-                    url: window.location.href
+                    url: shareUrl
                 });
             } catch (err) {
                 if (err.name !== 'AbortError') {
@@ -576,7 +577,7 @@ if (shareBtnMobile) {
         } else {
             // Fallback: copy to clipboard
             try {
-                await navigator.clipboard.writeText(shareText);
+                await navigator.clipboard.writeText(`${shareText}\n${shareUrl}`);
                 const originalText = shareBtnMobile.textContent;
                 shareBtnMobile.textContent = 'Copied!';
                 setTimeout(() => {
