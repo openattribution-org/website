@@ -409,6 +409,21 @@ function displayResults(data) {
 
     resultsBody.innerHTML = '';
 
+    // Show message if no successful results
+    if (data.successful === 0) {
+        resultsBody.innerHTML = `
+            <tr>
+                <td colspan="8" class="py-12 text-center">
+                    <div class="text-gray-500">
+                        <p class="text-lg mb-2">No results to display</p>
+                        <p class="text-sm">All URLs failed to analyze. Check that the URLs are valid and accessible.</p>
+                    </div>
+                </td>
+            </tr>
+        `;
+        return;
+    }
+
     data.results.forEach((result, index) => {
         const row = document.createElement('tr');
         row.className = 'border-b border-gray-100 hover:bg-gray-50 cursor-pointer';
