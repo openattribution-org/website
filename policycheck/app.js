@@ -394,15 +394,27 @@ function displayResults(data) {
         let csText = '<span class="text-gray-400">-</span>';
         if (hasContentSignals) {
             const signals = [];
-            if (result.content_signal_search) signals.push(`S:${result.content_signal_search}`);
-            if (result.content_signal_ai_input) signals.push(`I:${result.content_signal_ai_input}`);
-            if (result.content_signal_ai_train) signals.push(`T:${result.content_signal_ai_train}`);
+            if (result.content_signal_search) {
+                const icon = result.content_signal_search === 'yes' ? '✓' : '✗';
+                const color = result.content_signal_search === 'yes' ? 'text-green-700' : 'text-coral-700';
+                signals.push(`<span class="${color}">srch${icon}</span>`);
+            }
+            if (result.content_signal_ai_input) {
+                const icon = result.content_signal_ai_input === 'yes' ? '✓' : '✗';
+                const color = result.content_signal_ai_input === 'yes' ? 'text-green-700' : 'text-coral-700';
+                signals.push(`<span class="${color}">ai${icon}</span>`);
+            }
+            if (result.content_signal_ai_train) {
+                const icon = result.content_signal_ai_train === 'yes' ? '✓' : '✗';
+                const color = result.content_signal_ai_train === 'yes' ? 'text-green-700' : 'text-coral-700';
+                signals.push(`<span class="${color}">train${icon}</span>`);
+            }
             const tooltip = [
                 result.content_signal_search ? `search=${result.content_signal_search}` : null,
                 result.content_signal_ai_input ? `ai-input=${result.content_signal_ai_input}` : null,
                 result.content_signal_ai_train ? `ai-train=${result.content_signal_ai_train}` : null
             ].filter(Boolean).join(', ');
-            csText = `<span class="text-xs text-gray-700" title="${tooltip}">${signals.join(' ')}</span>`;
+            csText = `<span class="text-xs" title="${tooltip}">${signals.join(' ')}</span>`;
         }
 
         // AI Bot Analysis Summary
