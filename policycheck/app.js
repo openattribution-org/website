@@ -402,7 +402,7 @@ function displayResults(data) {
             if (result.content_signal_ai_input) {
                 const icon = result.content_signal_ai_input === 'yes' ? '✓' : '✗';
                 const color = result.content_signal_ai_input === 'yes' ? 'text-green-700' : 'text-coral-700';
-                signals.push(`<span class="${color}">ai${icon}</span>`);
+                signals.push(`<span class="${color}">use${icon}</span>`);
             }
             if (result.content_signal_ai_train) {
                 const icon = result.content_signal_ai_train === 'yes' ? '✓' : '✗';
