@@ -414,24 +414,26 @@ function displayResults(data) {
         row.className = 'border-b border-gray-100 hover:bg-gray-50 cursor-pointer';
         row.dataset.index = index;
 
-        const statusClass = result.status === 'success' ? 'text-green-700' : 'text-coral-700';
-        const statusText = result.status === 'success' ? '✓ Success' : '✗ Error';
+        // Skip failed results
+        if (result.status !== 'success') return;
 
-        let pathAllowed = '-';
-        if (result.status === 'success') {
-            pathAllowed = result.is_path_allowed
-                ? '<span class="text-green-700">✓ Yes</span>'
-                : '<span class="text-coral-700">✗ No</span>';
-        }
+        // Path Allowed - icon only
+        const pathAllowed = result.is_path_allowed
+            ? '<span class="text-green-700 text-lg" title="Path allowed">✓</span>'
+            : '<span class="text-coral-700 text-lg" title="Path blocked">✗</span>';
 
+        // RSL - icon or count
         const rslCount = result.active_licenses?.length || 0;
-        const rslText = rslCount > 0 ? `${rslCount} license(s)` : '-';
+        const rslText = rslCount > 0
+            ? `<span class="text-green-700" title="${rslCount} license(s)">${rslCount}</span>`
+            : '<span class="text-gray-400">-</span>';
 
-        let tdmText = '-';
+        // TDM - icon only
+        let tdmText = '<span class="text-gray-400">-</span>';
         if (result.tdm_policy) {
             tdmText = result.tdm_policy.is_reserved
-                ? '<span class="text-amber-700">⚠️ Yes</span>'
-                : '<span class="text-green-700">✓ No</span>';
+                ? '<span class="text-amber-700 text-lg" title="TDM Reserved">⚠</span>'
+                : '<span class="text-green-700 text-lg" title="TDM Not Reserved">✓</span>';
         }
 
         // AI Bot Analysis Summary
@@ -448,10 +450,9 @@ function displayResults(data) {
 
         row.innerHTML = `
             <td class="py-3 px-4 max-w-xs truncate" title="${result.url}">${result.url}</td>
-            <td class="py-3 px-4 ${statusClass}">${statusText}</td>
-            <td class="py-3 px-4">${pathAllowed}</td>
-            <td class="py-3 px-4">${rslText}</td>
-            <td class="py-3 px-4">${tdmText}</td>
+            <td class="py-3 px-4 text-center">${pathAllowed}</td>
+            <td class="py-3 px-4 text-center">${rslText}</td>
+            <td class="py-3 px-4 text-center">${tdmText}</td>
             <td class="py-3 px-4 text-center">${getBotStatus('GPTBot')}</td>
             <td class="py-3 px-4 text-center">${getBotStatus('ClaudeBot')}</td>
             <td class="py-3 px-4 text-center">${getBotStatus('Google-Extended')}</td>
@@ -474,7 +475,7 @@ function displayResults(data) {
                 const detailRow = document.createElement('tr');
                 detailRow.id = `detail-${index}`;
                 detailRow.innerHTML = `
-                    <td colspan="6" class="p-0">
+                    <td colspan="9" class="p-0">
                         ${createAIBotDetailView(result)}
                     </td>
                 `;
