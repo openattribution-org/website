@@ -425,8 +425,8 @@ function displayResults(data) {
             <td class="py-3 px-4">
                 <div class="flex items-center gap-2">
                     <span class="truncate max-w-xs" title="${result.url}">${result.url}</span>
-                    <a href="${robotsTxtUrl}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 text-xs whitespace-nowrap" title="View robots.txt">
-                        robots.txt ↗
+                    <a href="${robotsTxtUrl}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 text-sm" title="View robots.txt">
+                        ↗
                     </a>
                 </div>
             </td>
