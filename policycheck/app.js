@@ -551,10 +551,10 @@ downloadCsvBtn.addEventListener('click', () => {
     downloadFile(blob, 'policycheck-results.csv');
 });
 
-// Share handler for mobile
-const shareBtnMobile = document.getElementById('share-btn-mobile');
-if (shareBtnMobile) {
-    shareBtnMobile.addEventListener('click', async () => {
+// Share handler
+const shareBtn = document.getElementById('share-btn');
+if (shareBtn) {
+    shareBtn.addEventListener('click', async () => {
         if (!currentResults || currentResults.length === 0) return;
 
         const url = currentResults[0].url;
@@ -578,10 +578,10 @@ if (shareBtnMobile) {
             // Fallback: copy to clipboard
             try {
                 await navigator.clipboard.writeText(shareUrl);
-                const originalText = shareBtnMobile.textContent;
-                shareBtnMobile.textContent = 'Copied!';
+                const originalText = shareBtn.textContent;
+                shareBtn.textContent = 'Copied!';
                 setTimeout(() => {
-                    shareBtnMobile.textContent = originalText;
+                    shareBtn.textContent = originalText;
                 }, 2000);
             } catch (err) {
                 console.error('Copy failed:', err);
