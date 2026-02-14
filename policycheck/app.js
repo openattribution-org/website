@@ -255,17 +255,8 @@ function createAIBotDetailView(result) {
             html += `
                 <div class="mb-3">
                     <h5 class="text-sm font-normal text-gray-700 mb-1">Training Crawlers (${trainingBlocked.length})</h5>
-                    <div class="space-y-1">
-                        ${trainingBlocked.map(bot => `
-                            <div class="flex items-start gap-2 text-sm">
-                                <span class="text-coral-700">✗</span>
-                                <div>
-                                    <span class="font-normal">${bot.name}</span>
-                                    <span class="text-gray-600">— ${bot.company}</span>
-                                    <span class="text-gray-500 text-xs">(${bot.purpose})</span>
-                                </div>
-                            </div>
-                        `).join('')}
+                    <div class="text-sm text-gray-600 font-light">
+                        ${trainingBlocked.map(bot => `<span class="text-coral-700">✗</span> ${bot.name}`).join(', ')}
                     </div>
                 </div>
             `;
@@ -275,17 +266,8 @@ function createAIBotDetailView(result) {
             html += `
                 <div class="mb-3">
                     <h5 class="text-sm font-normal text-gray-700 mb-1">Search Crawlers (${searchBlocked.length})</h5>
-                    <div class="space-y-1">
-                        ${searchBlocked.map(bot => `
-                            <div class="flex items-start gap-2 text-sm">
-                                <span class="text-coral-700">✗</span>
-                                <div>
-                                    <span class="font-normal">${bot.name}</span>
-                                    <span class="text-gray-600">— ${bot.company}</span>
-                                    <span class="text-gray-500 text-xs">(${bot.purpose})</span>
-                                </div>
-                            </div>
-                        `).join('')}
+                    <div class="text-sm text-gray-600 font-light">
+                        ${searchBlocked.map(bot => `<span class="text-coral-700">✗</span> ${bot.name}`).join(', ')}
                     </div>
                 </div>
             `;
@@ -295,17 +277,8 @@ function createAIBotDetailView(result) {
             html += `
                 <div class="mb-3">
                     <h5 class="text-sm font-normal text-gray-700 mb-1">Other (${otherBlocked.length})</h5>
-                    <div class="space-y-1">
-                        ${otherBlocked.map(bot => `
-                            <div class="flex items-start gap-2 text-sm">
-                                <span class="text-coral-700">✗</span>
-                                <div>
-                                    <span class="font-normal">${bot.name}</span>
-                                    <span class="text-gray-600">— ${bot.company}</span>
-                                    <span class="text-gray-500 text-xs">(${bot.purpose})</span>
-                                </div>
-                            </div>
-                        `).join('')}
+                    <div class="text-sm text-gray-600 font-light">
+                        ${otherBlocked.map(bot => `<span class="text-coral-700">✗</span> ${bot.name}`).join(', ')}
                     </div>
                 </div>
             `;
@@ -326,17 +299,8 @@ function createAIBotDetailView(result) {
             html += `
                 <div class="mb-3">
                     <h5 class="text-sm font-normal text-gray-700 mb-1">Training Crawlers (${trainingAllowed.length})</h5>
-                    <div class="space-y-1">
-                        ${trainingAllowed.map(bot => `
-                            <div class="flex items-start gap-2 text-sm">
-                                <span class="text-green-700">✓</span>
-                                <div>
-                                    <span class="font-normal">${bot.name}</span>
-                                    <span class="text-gray-600">— ${bot.company}</span>
-                                    <span class="text-gray-500 text-xs">(${bot.purpose})</span>
-                                </div>
-                            </div>
-                        `).join('')}
+                    <div class="text-sm text-gray-600 font-light">
+                        ${trainingAllowed.map(bot => `<span class="text-green-700">✓</span> ${bot.name}`).join(', ')}
                     </div>
                 </div>
             `;
@@ -346,17 +310,8 @@ function createAIBotDetailView(result) {
             html += `
                 <div class="mb-3">
                     <h5 class="text-sm font-normal text-gray-700 mb-1">Search Crawlers (${searchAllowed.length})</h5>
-                    <div class="space-y-1">
-                        ${searchAllowed.map(bot => `
-                            <div class="flex items-start gap-2 text-sm">
-                                <span class="text-green-700">✓</span>
-                                <div>
-                                    <span class="font-normal">${bot.name}</span>
-                                    <span class="text-gray-600">— ${bot.company}</span>
-                                    <span class="text-gray-500 text-xs">(${bot.purpose})</span>
-                                </div>
-                            </div>
-                        `).join('')}
+                    <div class="text-sm text-gray-600 font-light">
+                        ${searchAllowed.map(bot => `<span class="text-green-700">✓</span> ${bot.name}`).join(', ')}
                     </div>
                 </div>
             `;
@@ -366,17 +321,8 @@ function createAIBotDetailView(result) {
             html += `
                 <div class="mb-3">
                     <h5 class="text-sm font-normal text-gray-700 mb-1">Other (${otherAllowed.length})</h5>
-                    <div class="space-y-1">
-                        ${otherAllowed.map(bot => `
-                            <div class="flex items-start gap-2 text-sm">
-                                <span class="text-green-700">✓</span>
-                                <div>
-                                    <span class="font-normal">${bot.name}</span>
-                                    <span class="text-gray-600">— ${bot.company}</span>
-                                    <span class="text-gray-500 text-xs">(${bot.purpose})</span>
-                                </div>
-                            </div>
-                        `).join('')}
+                    <div class="text-sm text-gray-600 font-light">
+                        ${otherAllowed.map(bot => `<span class="text-green-700">✓</span> ${bot.name}`).join(', ')}
                     </div>
                 </div>
             `;
