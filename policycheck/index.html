@@ -265,6 +265,17 @@
                 <a href="https://blog.cloudflare.com/content-signals-policy/" target="_blank" rel="noopener noreferrer" style="color: #f04e1f; font-weight: 400; font-size: 0.875rem; text-decoration: none;">→ Learn about Content Signals</a>
             </div>
 
+            <!-- Limitations Notice -->
+            <div style="background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 0.5rem; padding: 1rem; margin-bottom: 2rem; font-size: 0.875rem;">
+                <h4 style="font-weight: 400; color: #111827; margin-bottom: 0.5rem;">⚠️ Note: Some sites block policy checkers</h4>
+                <p style="color: #4b5563; font-weight: 300; margin-bottom: 0.5rem;">
+                    PolicyCheck runs from cloud infrastructure, and some sites (like Medium) block datacenter IPs to prevent scraping. This creates a paradox: robots.txt exists for bots to check policies, but compliance checkers may be blocked from accessing it.
+                </p>
+                <p style="color: #6b7280; font-weight: 300; font-size: 0.75rem;">
+                    Legitimate crawlers (Googlebot, GPTBot, ClaudeBot) solve this with IP whitelisting and reverse DNS verification. Most sites work fine, but aggressive blockers may fail. <a href="https://github.com/openattribution-org/policycheck#limitations-and-considerations" target="_blank" rel="noopener noreferrer" style="color: #f04e1f; text-decoration: underline;">Learn more</a>
+                </p>
+            </div>
+
         </div>
     </main>
 
