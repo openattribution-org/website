@@ -16,15 +16,56 @@
     <style>
         /* Mobile portrait optimizations */
         @media (max-width: 640px) {
-            table th,
-            table td {
-                padding: 0.5rem 0.25rem !important;
-                font-size: 0.75rem !important;
+            /* Hide CSV upload tab on mobile */
+            .tab-btn[data-tab="csv"],
+            #csv-tab {
+                display: none !important;
             }
-            table th {
-                font-size: 0.7rem !important;
+
+            /* Convert table to card layout on mobile */
+            table, thead, tbody, th, td, tr {
+                display: block;
             }
-            .sort-indicator {
+
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            tbody tr {
+                margin-bottom: 1rem;
+                border: 1px solid #e5e7eb;
+                border-radius: 0.5rem;
+                padding: 1rem;
+                background: white;
+            }
+
+            tbody td {
+                border: none;
+                position: relative;
+                padding: 0.5rem 0 !important;
+                text-align: left !important;
+            }
+
+            tbody td:before {
+                content: attr(data-label);
+                font-weight: 500;
+                color: #374151;
+                display: inline-block;
+                width: 140px;
+                margin-right: 1rem;
+            }
+
+            tbody td:first-child {
+                padding-top: 0 !important;
+                font-weight: 500;
+                border-bottom: 1px solid #e5e7eb;
+                padding-bottom: 0.75rem !important;
+                margin-bottom: 0.5rem;
+            }
+
+            tbody td:first-child:before {
                 display: none;
             }
         }

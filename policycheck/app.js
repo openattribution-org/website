@@ -442,14 +442,14 @@ function displayResults(data) {
                     </a>
                 </div>
             </td>
-            <td class="py-3 px-4 text-center">${pathAllowed}</td>
-            <td class="py-3 px-4 text-center">${rslText}</td>
-            <td class="py-3 px-4 text-center">${csText}</td>
-            <td class="py-3 px-4 text-center">${getBotStatus('GPTBot')}</td>
-            <td class="py-3 px-4 text-center">${getBotStatus('ClaudeBot')}</td>
-            <td class="py-3 px-4 text-center">${getBotStatus('Google-Extended')}</td>
-            <td class="py-3 px-4 text-center">${getBotStatus('CCBot')}</td>
-            <td class="py-3 px-4 text-center">
+            <td class="py-3 px-4 text-center" data-label="Path:">${pathAllowed}</td>
+            <td class="py-3 px-4 text-center" data-label="RSL:">${rslText}</td>
+            <td class="py-3 px-4 text-center" data-label="Content Signals:">${csText}</td>
+            <td class="py-3 px-4 text-center" data-label="GPTBot:">${getBotStatus('GPTBot')}</td>
+            <td class="py-3 px-4 text-center" data-label="ClaudeBot:">${getBotStatus('ClaudeBot')}</td>
+            <td class="py-3 px-4 text-center" data-label="Google-Extended:">${getBotStatus('Google-Extended')}</td>
+            <td class="py-3 px-4 text-center" data-label="CCBot:">${getBotStatus('CCBot')}</td>
+            <td class="py-3 px-4 text-center" data-label="All Bots:">
                 <span class="text-blue-600 text-xs cursor-pointer hover:text-blue-800">View all</span>
             </td>
         `;
