@@ -436,19 +436,15 @@ function displayResults(data) {
 
         // AI Bot Analysis Summary
         const { blocked, allowed } = analyzeAIBots(result);
-        const trainingBotsAllowed = allowed.filter(b => AI_CRAWLERS.training.includes(b)).length;
 
-        const aiBotSummary = `
-            <div class="flex flex-col gap-1">
-                <div class="flex items-center gap-2">
-                    <span class="text-coral-700 font-normal">🚫 ${blocked.length} blocked</span>
-                    <span class="text-gray-400">|</span>
-                    <span class="text-green-700 font-normal">✓ ${allowed.length} allowed</span>
-                </div>
-                ${trainingBotsAllowed > 0 ? `<div class="text-xs text-amber-700">⚠ ${trainingBotsAllowed} training bots allowed</div>` : ''}
-                <span class="text-blue-600 text-xs">▼ Click for details</span>
-            </div>
-        `;
+        // Helper to get bot status
+        const getBotStatus = (botName) => {
+            const botAnalysis = result.ai_bot_analysis?.find(b => b.bot_name === botName);
+            if (!botAnalysis) return '<span class="text-gray-400">-</span>';
+            return botAnalysis.status === 'blocked'
+                ? '<span class="text-coral-700 font-medium">✗</span>'
+                : '<span class="text-green-700 font-medium">✓</span>';
+        };
 
         row.innerHTML = `
             <td class="py-3 px-4 max-w-xs truncate" title="${result.url}">${result.url}</td>
@@ -456,7 +452,13 @@ function displayResults(data) {
             <td class="py-3 px-4">${pathAllowed}</td>
             <td class="py-3 px-4">${rslText}</td>
             <td class="py-3 px-4">${tdmText}</td>
-            <td class="py-3 px-4">${aiBotSummary}</td>
+            <td class="py-3 px-4 text-center">${getBotStatus('GPTBot')}</td>
+            <td class="py-3 px-4 text-center">${getBotStatus('ClaudeBot')}</td>
+            <td class="py-3 px-4 text-center">${getBotStatus('Google-Extended')}</td>
+            <td class="py-3 px-4 text-center">${getBotStatus('CCBot')}</td>
+            <td class="py-3 px-4 text-center">
+                <span class="text-blue-600 text-xs cursor-pointer hover:text-blue-800">View all</span>
+            </td>
         `;
 
         // Add click handler to expand details
