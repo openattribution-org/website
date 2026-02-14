@@ -558,7 +558,6 @@ if (shareBtn) {
         if (!currentResults || currentResults.length === 0) return;
 
         const url = currentResults[0].url;
-        const shareText = `PolicyCheck results for ${url}`;
         const shareUrl = `https://openattribution.org/policycheck/?url=${encodeURIComponent(url)}`;
 
         // Try native share API first (mobile)
@@ -566,7 +565,6 @@ if (shareBtn) {
             try {
                 await navigator.share({
                     title: 'PolicyCheck Results',
-                    text: shareText,
                     url: shareUrl
                 });
             } catch (err) {
