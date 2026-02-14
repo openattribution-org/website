@@ -559,7 +559,7 @@ if (shareBtnMobile) {
 
         const url = currentResults[0].url;
         const shareText = `PolicyCheck results for ${url}`;
-        const shareUrl = 'https://openattribution.org/policycheck/';
+        const shareUrl = `https://openattribution.org/policycheck/?url=${encodeURIComponent(url)}`;
 
         // Try native share API first (mobile)
         if (navigator.share) {
@@ -680,3 +680,12 @@ window.sortTable = sortTable;
 // Initialize
 console.log('PolicyCheck Web UI initialized');
 console.log('API URL:', API_URL);
+
+// Check for URL parameter and auto-populate/analyze
+const urlParams = new URLSearchParams(window.location.search);
+const urlParam = urlParams.get('url');
+if (urlParam) {
+    urlInput.value = urlParam;
+    // Auto-run analysis
+    analyzeBtn.click();
+}
