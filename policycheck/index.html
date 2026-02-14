@@ -13,6 +13,22 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Mobile portrait optimizations */
+        @media (max-width: 640px) {
+            table th,
+            table td {
+                padding: 0.5rem 0.25rem !important;
+                font-size: 0.75rem !important;
+            }
+            table th {
+                font-size: 0.7rem !important;
+            }
+            .sort-indicator {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body class="font-sans antialiased bg-cream text-gray-800 flex flex-col min-h-screen">
 
