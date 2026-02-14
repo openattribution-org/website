@@ -359,7 +359,7 @@ function displayResults(data) {
     if (data.successful === 0) {
         resultsBody.innerHTML = `
             <tr>
-                <td colspan="8" class="py-12 text-center">
+                <td colspan="9" class="py-12 text-center">
                     <div class="text-gray-500">
                         <p class="text-lg mb-2">No results to display</p>
                         <p class="text-sm">All URLs failed to analyze. Check that the URLs are valid and accessible.</p>
@@ -389,6 +389,22 @@ function displayResults(data) {
             ? `<span class="text-green-700" title="${rslCount} license(s)">${rslCount}</span>`
             : '<span class="text-gray-400">-</span>';
 
+        // Content Signals - compact display
+        const hasContentSignals = result.content_signal_search || result.content_signal_ai_input || result.content_signal_ai_train;
+        let csText = '<span class="text-gray-400">-</span>';
+        if (hasContentSignals) {
+            const signals = [];
+            if (result.content_signal_search) signals.push(`S:${result.content_signal_search}`);
+            if (result.content_signal_ai_input) signals.push(`I:${result.content_signal_ai_input}`);
+            if (result.content_signal_ai_train) signals.push(`T:${result.content_signal_ai_train}`);
+            const tooltip = [
+                result.content_signal_search ? `search=${result.content_signal_search}` : null,
+                result.content_signal_ai_input ? `ai-input=${result.content_signal_ai_input}` : null,
+                result.content_signal_ai_train ? `ai-train=${result.content_signal_ai_train}` : null
+            ].filter(Boolean).join(', ');
+            csText = `<span class="text-xs text-gray-700" title="${tooltip}">${signals.join(' ')}</span>`;
+        }
+
         // AI Bot Analysis Summary
         const { blocked, allowed } = analyzeAIBots(result);
 
@@ -416,6 +432,7 @@ function displayResults(data) {
             </td>
             <td class="py-3 px-4 text-center">${pathAllowed}</td>
             <td class="py-3 px-4 text-center">${rslText}</td>
+            <td class="py-3 px-4 text-center">${csText}</td>
             <td class="py-3 px-4 text-center">${getBotStatus('GPTBot')}</td>
             <td class="py-3 px-4 text-center">${getBotStatus('ClaudeBot')}</td>
             <td class="py-3 px-4 text-center">${getBotStatus('Google-Extended')}</td>
@@ -438,7 +455,7 @@ function displayResults(data) {
                 const detailRow = document.createElement('tr');
                 detailRow.id = `detail-${index}`;
                 detailRow.innerHTML = `
-                    <td colspan="8" class="p-0">
+                    <td colspan="9" class="p-0">
                         ${createAIBotDetailView(result)}
                     </td>
                 `;

@@ -118,63 +118,86 @@
             </div>
 
             <!-- AI Crawler Reference -->
-            <details class="bg-white border border-gray-200 rounded-lg p-6 mb-8">
-                <summary class="cursor-pointer text-sm font-normal text-gray-900 hover:text-coral-600 transition">
+            <details style="background: white; border: 1px solid #e5e7eb; border-radius: 0.5rem; padding: 1.5rem; margin-bottom: 2rem;">
+                <summary style="cursor: pointer; font-size: 0.875rem; font-weight: 400; color: #111827;">
                     📚 AI Crawler Reference — What each bot does
                 </summary>
-                <div class="mt-4 grid md:grid-cols-2 gap-6 text-sm">
-                    <div>
-                        <h4 class="font-normal text-gray-900 mb-2">Training Crawlers (16)</h4>
-                        <ul class="space-y-1 text-gray-600 font-light">
-                            <li>• GPTBot — OpenAI (Model training)</li>
-                            <li>• ClaudeBot — Anthropic (Model training)</li>
-                            <li>• anthropic-ai — Anthropic (Bulk model training)</li>
-                            <li>• Claude-Web — Anthropic (Web-focused training)</li>
-                            <li>• Google-Extended — Google (Gemini training)</li>
-                            <li>• GoogleOther — Google (Research & development)</li>
-                            <li>• Meta-ExternalAgent — Meta (AI model training)</li>
-                            <li>• FacebookBot — Meta (Speech recognition training)</li>
-                            <li>• Applebot-Extended — Apple (Generative AI training)</li>
-                            <li>• Amazonbot — Amazon (AI improvement, model training)</li>
-                            <li>• CCBot — Common Crawl (Open dataset collection)</li>
-                            <li>• Bytespider — ByteDance (AI training)</li>
-                            <li>• cohere-ai — Cohere (LLM training)</li>
-                            <li>• Diffbot — Diffbot (AI data extraction)</li>
-                            <li>• Omgilibot — Webz.io (Data collection for resale)</li>
-                            <li>• ImagesiftBot — The Hive (Image model training)</li>
-                        </ul>
+                <div style="margin-top: 1rem; display: flex; gap: 2rem; flex-wrap: wrap; font-size: 0.875rem;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <h4 style="font-weight: 400; color: #111827; margin-bottom: 0.5rem;">Training Crawlers (16)</h4>
+                        <div style="color: #4b5563; font-weight: 300; line-height: 1.6;">
+                            • GPTBot — OpenAI (Model training)<br>
+                            • ClaudeBot — Anthropic (Model training)<br>
+                            • anthropic-ai — Anthropic (Bulk model training)<br>
+                            • Claude-Web — Anthropic (Web-focused training)<br>
+                            • Google-Extended — Google (Gemini training)<br>
+                            • GoogleOther — Google (Research & development)<br>
+                            • Meta-ExternalAgent — Meta (AI model training)<br>
+                            • FacebookBot — Meta (Speech recognition training)<br>
+                            • Applebot-Extended — Apple (Generative AI training)<br>
+                            • Amazonbot — Amazon (AI improvement, model training)<br>
+                            • CCBot — Common Crawl (Open dataset collection)<br>
+                            • Bytespider — ByteDance (AI training)<br>
+                            • cohere-ai — Cohere (LLM training)<br>
+                            • Diffbot — Diffbot (AI data extraction)<br>
+                            • Omgilibot — Webz.io (Data collection for resale)<br>
+                            • ImagesiftBot — The Hive (Image model training)
+                        </div>
                     </div>
-                    <div>
-                        <h4 class="font-normal text-gray-900 mb-2">Search Crawlers (4)</h4>
-                        <ul class="space-y-1 text-gray-600 font-light mb-4">
-                            <li>• OAI-SearchBot — OpenAI (ChatGPT search indexing)</li>
-                            <li>• PerplexityBot — Perplexity (Search indexing)</li>
-                            <li>• YouBot — You.com (AI search)</li>
-                            <li>• DuckAssistBot — DuckDuckGo (AI-assisted answers)</li>
-                        </ul>
-                        <h4 class="font-normal text-gray-900 mb-2">Other (6)</h4>
-                        <ul class="space-y-1 text-gray-600 font-light">
-                            <li>• ChatGPT-User — OpenAI (User-requested fetching)</li>
-                            <li>• Perplexity-User — Perplexity (User-requested fetching)</li>
-                            <li>• Meta-ExternalFetcher — Meta (Real-time content fetching)</li>
-                            <li>• Applebot — Apple (Siri, Spotlight, Safari)</li>
-                            <li>• Google-CloudVertexBot — Google (Cloud AI services)</li>
-                            <li>• Amzn-SearchBot — Amazon (Alexa and Rufus search)</li>
-                        </ul>
+                    <div style="flex: 1; min-width: 250px;">
+                        <h4 style="font-weight: 400; color: #111827; margin-bottom: 0.5rem;">Search Crawlers (4)</h4>
+                        <div style="color: #4b5563; font-weight: 300; line-height: 1.6; margin-bottom: 1rem;">
+                            • OAI-SearchBot — OpenAI (ChatGPT search indexing)<br>
+                            • PerplexityBot — Perplexity (Search indexing)<br>
+                            • YouBot — You.com (AI search)<br>
+                            • DuckAssistBot — DuckDuckGo (AI-assisted answers)
+                        </div>
+                        <h4 style="font-weight: 400; color: #111827; margin-bottom: 0.5rem;">Other (6)</h4>
+                        <div style="color: #4b5563; font-weight: 300; line-height: 1.6;">
+                            • ChatGPT-User — OpenAI (User-requested fetching)<br>
+                            • Perplexity-User — Perplexity (User-requested fetching)<br>
+                            • Meta-ExternalFetcher — Meta (Real-time content fetching)<br>
+                            • Applebot — Apple (Siri, Spotlight, Safari)<br>
+                            • Google-CloudVertexBot — Google (Cloud AI services)<br>
+                            • Amzn-SearchBot — Amazon (Alexa and Rufus search)
+                        </div>
                     </div>
                 </div>
             </details>
 
             <!-- Google-Extended Notice -->
-            <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-8">
-                <h3 class="text-sm font-normal text-gray-900 mb-3">📋 Note on Google-Extended</h3>
-                <p class="text-sm text-gray-700 font-light mb-4">
+            <div style="background: #fffbeb; border: 1px solid #fde68a; border-radius: 0.5rem; padding: 1.5rem; margin-bottom: 2rem;">
+                <h3 style="font-size: 0.875rem; font-weight: 400; color: #111827; margin-bottom: 0.75rem;">📋 Note on Google-Extended</h3>
+                <p style="font-size: 0.875rem; color: #374151; font-weight: 300; margin-bottom: 1rem;">
                     The UK CMA has proposed giving publishers the ability to opt out of AI training and AI Overviews (consultation closes Feb 2026). Blocking Google-Extended via robots.txt is currently how publishers exercise this control.
                 </p>
-                <div class="flex gap-4 text-sm">
-                    <a href="https://www.gov.uk/cma-cases/googles-general-search-and-search-advertising-services" target="_blank" rel="noopener noreferrer" class="text-coral-600 hover:text-coral-700 font-normal">→ CMA case details</a>
-                    <a href="https://blog.cloudflare.com/uk-google-ai-crawler-policy/" target="_blank" rel="noopener noreferrer" class="text-coral-600 hover:text-coral-700 font-normal">→ Cloudflare analysis</a>
+                <div style="display: flex; gap: 1rem; font-size: 0.875rem;">
+                    <a href="https://www.gov.uk/cma-cases/googles-general-search-and-search-advertising-services" target="_blank" rel="noopener noreferrer" style="color: #f04e1f; font-weight: 400; text-decoration: none;">→ CMA case details</a>
+                    <a href="https://blog.cloudflare.com/uk-google-ai-crawler-policy/" target="_blank" rel="noopener noreferrer" style="color: #f04e1f; font-weight: 400; text-decoration: none;">→ Cloudflare analysis</a>
                 </div>
+            </div>
+
+            <!-- Content Signals -->
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
+                <h3 class="text-sm font-normal text-gray-900 mb-3">🎯 Content Signals (Cloudflare AI Policy)</h3>
+                <p class="text-sm text-gray-700 font-light mb-3">
+                    Content Signals allow sites to express AI usage preferences directly in robots.txt. Adopted by 3.8M+ domains using Cloudflare's managed robots.txt.
+                </p>
+                <div class="grid md:grid-cols-3 gap-3 text-xs mb-3">
+                    <div class="bg-white rounded-md p-3 border border-blue-100">
+                        <span class="font-normal text-gray-900">search=yes/no</span>
+                        <p class="text-gray-600 font-light mt-1">Traditional search indexing (not AI summaries)</p>
+                    </div>
+                    <div class="bg-white rounded-md p-3 border border-blue-100">
+                        <span class="font-normal text-gray-900">ai-input=yes/no</span>
+                        <p class="text-gray-600 font-light mt-1">AI search, RAG, grounding</p>
+                    </div>
+                    <div class="bg-white rounded-md p-3 border border-blue-100">
+                        <span class="font-normal text-gray-900">ai-train=yes/no</span>
+                        <p class="text-gray-600 font-light mt-1">Model training & fine-tuning</p>
+                    </div>
+                </div>
+                <a href="https://blog.cloudflare.com/content-signals-policy/" target="_blank" rel="noopener noreferrer" class="text-coral-600 hover:text-coral-700 font-normal text-sm">→ Learn about Content Signals</a>
             </div>
 
             <!-- Loading -->
@@ -212,6 +235,9 @@
                                     </th>
                                     <th class="py-3 px-4 text-center font-normal text-gray-900 w-24 cursor-pointer hover:bg-coral-50" onclick="sortTable('rsl')">
                                         RSL <span class="sort-indicator text-xs text-gray-400">↕</span>
+                                    </th>
+                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-32 cursor-pointer hover:bg-coral-50" title="Cloudflare Content Signals" onclick="sortTable('cs')">
+                                        Content Signals <span class="sort-indicator text-xs text-gray-400">↕</span>
                                     </th>
                                     <th class="py-3 px-4 text-center font-normal text-gray-900 w-24 cursor-pointer hover:bg-coral-50" title="OpenAI GPTBot" onclick="sortTable('gptbot')">
                                         GPTBot <span class="sort-indicator text-xs text-gray-400">↕</span>
