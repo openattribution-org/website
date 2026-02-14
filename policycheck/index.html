@@ -134,14 +134,27 @@
                         <table class="w-full">
                             <thead>
                                 <tr class="border-b-2 border-coral-200">
-                                    <th class="py-3 px-4 text-left font-normal text-gray-900">URL</th>
-                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-20" title="Path Allowed">Path</th>
-                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-24">RSL</th>
-                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-24">TDM</th>
-                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-24" title="OpenAI GPTBot">GPTBot</th>
-                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-24" title="Anthropic ClaudeBot">ClaudeBot</th>
-                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-24" title="Google Gemini">Gemini</th>
-                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-24" title="Common Crawl">CCBot</th>
+                                    <th class="py-3 px-4 text-left font-normal text-gray-900 cursor-pointer hover:bg-coral-50" onclick="sortTable('url')">
+                                        URL <span class="sort-indicator text-xs text-gray-400">↕</span>
+                                    </th>
+                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-20 cursor-pointer hover:bg-coral-50" title="Path Allowed" onclick="sortTable('path')">
+                                        Path <span class="sort-indicator text-xs text-gray-400">↕</span>
+                                    </th>
+                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-24 cursor-pointer hover:bg-coral-50" onclick="sortTable('rsl')">
+                                        RSL <span class="sort-indicator text-xs text-gray-400">↕</span>
+                                    </th>
+                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-24 cursor-pointer hover:bg-coral-50" title="OpenAI GPTBot" onclick="sortTable('gptbot')">
+                                        GPTBot <span class="sort-indicator text-xs text-gray-400">↕</span>
+                                    </th>
+                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-24 cursor-pointer hover:bg-coral-50" title="Anthropic ClaudeBot" onclick="sortTable('claudebot')">
+                                        ClaudeBot <span class="sort-indicator text-xs text-gray-400">↕</span>
+                                    </th>
+                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-24 cursor-pointer hover:bg-coral-50" title="Google Gemini" onclick="sortTable('gemini')">
+                                        Gemini <span class="sort-indicator text-xs text-gray-400">↕</span>
+                                    </th>
+                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-24 cursor-pointer hover:bg-coral-50" title="Common Crawl" onclick="sortTable('ccbot')">
+                                        CCBot <span class="sort-indicator text-xs text-gray-400">↕</span>
+                                    </th>
                                     <th class="py-3 px-4 text-center font-normal text-gray-900 w-24">All Bots</th>
                                 </tr>
                             </thead>

@@ -428,14 +428,6 @@ function displayResults(data) {
             ? `<span class="text-green-700" title="${rslCount} license(s)">${rslCount}</span>`
             : '<span class="text-gray-400">-</span>';
 
-        // TDM - icon only
-        let tdmText = '<span class="text-gray-400">-</span>';
-        if (result.tdm_policy) {
-            tdmText = result.tdm_policy.is_reserved
-                ? '<span class="text-amber-700 text-lg" title="TDM Reserved">⚠</span>'
-                : '<span class="text-green-700 text-lg" title="TDM Not Reserved">✓</span>';
-        }
-
         // AI Bot Analysis Summary
         const { blocked, allowed } = analyzeAIBots(result);
 
@@ -452,7 +444,6 @@ function displayResults(data) {
             <td class="py-3 px-4 max-w-xs truncate" title="${result.url}">${result.url}</td>
             <td class="py-3 px-4 text-center">${pathAllowed}</td>
             <td class="py-3 px-4 text-center">${rslText}</td>
-            <td class="py-3 px-4 text-center">${tdmText}</td>
             <td class="py-3 px-4 text-center">${getBotStatus('GPTBot')}</td>
             <td class="py-3 px-4 text-center">${getBotStatus('ClaudeBot')}</td>
             <td class="py-3 px-4 text-center">${getBotStatus('Google-Extended')}</td>
@@ -475,7 +466,7 @@ function displayResults(data) {
                 const detailRow = document.createElement('tr');
                 detailRow.id = `detail-${index}`;
                 detailRow.innerHTML = `
-                    <td colspan="9" class="p-0">
+                    <td colspan="8" class="p-0">
                         ${createAIBotDetailView(result)}
                     </td>
                 `;
@@ -580,6 +571,71 @@ function showError(msg) {
     error.classList.remove('hidden');
     errorMessage.textContent = msg;
 }
+
+// Sorting state
+let currentSort = { column: null, direction: 'asc' };
+
+// Sort table by column
+function sortTable(column) {
+    if (!currentResults || currentResults.length === 0) return;
+
+    // Toggle direction if clicking same column
+    if (currentSort.column === column) {
+        currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+    } else {
+        currentSort.column = column;
+        currentSort.direction = 'asc';
+    }
+
+    // Sort the results
+    const sorted = [...currentResults].sort((a, b) => {
+        let aVal, bVal;
+
+        switch (column) {
+            case 'url':
+                aVal = a.url.toLowerCase();
+                bVal = b.url.toLowerCase();
+                break;
+            case 'path':
+                aVal = a.is_path_allowed ? 1 : 0;
+                bVal = b.is_path_allowed ? 1 : 0;
+                break;
+            case 'rsl':
+                aVal = a.active_licenses?.length || 0;
+                bVal = b.active_licenses?.length || 0;
+                break;
+            case 'gptbot':
+            case 'claudebot':
+            case 'gemini':
+            case 'ccbot':
+                const botMap = {
+                    'gptbot': 'GPTBot',
+                    'claudebot': 'ClaudeBot',
+                    'gemini': 'Google-Extended',
+                    'ccbot': 'CCBot'
+                };
+                const botName = botMap[column];
+                const aBot = a.ai_bot_analysis?.find(b => b.bot_name === botName);
+                const bBot = b.ai_bot_analysis?.find(b => b.bot_name === botName);
+                aVal = aBot?.status === 'blocked' ? 0 : 1;
+                bVal = bBot?.status === 'blocked' ? 0 : 1;
+                break;
+            default:
+                return 0;
+        }
+
+        if (aVal < bVal) return currentSort.direction === 'asc' ? -1 : 1;
+        if (aVal > bVal) return currentSort.direction === 'asc' ? 1 : -1;
+        return 0;
+    });
+
+    // Re-render with sorted data
+    currentResults = sorted;
+    displayResults({ results: sorted, total: sorted.length, successful: sorted.length, failed: 0 });
+}
+
+// Make sortTable available globally
+window.sortTable = sortTable;
 
 // Initialize
 console.log('PolicyCheck Web UI initialized');
