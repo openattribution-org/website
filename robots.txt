@@ -1,0 +1,10 @@
+# OpenAttribution.org - Making web attribution transparent and machine-readable
+# We practice what we preach: This site uses RSL to declare our licensing terms
+
+License: https://openattribution.org/license.xml
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://openattribution.org/sitemap.xml

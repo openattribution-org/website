@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rsl xmlns="https://rslstandard.org/rsl">
+  <content url="/" lastmod="2026-02-14">
+    <license>
+      <permits type="usage">ai-train ai-input ai-index</permits>
+      <permits type="user">commercial non-commercial education research</permits>
+      <permits type="geo">*</permits>
+      <legal type="warranty">ownership authority no-infringement</legal>
+      <legal type="disclaimer">as-is</legal>
+      <legal type="contact">https://github.com/openattribution-org</legal>
+    </license>
+    <copyright type="organization" contactUrl="https://github.com/openattribution-org">
+      OpenAttribution Initiative
+    </copyright>
+    <terms>https://github.com/openattribution-org</terms>
+  </content>
+</rsl>
