@@ -87,20 +87,34 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
     });
 });
 
-// Single URL Analysis
+// Single URL or Comma-separated URLs Analysis
 analyzeBtn.addEventListener('click', async () => {
-    let url = urlInput.value.trim();
-    if (!url) {
+    const input = urlInput.value.trim();
+    if (!input) {
         showError('Please enter a URL');
         return;
     }
 
-    // Add https:// if no protocol specified
-    if (!url.startsWith('http://') && !url.startsWith('https://')) {
-        url = 'https://' + url;
+    // Check if input contains commas (batch mode)
+    let urls;
+    if (input.includes(',')) {
+        // Split by comma, trim, and filter out empty strings
+        urls = input.split(',')
+            .map(url => url.trim())
+            .filter(url => url.length > 0);
+    } else {
+        urls = [input];
     }
 
-    await analyzeUrls([url]);
+    // Add https:// if no protocol specified
+    urls = urls.map(url => {
+        if (!url.startsWith('http://') && !url.startsWith('https://')) {
+            return 'https://' + url;
+        }
+        return url;
+    });
+
+    await analyzeUrls(urls);
 });
 
 // Handle Enter key
