@@ -577,7 +577,7 @@ if (shareBtnMobile) {
         } else {
             // Fallback: copy to clipboard
             try {
-                await navigator.clipboard.writeText(`${shareText}\n${shareUrl}`);
+                await navigator.clipboard.writeText(shareUrl);
                 const originalText = shareBtnMobile.textContent;
                 shareBtnMobile.textContent = 'Copied!';
                 setTimeout(() => {
