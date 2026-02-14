@@ -117,8 +117,73 @@
                 </p>
             </div>
 
+            <!-- Loading -->
+            <div id="loading" class="hidden text-center py-12">
+                <div class="inline-block w-12 h-12 border-4 border-coral-200 border-t-coral-600 rounded-full animate-spin"></div>
+                <p class="mt-4 text-gray-600 font-light">Analyzing...</p>
+            </div>
+
+            <!-- Results -->
+            <div id="results" class="hidden">
+                <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 mb-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-normal">Results</h2>
+                        <div class="flex gap-2">
+                            <button id="download-json" class="px-4 py-2 bg-white text-coral-600 rounded-lg border border-coral-200 hover:bg-coral-50 transition font-light text-sm">
+                                Download JSON
+                            </button>
+                            <button id="download-csv" class="px-4 py-2 bg-white text-coral-600 rounded-lg border border-coral-200 hover:bg-coral-50 transition font-light text-sm">
+                                Download CSV
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="summary" class="bg-gradient-to-r from-coral-50 to-amber-50 rounded-lg p-4 mb-6 text-sm font-light"></div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="border-b-2 border-coral-200">
+                                    <th class="py-3 px-4 text-left font-normal text-gray-900 cursor-pointer hover:bg-coral-50" onclick="sortTable('url')">
+                                        URL <span class="sort-indicator text-xs text-gray-400">↕</span>
+                                    </th>
+                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-20 cursor-pointer hover:bg-coral-50" title="Path Allowed" onclick="sortTable('path')">
+                                        Path <span class="sort-indicator text-xs text-gray-400">↕</span>
+                                    </th>
+                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-24 cursor-pointer hover:bg-coral-50" onclick="sortTable('rsl')">
+                                        RSL <span class="sort-indicator text-xs text-gray-400">↕</span>
+                                    </th>
+                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-32 cursor-pointer hover:bg-coral-50" title="Cloudflare Content Signals" onclick="sortTable('cs')">
+                                        Content Signals <span class="sort-indicator text-xs text-gray-400">↕</span>
+                                    </th>
+                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-24 cursor-pointer hover:bg-coral-50" title="OpenAI GPTBot" onclick="sortTable('gptbot')">
+                                        GPTBot <span class="sort-indicator text-xs text-gray-400">↕</span>
+                                    </th>
+                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-24 cursor-pointer hover:bg-coral-50" title="Anthropic ClaudeBot" onclick="sortTable('claudebot')">
+                                        ClaudeBot <span class="sort-indicator text-xs text-gray-400">↕</span>
+                                    </th>
+                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-24 cursor-pointer hover:bg-coral-50" title="Google-Extended (Gemini training)" onclick="sortTable('gemini')">
+                                        Google-Extended <span class="sort-indicator text-xs text-gray-400">↕</span>
+                                    </th>
+                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-24 cursor-pointer hover:bg-coral-50" title="Common Crawl" onclick="sortTable('ccbot')">
+                                        CCBot <span class="sort-indicator text-xs text-gray-400">↕</span>
+                                    </th>
+                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-24">All Bots</th>
+                                </tr>
+                            </thead>
+                            <tbody id="results-body" class="text-gray-600 font-light text-sm"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Error -->
+            <div id="error" class="hidden bg-coral-50 border border-coral-200 rounded-lg p-4 text-coral-700">
+                <p id="error-message" class="font-light"></p>
+            </div>
+
             <!-- AI Crawler Reference -->
-            <details style="background: white; border: 1px solid #e5e7eb; border-radius: 0.5rem; padding: 1.5rem; margin-bottom: 2rem;">
+            <details style="background: white; border: 1px solid #e5e7eb; border-radius: 0.5rem; padding: 1.5rem; margin-bottom: 2rem; margin-top: 3rem;">
                 <summary style="cursor: pointer; font-size: 0.875rem; font-weight: 400; color: #111827;">
                     📚 AI Crawler Reference — What each bot does
                 </summary>
@@ -198,71 +263,6 @@
                     </div>
                 </div>
                 <a href="https://blog.cloudflare.com/content-signals-policy/" target="_blank" rel="noopener noreferrer" style="color: #f04e1f; font-weight: 400; font-size: 0.875rem; text-decoration: none;">→ Learn about Content Signals</a>
-            </div>
-
-            <!-- Loading -->
-            <div id="loading" class="hidden text-center py-12">
-                <div class="inline-block w-12 h-12 border-4 border-coral-200 border-t-coral-600 rounded-full animate-spin"></div>
-                <p class="mt-4 text-gray-600 font-light">Analyzing...</p>
-            </div>
-
-            <!-- Results -->
-            <div id="results" class="hidden">
-                <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 mb-6">
-                    <div class="flex items-center justify-between mb-6">
-                        <h2 class="text-2xl font-normal">Results</h2>
-                        <div class="flex gap-2">
-                            <button id="download-json" class="px-4 py-2 bg-white text-coral-600 rounded-lg border border-coral-200 hover:bg-coral-50 transition font-light text-sm">
-                                Download JSON
-                            </button>
-                            <button id="download-csv" class="px-4 py-2 bg-white text-coral-600 rounded-lg border border-coral-200 hover:bg-coral-50 transition font-light text-sm">
-                                Download CSV
-                            </button>
-                        </div>
-                    </div>
-
-                    <div id="summary" class="bg-gradient-to-r from-coral-50 to-amber-50 rounded-lg p-4 mb-6 text-sm font-light"></div>
-
-                    <div class="overflow-x-auto">
-                        <table class="w-full">
-                            <thead>
-                                <tr class="border-b-2 border-coral-200">
-                                    <th class="py-3 px-4 text-left font-normal text-gray-900 cursor-pointer hover:bg-coral-50" onclick="sortTable('url')">
-                                        URL <span class="sort-indicator text-xs text-gray-400">↕</span>
-                                    </th>
-                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-20 cursor-pointer hover:bg-coral-50" title="Path Allowed" onclick="sortTable('path')">
-                                        Path <span class="sort-indicator text-xs text-gray-400">↕</span>
-                                    </th>
-                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-24 cursor-pointer hover:bg-coral-50" onclick="sortTable('rsl')">
-                                        RSL <span class="sort-indicator text-xs text-gray-400">↕</span>
-                                    </th>
-                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-32 cursor-pointer hover:bg-coral-50" title="Cloudflare Content Signals" onclick="sortTable('cs')">
-                                        Content Signals <span class="sort-indicator text-xs text-gray-400">↕</span>
-                                    </th>
-                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-24 cursor-pointer hover:bg-coral-50" title="OpenAI GPTBot" onclick="sortTable('gptbot')">
-                                        GPTBot <span class="sort-indicator text-xs text-gray-400">↕</span>
-                                    </th>
-                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-24 cursor-pointer hover:bg-coral-50" title="Anthropic ClaudeBot" onclick="sortTable('claudebot')">
-                                        ClaudeBot <span class="sort-indicator text-xs text-gray-400">↕</span>
-                                    </th>
-                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-24 cursor-pointer hover:bg-coral-50" title="Google-Extended (Gemini training)" onclick="sortTable('gemini')">
-                                        Google-Extended <span class="sort-indicator text-xs text-gray-400">↕</span>
-                                    </th>
-                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-24 cursor-pointer hover:bg-coral-50" title="Common Crawl" onclick="sortTable('ccbot')">
-                                        CCBot <span class="sort-indicator text-xs text-gray-400">↕</span>
-                                    </th>
-                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-24">All Bots</th>
-                                </tr>
-                            </thead>
-                            <tbody id="results-body" class="text-gray-600 font-light text-sm"></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Error -->
-            <div id="error" class="hidden bg-coral-50 border border-coral-200 rounded-lg p-4 text-coral-700">
-                <p id="error-message" class="font-light"></p>
             </div>
 
         </div>
