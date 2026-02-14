@@ -551,6 +551,44 @@ downloadCsvBtn.addEventListener('click', () => {
     downloadFile(blob, 'policycheck-results.csv');
 });
 
+// Share handler for mobile
+const shareBtnMobile = document.getElementById('share-btn-mobile');
+if (shareBtnMobile) {
+    shareBtnMobile.addEventListener('click', async () => {
+        if (!currentResults || currentResults.length === 0) return;
+
+        const url = currentResults[0].url;
+        const shareText = `PolicyCheck results for ${url} - Check AI crawler policies at ${window.location.href}`;
+
+        // Try native share API first (mobile)
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: 'PolicyCheck Results',
+                    text: shareText,
+                    url: window.location.href
+                });
+            } catch (err) {
+                if (err.name !== 'AbortError') {
+                    console.error('Share failed:', err);
+                }
+            }
+        } else {
+            // Fallback: copy to clipboard
+            try {
+                await navigator.clipboard.writeText(shareText);
+                const originalText = shareBtnMobile.textContent;
+                shareBtnMobile.textContent = 'Copied!';
+                setTimeout(() => {
+                    shareBtnMobile.textContent = originalText;
+                }, 2000);
+            } catch (err) {
+                console.error('Copy failed:', err);
+            }
+        }
+    });
+}
+
 function downloadFile(blob, filename) {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');

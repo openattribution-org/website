@@ -31,6 +31,16 @@
                 width: 100% !important;
             }
 
+            /* Hide download buttons on mobile, show share instead */
+            #download-json,
+            #download-csv {
+                display: none !important;
+            }
+
+            #share-btn-mobile {
+                display: block !important;
+            }
+
             /* Convert table to card layout on mobile */
             table, thead, tbody, th, td, tr {
                 display: block;
@@ -200,6 +210,9 @@
                             </button>
                             <button id="download-csv" class="px-4 py-2 bg-white text-coral-600 rounded-lg border border-coral-200 hover:bg-coral-50 transition font-light text-sm">
                                 Download CSV
+                            </button>
+                            <button id="share-btn-mobile" class="px-4 py-2 bg-coral-600 text-white rounded-lg hover:bg-coral-700 transition font-normal text-sm" style="display: none;">
+                                Share
                             </button>
                         </div>
                     </div>
