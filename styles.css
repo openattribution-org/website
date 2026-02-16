@@ -39,13 +39,13 @@ html {
     }
 }
 
-/* Section fade-in effect */
-section {
+/* Section fade-in effect (homepage only — requires script.js intersection observer) */
+body.has-fade-in section {
     opacity: 0;
     transition: opacity 0.8s ease-out;
 }
 
-section.fade-in {
+body.has-fade-in section.fade-in {
     opacity: 1;
     animation: fadeIn 0.8s ease-out forwards;
 }

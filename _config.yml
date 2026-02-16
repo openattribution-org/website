@@ -14,6 +14,11 @@ kramdown:
   syntax_highlighter_opts:
     default_lang: json
 
+# Blog settings
+permalink: /blog/:year/:month/:day/:title/
+paginate: 10
+paginate_path: "/blog/page:num/"
+
 # Exclude from processing
 exclude:
   - README.md
@@ -44,6 +49,12 @@ defaults:
       type: "pages"
     values:
       layout: "spec"
+  - scope:
+      path: "_posts"
+      type: "posts"
+    values:
+      layout: "post"
+      author: "OpenAttribution"
 
 # Disable Jekyll plugins we don't need
 plugins: []
