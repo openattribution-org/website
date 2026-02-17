@@ -158,12 +158,12 @@ nav {
 
 /* Selection color */
 ::selection {
-    background-color: #ff6b3d;
+    background-color: var(--coral-500);
     color: white;
 }
 
 ::-moz-selection {
-    background-color: #ff6b3d;
+    background-color: var(--coral-500);
     color: white;
 }
 
@@ -245,7 +245,7 @@ button[type="submit"]:disabled {
 
 /* Focus visible for keyboard navigation */
 *:focus-visible {
-    outline: 2px solid #ff6b3d;
+    outline: 2px solid var(--coral-500);
     outline-offset: 2px;
 }
 
@@ -255,16 +255,16 @@ button[type="submit"]:disabled {
 }
 
 ::-webkit-scrollbar-track {
-    background: #faf8f5;
+    background: var(--cream);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #ff6b3d;
+    background: var(--coral-500);
     border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #f04e1f;
+    background: var(--coral-600);
 }
 
 /* Sticky CTA button animations */

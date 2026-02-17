@@ -6,13 +6,16 @@
     <title>PolicyCheck - AI Crawler Policy Scanner</title>
     <meta name="description" content="See which AI bots can access your content. Check robots.txt, RSL licenses, and TDM policies for any domain.">
 
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="styles.css">
+    <!-- Theme Config -->
+    <script src="/theme.js"></script>
     <style>
         /* Mobile portrait optimizations */
         @media (max-width: 640px) {
@@ -312,8 +315,8 @@
                     The UK CMA has proposed giving publishers the ability to opt out of AI training and AI Overviews (consultation closes Feb 2026). Blocking Google-Extended via robots.txt is currently how publishers exercise this control.
                 </p>
                 <div style="display: flex; gap: 1rem; font-size: 0.875rem;">
-                    <a href="https://www.gov.uk/cma-cases/googles-general-search-and-search-advertising-services" target="_blank" rel="noopener noreferrer" style="color: #f04e1f; font-weight: 400; text-decoration: none;">→ CMA case details</a>
-                    <a href="https://blog.cloudflare.com/uk-google-ai-crawler-policy/" target="_blank" rel="noopener noreferrer" style="color: #f04e1f; font-weight: 400; text-decoration: none;">→ Cloudflare analysis</a>
+                    <a href="https://www.gov.uk/cma-cases/googles-general-search-and-search-advertising-services" target="_blank" rel="noopener noreferrer" style="color: var(--coral-600); font-weight: 400; text-decoration: none;">→ CMA case details</a>
+                    <a href="https://blog.cloudflare.com/uk-google-ai-crawler-policy/" target="_blank" rel="noopener noreferrer" style="color: var(--coral-600); font-weight: 400; text-decoration: none;">→ Cloudflare analysis</a>
                 </div>
             </div>
 
@@ -337,7 +340,7 @@
                         <p style="color: #4b5563; font-weight: 300; margin-top: 0.25rem;">Model training & fine-tuning</p>
                     </div>
                 </div>
-                <a href="https://blog.cloudflare.com/content-signals-policy/" target="_blank" rel="noopener noreferrer" style="color: #f04e1f; font-weight: 400; font-size: 0.875rem; text-decoration: none;">→ Learn about Content Signals</a>
+                <a href="https://blog.cloudflare.com/content-signals-policy/" target="_blank" rel="noopener noreferrer" style="color: var(--coral-600); font-weight: 400; font-size: 0.875rem; text-decoration: none;">→ Learn about Content Signals</a>
             </div>
 
             <!-- Limitations Notice -->
@@ -347,7 +350,7 @@
                     PolicyCheck runs from cloud infrastructure, and some sites (like Medium) block datacenter IPs to prevent scraping. This creates a paradox: robots.txt exists for bots to check policies, but compliance checkers may be blocked from accessing it.
                 </p>
                 <p style="color: #6b7280; font-weight: 300; font-size: 0.75rem;">
-                    Legitimate crawlers (Googlebot, GPTBot, ClaudeBot) solve this with IP whitelisting and reverse DNS verification. Most sites work fine, but aggressive blockers may fail. <a href="https://github.com/openattribution-org/policycheck#limitations-and-considerations" target="_blank" rel="noopener noreferrer" style="color: #f04e1f; text-decoration: underline;">Learn more</a>
+                    Legitimate crawlers (Googlebot, GPTBot, ClaudeBot) solve this with IP whitelisting and reverse DNS verification. Most sites work fine, but aggressive blockers may fail. <a href="https://github.com/openattribution-org/policycheck#limitations-and-considerations" target="_blank" rel="noopener noreferrer" style="color: var(--coral-600); text-decoration: underline;">Learn more</a>
                 </p>
             </div>
 
