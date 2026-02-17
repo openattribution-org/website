@@ -1,5 +1,5 @@
 // Configuration
-const API_URL = 'https://policycheck-d7wv0g.fly.dev';
+const API_URL = 'https://policycheck.openattribution.org';
 
 let currentResults = null;
 
