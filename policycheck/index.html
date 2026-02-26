@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PolicyCheck - AI Crawler Policy Scanner</title>
-    <meta name="description" content="See which AI bots can access your content. Check robots.txt, RSL licenses, and TDM policies for any domain.">
+    <meta name="description" content="See which AI bots can access your content. Check robots.txt, RSL licenses, TDM policies, and Markdown for Agents support for any domain.">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -117,7 +117,7 @@
                 <span class="text-coral-600 font-normal">AI Crawler</span> Policy Scanner
             </h1>
             <p class="text-xl text-gray-700 font-light mb-8 max-w-3xl mx-auto">
-                See which AI bots can access your content. Check robots.txt, RSL licenses, and TDM policies for any domain.
+                See which AI bots can access your content. Check robots.txt, RSL licenses, TDM policies, and Markdown for Agents support for any domain.
             </p>
             <div class="flex flex-wrap justify-center gap-4 text-sm text-gray-600 font-light">
                 <div class="flex items-center gap-2">
@@ -230,6 +230,9 @@
                                     </th>
                                     <th class="py-3 px-4 text-center font-normal text-gray-900 w-24 cursor-pointer hover:bg-coral-50" onclick="sortTable('rsl')">
                                         RSL <span class="sort-indicator text-xs text-gray-400">↕</span>
+                                    </th>
+                                    <th class="py-3 px-4 text-center font-normal text-gray-900 w-24 cursor-pointer hover:bg-coral-50" title="Cloudflare Markdown for Agents" onclick="sortTable('markdown')">
+                                        Markdown <span class="sort-indicator text-xs text-gray-400">↕</span>
                                     </th>
                                     <th class="py-3 px-4 text-center font-normal text-gray-900 w-32 cursor-pointer hover:bg-coral-50" title="Cloudflare Content Signals" onclick="sortTable('cs')">
                                         Content Signals <span class="sort-indicator text-xs text-gray-400">↕</span>

@@ -345,6 +345,32 @@ function createAIBotDetailView(result) {
         html += '</div>';
     }
 
+    // Markdown for Agents section
+    const md = result.markdown_agents;
+    if (md) {
+        html += '<div>';
+        if (md.supported) {
+            html += `<h4 class="font-normal text-green-700 mb-2">✓ Markdown for Agents Supported</h4>`;
+            html += '<div class="text-sm text-gray-600 font-light">';
+            if (md.token_count) {
+                html += `<div>Token count: <span class="font-normal">${md.token_count.toLocaleString()}</span></div>`;
+            }
+            // Show HTTP Content-Signal values if present
+            const httpSignals = [];
+            if (md.http_content_signal_search) httpSignals.push(`search=${md.http_content_signal_search}`);
+            if (md.http_content_signal_ai_input) httpSignals.push(`ai-input=${md.http_content_signal_ai_input}`);
+            if (md.http_content_signal_ai_train) httpSignals.push(`ai-train=${md.http_content_signal_ai_train}`);
+            if (httpSignals.length > 0) {
+                html += `<div>HTTP Content-Signal: <span class="font-normal">${httpSignals.join(', ')}</span></div>`;
+            }
+            html += '</div>';
+        } else {
+            html += `<h4 class="font-normal text-gray-500 mb-2">— Markdown for Agents Not Detected</h4>`;
+            html += '<div class="text-sm text-gray-500 font-light">Site does not return text/markdown when requested via Accept header.</div>';
+        }
+        html += '</div>';
+    }
+
     // Add helpful note
     html += `
         <div class="text-xs text-gray-600 p-3 bg-blue-50 rounded border border-blue-200">
@@ -373,7 +399,7 @@ function displayResults(data) {
     if (data.successful === 0) {
         resultsBody.innerHTML = `
             <tr>
-                <td colspan="9" class="py-12 text-center">
+                <td colspan="10" class="py-12 text-center">
                     <div class="text-gray-500">
                         <p class="text-lg mb-2">No results to display</p>
                         <p class="text-sm">All URLs failed to analyze. Check that the URLs are valid and accessible.</p>
@@ -431,6 +457,16 @@ function displayResults(data) {
             csText = `<span class="text-xs" title="${tooltip}">${signals.join(' ')}</span>`;
         }
 
+        // Markdown for Agents
+        const md = result.markdown_agents;
+        let markdownText = '<span class="text-gray-400">-</span>';
+        if (md && md.supported) {
+            const tokens = md.token_count ? ` (${md.token_count.toLocaleString()} tok)` : '';
+            markdownText = `<span class="text-green-700" title="Markdown for Agents supported${tokens}">✓${tokens}</span>`;
+        } else if (md && !md.supported) {
+            markdownText = '<span class="text-gray-400" title="Not supported">✗</span>';
+        }
+
         // AI Bot Analysis Summary
         const { blocked, allowed } = analyzeAIBots(result);
 
@@ -458,6 +494,7 @@ function displayResults(data) {
             </td>
             <td class="py-3 px-4 text-center" data-label="Path:">${pathAllowed}</td>
             <td class="py-3 px-4 text-center" data-label="RSL:">${rslText}</td>
+            <td class="py-3 px-4 text-center" data-label="Markdown:">${markdownText}</td>
             <td class="py-3 px-4 text-center" data-label="Content Signals:">${csText}</td>
             <td class="py-3 px-4 text-center" data-label="GPTBot:">${getBotStatus('GPTBot')}</td>
             <td class="py-3 px-4 text-center" data-label="ClaudeBot:">${getBotStatus('ClaudeBot')}</td>
@@ -481,7 +518,7 @@ function displayResults(data) {
                 const detailRow = document.createElement('tr');
                 detailRow.id = `detail-${index}`;
                 detailRow.innerHTML = `
-                    <td colspan="9" class="p-0">
+                    <td colspan="10" class="p-0">
                         ${createAIBotDetailView(result)}
                     </td>
                 `;
@@ -521,17 +558,28 @@ downloadCsvBtn.addEventListener('click', () => {
         'Status',
         'Path Allowed',
         'RSL Licenses',
+        'Markdown Supported',
+        'Markdown Tokens',
+        'HTTP Content-Signal Search',
+        'HTTP Content-Signal AI Input',
+        'HTTP Content-Signal AI Train',
         'TDM Reserved',
         ...majorBots,
         'All User Agents'
     ];
 
     const rows = currentResults.map(r => {
+        const md = r.markdown_agents;
         const row = [
             r.url,
             r.status,
             r.is_path_allowed ? 'Yes' : 'No',
             r.active_licenses?.length || 0,
+            md?.supported ? 'Yes' : 'No',
+            md?.token_count || '',
+            md?.http_content_signal_search || '',
+            md?.http_content_signal_ai_input || '',
+            md?.http_content_signal_ai_train || '',
             r.tdm_policy?.is_reserved ? 'Yes' : 'No'
         ];
 
@@ -655,6 +703,10 @@ function sortTable(column) {
             case 'rsl':
                 aVal = a.active_licenses?.length || 0;
                 bVal = b.active_licenses?.length || 0;
+                break;
+            case 'markdown':
+                aVal = a.markdown_agents?.supported ? 1 : 0;
+                bVal = b.markdown_agents?.supported ? 1 : 0;
                 break;
             case 'gptbot':
             case 'claudebot':
