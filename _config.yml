@@ -30,6 +30,7 @@ exclude:
 
 # Include markdown files and static assets in aims directory
 include:
+  - .well-known
   - aims
   - "*.json"
 
