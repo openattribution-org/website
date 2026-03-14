@@ -1,0 +1,13 @@
+app = "openattribution-web"
+primary_region = "lhr"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = false
+  min_machines_running = 1
+
+[env]
+  NODE_ENV = "production"
+  PUBLIC_THEME = "oa"
+  ORIGIN = "https://openattribution.org"
