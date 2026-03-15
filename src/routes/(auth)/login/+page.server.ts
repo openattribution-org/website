@@ -1,40 +1,44 @@
-import type { Actions } from './$types';
+import type { Actions, PageServerLoad } from './$types';
 import { fail, redirect } from '@sveltejs/kit';
-import { getUserByEmail, verifyPassword, createSession } from '$lib/server/auth.js';
+import { env } from '$env/dynamic/private';
+import { createMagicLinkToken, checkRateLimit } from '$lib/server/magic-link.js';
+import { sendMagicLinkEmail } from '$lib/server/email.js';
+
+export const load: PageServerLoad = async ({ url }) => {
+	return {
+		domain: url.searchParams.get('domain') ?? '',
+		redirectTo: url.searchParams.get('redirect') ?? '',
+		error: url.searchParams.get('error') ?? ''
+	};
+};
 
 export const actions = {
-	default: async ({ request, cookies, url }) => {
+	default: async ({ request }) => {
 		const data = await request.formData();
 		const email = data.get('email')?.toString().trim().toLowerCase() ?? '';
-		const password = data.get('password')?.toString() ?? '';
+		const redirectTo = data.get('redirect')?.toString() ?? '';
+		const domain = data.get('domain')?.toString() ?? '';
 
-		if (!email || !password) {
-			return fail(400, { error: 'Email and password are required.', email });
+		if (!email) {
+			return fail(400, { error: 'Email is required.', email });
 		}
 
-		const user = await getUserByEmail(email);
-		if (!user) {
-			return fail(400, { error: 'Invalid email or password.', email });
+		const allowed = await checkRateLimit(email);
+		if (!allowed) {
+			return fail(429, { error: 'Too many requests. Wait a few minutes and try again.', email });
 		}
 
-		const valid = await verifyPassword(user.password_hash, password);
-		if (!valid) {
-			return fail(400, { error: 'Invalid email or password.', email });
-		}
+		const rawToken = await createMagicLinkToken(
+			email,
+			redirectTo || null,
+			domain || null
+		);
 
-		const { token } = await createSession(user.id);
+		const authUrl = env.AUTH_URL ?? 'http://localhost:5173';
+		const magicLinkUrl = `${authUrl}/login/verify?token=${rawToken}`;
 
-		cookies.set('session', token, {
-			path: '/',
-			httpOnly: true,
-			secure: true,
-			sameSite: 'lax',
-			maxAge: 30 * 24 * 60 * 60
-		});
+		await sendMagicLinkEmail(email, magicLinkUrl);
 
-		const redirectParam = url.searchParams.get('redirect') ?? '/dashboard';
-		// Prevent open redirect - only allow relative paths
-		const redirectTo = redirectParam.startsWith('/') && !redirectParam.startsWith('//') ? redirectParam : '/dashboard';
-		redirect(303, redirectTo);
+		redirect(303, `/login/check-email?email=${encodeURIComponent(email)}`);
 	}
 } satisfies Actions;

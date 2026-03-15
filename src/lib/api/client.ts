@@ -1,8 +1,8 @@
 /**
- * Typed HTTP client for the OA gateway.
+ * Typed HTTP client for the OA gateway via server-side proxy.
+ * Requests go to /api/... on the same origin - the proxy attaches
+ * the session token from the httpOnly cookie. No tokens in the browser.
  */
-
-const API_BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:8100';
 
 export class ApiError extends Error {
 	constructor(
@@ -14,12 +14,6 @@ export class ApiError extends Error {
 	}
 }
 
-let authToken: string | null = null;
-
-export function setAuthToken(token: string | null) {
-	authToken = token;
-}
-
 export async function request<T>(
 	endpoint: string,
 	options: RequestInit = {}
@@ -29,11 +23,7 @@ export async function request<T>(
 		...(options.headers as Record<string, string>)
 	};
 
-	if (authToken) {
-		headers['Authorization'] = `Bearer ${authToken}`;
-	}
-
-	const res = await fetch(`${API_BASE}${endpoint}`, {
+	const res = await fetch(endpoint, {
 		...options,
 		headers
 	});

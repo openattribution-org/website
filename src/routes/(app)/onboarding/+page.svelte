@@ -66,12 +66,13 @@
 					<div class="flex items-start gap-2">
 						<pre class="flex-1 px-3 py-2 bg-white rounded-lg border border-brand-200 text-sm font-mono text-gray-800 overflow-x-auto">{`{
   "openattribution": {
-    "version": "0.4",
+    "version": "0.5",
+    "telemetry_endpoint": "https://api.openattribution.org/api/v1/telemetry",
     "verification": "${form.token}"
   }
 }`}</pre>
 						<button
-							onclick={() => copyToClipboard(JSON.stringify({ openattribution: { version: '0.4', verification: form?.token } }, null, 2), 'wellknown')}
+							onclick={() => copyToClipboard(JSON.stringify({ openattribution: { version: '0.5', telemetry_endpoint: 'https://api.openattribution.org/api/v1/telemetry', verification: form?.token } }, null, 2), 'wellknown')}
 							class="shrink-0 p-2 text-gray-400 hover:text-brand-600 transition rounded-lg hover:bg-white mt-1"
 							aria-label="Copy JSON"
 						>

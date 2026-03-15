@@ -1,13 +1,8 @@
 <script lang="ts">
 	import '../app.css';
-	import { setAuthToken } from '$lib/api/client.js';
 	import type { Snippet } from 'svelte';
 
-	let { data, children }: { data: { sessionToken: string | null }; children: Snippet } = $props();
-
-	$effect(() => {
-		setAuthToken(data.sessionToken);
-	});
+	let { children }: { children: Snippet } = $props();
 </script>
 
 <svelte:head>

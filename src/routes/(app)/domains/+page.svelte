@@ -198,12 +198,13 @@
 									<div class="flex items-start gap-2">
 										<pre class="flex-1 px-3 py-2 bg-gray-100 rounded-lg text-sm font-mono text-gray-800 overflow-x-auto">{`{
   "openattribution": {
-    "version": "0.4",
+    "version": "0.5",
+    "telemetry_endpoint": "https://api.openattribution.org/api/v1/telemetry",
     "verification": "${domain.verification_token}"
   }
 }`}</pre>
 										<button
-											onclick={() => copyToClipboard(JSON.stringify({ openattribution: { version: '0.4', verification: domain.verification_token } }, null, 2))}
+											onclick={() => copyToClipboard(JSON.stringify({ openattribution: { version: '0.5', telemetry_endpoint: 'https://api.openattribution.org/api/v1/telemetry', verification: domain.verification_token } }, null, 2))}
 											class="p-2 text-gray-400 hover:text-brand-600 transition mt-1"
 											aria-label="Copy JSON"
 										>

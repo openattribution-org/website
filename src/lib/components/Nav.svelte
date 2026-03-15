@@ -32,11 +32,8 @@
 					</form>
 				</div>
 			{:else}
-				<a href="/login" class="text-gray-600 hover:text-brand-600 transition font-light">
+				<a href="/login" class="px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition font-normal text-sm">
 					Sign in
-				</a>
-				<a href="/signup" class="px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition font-normal text-sm">
-					Get started
 				</a>
 			{/if}
 		</div>

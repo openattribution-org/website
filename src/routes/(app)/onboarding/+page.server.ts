@@ -22,7 +22,7 @@ function slugify(domain: string): string {
 
 export const load: PageServerLoad = async ({ locals, url }) => {
 	if (!locals.user) {
-		redirect(303, '/signup');
+		redirect(303, '/login');
 	}
 	return {
 		prefillDomain: url.searchParams.get('domain') ?? ''
@@ -32,7 +32,7 @@ export const load: PageServerLoad = async ({ locals, url }) => {
 export const actions = {
 	default: async ({ request, locals, cookies }) => {
 		if (!locals.user || !locals.session) {
-			redirect(303, '/signup');
+			redirect(303, '/login');
 		}
 
 		const data = await request.formData();
@@ -71,7 +71,7 @@ export const actions = {
 
 		// Set active org on the session
 		await sql`
-			UPDATE sessions SET organization_id = ${orgId}
+			UPDATE auth_sessions SET organization_id = ${orgId}
 			WHERE id = ${locals.session.id}
 		`;
 

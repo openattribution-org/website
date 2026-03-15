@@ -397,7 +397,7 @@
 								</p>
 							</div>
 							<a
-								href="/signup?domain={encodeURIComponent(domain)}"
+								href="/login?domain={encodeURIComponent(domain)}"
 								class="inline-flex items-center gap-2 px-6 py-3 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition shadow-lg font-normal shrink-0"
 							>
 								Claim this domain
@@ -414,7 +414,7 @@
 								</p>
 							</div>
 							<a
-								href="/signup?domain={encodeURIComponent(domain)}"
+								href="/login?domain={encodeURIComponent(domain)}"
 								class="inline-flex items-center gap-2 px-6 py-3 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition shadow-lg font-normal shrink-0"
 							>
 								Register it

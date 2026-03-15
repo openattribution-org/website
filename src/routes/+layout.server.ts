@@ -1,8 +1,7 @@
 import type { LayoutServerLoad } from './$types';
 
-export const load: LayoutServerLoad = ({ locals, cookies }) => {
+export const load: LayoutServerLoad = ({ locals }) => {
 	return {
-		user: locals.user,
-		sessionToken: cookies.get('session') ?? null
+		user: locals.user
 	};
 };
