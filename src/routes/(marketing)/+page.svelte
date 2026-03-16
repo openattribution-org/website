@@ -2,7 +2,6 @@
 	import { ArrowRight, ArrowDown } from 'lucide-svelte';
 	import { onMount } from 'svelte';
 	import EventTicker from '$lib/components/flow/EventTicker.svelte';
-	import PolicyCheckInline from '$lib/components/PolicyCheckInline.svelte';
 	import TelemetryFlowDiagram from '$lib/components/flow/TelemetryFlowDiagram.svelte';
 	import FlowStep from '$lib/components/flow/FlowStep.svelte';
 	import FlowEventSnippet from '$lib/components/flow/FlowEventSnippet.svelte';
@@ -112,18 +111,18 @@
 
 <svelte:head>
 	<title>OpenAttribution - See how AI uses your content</title>
-	<meta name="description" content="Content influences AI at time of inference. OpenAttribution shows you how. Open telemetry standards for content attribution in AI agent interactions." />
+	<meta name="description" content="OpenAttribution is a not-for-profit building open standards and free infrastructure for AI content usage transparency. See how AI agents use your content and help shape the rules." />
 </svelte:head>
 
 <!-- Sticky bottom bar -->
 {#if stickyCta}
 	<div class="fixed bottom-0 left-0 right-0 z-40 bg-gray-900/95 backdrop-blur-sm border-t border-white/10 transition-all duration-300">
 		<div class="max-w-7xl mx-auto px-4 py-2.5 flex items-center justify-between">
-			<p class="text-sm text-gray-400 font-light hidden sm:block">AI bots are using your content. Are you tracking them?</p>
+			<p class="text-sm text-gray-300 font-light hidden sm:block">AI agents use your content every day. Do you know how?</p>
 			<div class="flex items-center gap-3 mx-auto sm:mx-0">
 				<a href="/policycheck" class="text-sm text-gray-300 hover:text-white transition font-light">Check your domain</a>
 				<a href="/login" class="inline-flex items-center gap-1.5 px-4 py-1.5 text-sm bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition font-normal">
-					Start tracking <ArrowRight size={14} />
+					Get visibility <ArrowRight size={14} />
 				</a>
 			</div>
 		</div>
@@ -138,26 +137,30 @@
 
 	<!-- Overlay content -->
 	<div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
-		<p class="text-lg sm:text-xl text-gray-400 font-light mb-3">Open standards for AI content transparency</p>
+		<p class="text-lg sm:text-xl text-gray-300 font-light mb-3">Not-for-profit. Open standard.</p>
 		<p class="text-2xl sm:text-3xl lg:text-4xl text-white font-light leading-tight mb-4">
 			AI agents retrieve your content every day.<br />
 			<span class="text-brand-400 font-normal">Start seeing it.</span>
 		</p>
-		<p class="text-sm sm:text-base text-gray-400 font-light mb-10">
-			Publishers, brands, retailers - if you have content on the web, AI is using it.
+		<p class="text-sm sm:text-base text-gray-300 font-light mb-10 max-w-2xl mx-auto">
+			If you publish content on the web - news, product pages, guides, research - you should know how AI systems use it. OpenAttribution operates free telemetry infrastructure and works with AI platforms, agent developers, and standards bodies to make that visibility the default.
 		</p>
 
-		<!-- Domain check - immediate action -->
-		<PolicyCheckInline />
+		<!-- Primary CTAs -->
+		<div class="flex flex-wrap justify-center gap-4 mb-6">
+			<a href="/login" class="inline-flex items-center gap-2 px-6 py-3 text-base bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition font-normal shadow-lg">
+				Get visibility <ArrowRight size={16} />
+			</a>
+			<a href="/policycheck" class="inline-flex items-center gap-2 px-6 py-3 text-base bg-white/10 text-white rounded-lg hover:bg-white/15 transition font-light">
+				Check your domain
+			</a>
+		</div>
 
 		<!-- Agent builder secondary CTA -->
-		<div class="mt-8 pt-6 border-t border-white/10 max-w-xl mx-auto">
-			<p class="text-sm text-gray-400 font-light mb-3">Building an AI agent?</p>
-			<p class="text-sm text-gray-500 font-light mb-3">
-				Agents that report usage get better content access. Emit telemetry events and publishers open the door instead of blocking you.
-			</p>
+		<div class="mt-6 pt-6 border-t border-white/10 max-w-xl mx-auto">
+			<p class="text-sm text-gray-300 font-light mb-3">Building an AI agent? Agents that report usage get better content access.</p>
 			<div class="flex flex-wrap justify-center gap-3">
-				<a href="#developers" class="inline-flex items-center gap-1.5 px-4 py-2 text-sm bg-amber-600/80 text-white rounded-lg hover:bg-amber-600 transition font-normal">
+				<a href="#developers" class="inline-flex items-center gap-1.5 px-4 py-2 text-sm bg-white/8 text-gray-300 rounded-lg hover:bg-white/15 transition font-light">
 					Developer quick start <ArrowRight size={14} />
 				</a>
 				<a href="/docs" class="inline-flex items-center gap-1.5 px-4 py-2 text-sm bg-white/8 text-gray-300 rounded-lg hover:bg-white/15 transition font-light">
@@ -174,7 +177,8 @@
 			/>
 		</div>
 
-		<a href="#demo" class="inline-block mt-8 text-gray-500 hover:text-white transition animate-bounce">
+		<a href="#demo" class="inline-flex flex-col items-center gap-1 mt-8 text-gray-400 hover:text-white transition animate-bounce">
+			<span class="text-xs tracking-wide">See how it works</span>
 			<ArrowDown size={24} />
 		</a>
 	</div>
@@ -183,13 +187,12 @@
 <!-- ========================= -->
 <!-- LIVE DEMO - Three-pane     -->
 <!-- ========================= -->
-<section id="demo" data-animate class="scroll-mt-20 py-20 px-6 bg-gradient-to-b from-white to-cream">
+<section id="demo" data-animate class="scroll-mt-20 py-20 px-6 bg-white">
 	<div class="max-w-5xl mx-auto text-center mb-10">
-		<p class="text-xs font-mono text-brand-600 tracking-wider uppercase mb-2">How it looks</p>
-		<h2 class="text-2xl lg:text-3xl mb-3">Watch it happen</h2>
+		<h2 class="text-2xl lg:text-3xl mb-3">One session, three events</h2>
 		<p class="text-gray-600 max-w-2xl mx-auto">
-			An agent retrieves content, cites it in a response, and a user clicks through.
-			Three events. One session. Full attribution.
+			A user asks a question. The agent retrieves your content, cites it in the response, and the user clicks through.
+			Each step is a telemetry event. This is what that looks like.
 		</p>
 	</div>
 
@@ -199,9 +202,14 @@
 </section>
 
 <!-- ================================ -->
+<!-- .WELL-KNOWN SHOWCASE             -->
+<!-- ================================ -->
+<WellKnownShowcase />
+
+<!-- ================================ -->
 <!-- THE FLOW - Interactive walkthrough -->
 <!-- ================================ -->
-<section id="how-it-works" class="scroll-mt-20 pt-20 pb-20 px-6 bg-gradient-to-b from-cream to-white">
+<section id="how-it-works" class="scroll-mt-20 pt-20 pb-20 px-6 bg-white">
 	<div class="max-w-7xl mx-auto">
 		<div class="lg:grid lg:grid-cols-2 lg:gap-12">
 			<!-- Sticky diagram (desktop) -->
@@ -214,7 +222,7 @@
 			<!-- Scrollable steps -->
 			<div>
 				<!-- Sticky header + step indicator -->
-				<div class="sticky top-16 z-20 bg-cream/90 backdrop-blur-sm pt-6 pb-3 mb-4 border-b border-gray-200/50">
+				<div class="sticky top-16 z-20 bg-white/90 backdrop-blur-sm pt-6 pb-3 mb-4 border-b border-gray-200/50">
 					<p class="text-xs font-mono text-brand-600 tracking-wider uppercase mb-2">Open standard. Your data.</p>
 					<h2 class="text-2xl lg:text-3xl mb-2">What happens when AI <span class="text-brand-600">uses your content</span></h2>
 					<p class="text-sm text-gray-500 font-light mb-3">
@@ -306,7 +314,7 @@
 <!-- ================================ -->
 <!-- ENGAGEMENT LADDER                -->
 <!-- ================================ -->
-<section data-animate class="py-20 px-6 bg-gradient-to-b from-white to-cream">
+<section data-animate class="py-20 px-6 bg-cream">
 	<div class="max-w-6xl mx-auto">
 		<div class="text-center mb-16">
 			<h2 class="text-3xl lg:text-5xl mb-6">See what's <span class="text-brand-600">happening</span></h2>
@@ -319,31 +327,60 @@
 		<!-- Graduated engagement ladder -->
 		<div class="space-y-6">
 			<!-- Level 1: PolicyCheck -->
-			<div class="p-6 lg:p-8 rounded-xl bg-gradient-to-r from-brand-50 to-amber-50 border border-brand-200 shadow-md">
-				<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-					<div class="flex items-start gap-4">
+			<div class="rounded-xl bg-white border border-gray-200 shadow-md overflow-hidden">
+				<div class="flex items-center gap-3 px-5 py-2.5 bg-brand-600 text-white lg:hidden">
+					<span class="text-sm font-normal">1</span>
+					<h3 class="text-base font-normal text-white">Check your domain with PolicyCheck</h3>
+				</div>
+				<div class="p-6 lg:p-8">
+					<div class="hidden lg:flex items-start gap-4">
 						<span class="w-10 h-10 rounded-full bg-brand-600 text-white flex items-center justify-center text-sm font-normal flex-shrink-0">1</span>
 						<div>
 							<h3 class="text-xl font-normal text-gray-800">Check your domain with PolicyCheck</h3>
-							<p class="text-gray-600 font-light mt-1">
+							<p class="text-gray-600 font-light mt-1 mb-3">
 								See which of 26+ AI bots can access your content right now. No signup needed.
 								Takes 30 seconds.
 							</p>
+							<a href="/policycheck" class="inline-flex items-center gap-1.5 px-5 py-2.5 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition shadow font-normal text-sm">
+								Try PolicyCheck <ArrowRight size={14} />
+							</a>
 						</div>
 					</div>
-					<a href="/policycheck" class="px-6 py-3 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition shadow-lg font-normal text-sm whitespace-nowrap self-start lg:self-center">
-						Try PolicyCheck
-					</a>
+					<div class="lg:hidden">
+						<p class="text-gray-600 font-light mb-3">
+							See which of 26+ AI bots can access your content right now. No signup needed.
+							Takes 30 seconds.
+						</p>
+						<a href="/policycheck" class="inline-flex items-center gap-1.5 px-5 py-2.5 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition shadow font-normal text-sm">
+							Try PolicyCheck <ArrowRight size={14} />
+						</a>
+					</div>
 				</div>
 			</div>
 
 			<!-- Level 2: .well-known file -->
-			<div class="p-6 lg:p-8 rounded-xl bg-white border border-gray-200 shadow-md">
-				<div class="flex items-start gap-4">
-					<span class="w-10 h-10 rounded-full bg-brand-600 text-white flex items-center justify-center text-sm font-normal flex-shrink-0">2</span>
-					<div>
-						<h3 class="text-xl font-normal text-gray-800">Start tracking with a .well-known file</h3>
-						<p class="text-gray-600 font-light mt-1 mb-3">
+			<div class="rounded-xl bg-white border border-gray-200 shadow-md overflow-hidden">
+				<div class="flex items-center gap-3 px-5 py-2.5 bg-brand-600 text-white lg:hidden">
+					<span class="text-sm font-normal">2</span>
+					<h3 class="text-base font-normal text-white">Start tracking with a .well-known file</h3>
+				</div>
+				<div class="p-6 lg:p-8">
+					<div class="hidden lg:flex items-start gap-4">
+						<span class="w-10 h-10 rounded-full bg-brand-600 text-white flex items-center justify-center text-sm font-normal flex-shrink-0">2</span>
+						<div>
+							<h3 class="text-xl font-normal text-gray-800">Start tracking with a .well-known file</h3>
+							<p class="text-gray-600 font-light mt-1 mb-3">
+								We generate your <code class="px-1 py-0.5 bg-gray-100 rounded border border-gray-200 text-xs font-mono">.well-known/openattribution.json</code> file.
+								Place it on your site - four lines of JSON that declare your telemetry endpoint.
+								Publishing this file costs nothing and positions you for the cooperative future.
+							</p>
+							<a href="/login" class="inline-flex items-center gap-1.5 px-5 py-2.5 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition shadow font-normal text-sm">
+								Sign up and get your file <ArrowRight size={14} />
+							</a>
+						</div>
+					</div>
+					<div class="lg:hidden">
+						<p class="text-gray-600 font-light mb-3">
 							We generate your <code class="px-1 py-0.5 bg-gray-100 rounded border border-gray-200 text-xs font-mono">.well-known/openattribution.json</code> file.
 							Place it on your site - four lines of JSON that declare your telemetry endpoint.
 							Publishing this file costs nothing and positions you for the cooperative future.
@@ -356,12 +393,48 @@
 			</div>
 
 			<!-- Level 3: Report AI bot traffic from your stack -->
-			<div class="p-6 lg:p-8 rounded-xl bg-white border border-gray-200 shadow-md">
-				<div class="flex items-start gap-4">
-					<span class="w-10 h-10 rounded-full bg-amber-600 text-white flex items-center justify-center text-sm font-normal flex-shrink-0">3</span>
-					<div class="w-full">
-						<h3 class="text-xl font-normal text-gray-800">Report AI bot traffic from your stack</h3>
-						<p class="text-gray-600 font-light mt-1 mb-3">
+			<div class="rounded-xl bg-white border border-gray-200 shadow-md overflow-hidden">
+				<div class="flex items-center gap-3 px-5 py-2.5 bg-brand-600 text-white lg:hidden">
+					<span class="text-sm font-normal">3</span>
+					<h3 class="text-base font-normal text-white">Report AI bot traffic from your stack</h3>
+				</div>
+				<div class="p-6 lg:p-8">
+					<div class="hidden lg:flex items-start gap-4">
+						<span class="w-10 h-10 rounded-full bg-brand-600 text-white flex items-center justify-center text-sm font-normal flex-shrink-0">3</span>
+						<div class="w-full">
+							<h3 class="text-xl font-normal text-gray-800">Report AI bot traffic from your stack</h3>
+							<p class="text-gray-600 font-light mt-1 mb-3">
+								Your infrastructure already sees every AI bot request. Pick your platform -
+								a short integration detects AI user agents and reports retrieval events to your telemetry endpoint.
+								You don't need AI companies to cooperate. Events go to the OA public server by default, or route them to your own.
+							</p>
+							<p class="text-xs text-green-700 bg-green-50 border border-green-200 rounded-lg px-3 py-2 mb-4 font-light">
+								Only bot identity (user agent) and URL visited. No cookies, no user data, no impression tracking.
+							</p>
+							<div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+								{#each [
+									{ href: '/docs/integrations/wordpress', label: 'WordPress', tag: 'Plugin' },
+									{ href: '/docs/integrations/cloudflare', label: 'Cloudflare', tag: 'Worker' },
+									{ href: '/docs/integrations/fastly', label: 'Fastly', tag: 'Log stream' },
+									{ href: '/docs/integrations/vercel', label: 'Vercel', tag: 'Marketplace' },
+									{ href: '/docs/integrations/netlify', label: 'Netlify', tag: 'Extension' },
+									{ href: '/docs/integrations/akamai', label: 'Akamai', tag: 'EdgeWorker' },
+									{ href: '/docs/integrations/cloudfront', label: 'CloudFront', tag: 'Kinesis' },
+									{ href: '/docs', label: 'All options', tag: 'Docs' },
+								] as item}
+									<a
+										href={item.href}
+										class="flex flex-col items-center p-3 rounded-lg border border-gray-200 hover:border-brand-200 hover:bg-brand-50/50 transition text-center group"
+									>
+										<span class="text-sm font-normal text-gray-800 group-hover:text-brand-600 transition">{item.label}</span>
+										<span class="text-xs text-gray-400 font-light">{item.tag}</span>
+									</a>
+								{/each}
+							</div>
+						</div>
+					</div>
+					<div class="lg:hidden">
+						<p class="text-gray-600 font-light mb-3">
 							Your infrastructure already sees every AI bot request. Pick your platform -
 							a short integration detects AI user agents and reports retrieval events to your telemetry endpoint.
 							You don't need AI companies to cooperate. Events go to the OA public server by default, or route them to your own.
@@ -369,8 +442,7 @@
 						<p class="text-xs text-green-700 bg-green-50 border border-green-200 rounded-lg px-3 py-2 mb-4 font-light">
 							Only bot identity (user agent) and URL visited. No cookies, no user data, no impression tracking.
 						</p>
-
-						<div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+						<div class="grid grid-cols-2 gap-2">
 							{#each [
 								{ href: '/docs/integrations/wordpress', label: 'WordPress', tag: 'Plugin' },
 								{ href: '/docs/integrations/cloudflare', label: 'Cloudflare', tag: 'Worker' },
@@ -395,12 +467,29 @@
 			</div>
 
 			<!-- Level 4: Web server middleware -->
-			<div class="p-6 lg:p-8 rounded-xl bg-white border border-gray-200 shadow-md">
-				<div class="flex items-start gap-4">
-					<span class="w-10 h-10 rounded-full bg-amber-600 text-white flex items-center justify-center text-sm font-normal flex-shrink-0">4</span>
-					<div>
-						<h3 class="text-xl font-normal text-gray-800">Add web server middleware</h3>
-						<p class="text-gray-600 font-light mt-1 mb-3">
+			<div class="rounded-xl bg-white border border-gray-200 shadow-md overflow-hidden">
+				<div class="flex items-center gap-3 px-5 py-2.5 bg-brand-600 text-white lg:hidden">
+					<span class="text-sm font-normal">4</span>
+					<h3 class="text-base font-normal text-white">Add web server middleware</h3>
+				</div>
+				<div class="p-6 lg:p-8">
+					<div class="hidden lg:flex items-start gap-4">
+						<span class="w-10 h-10 rounded-full bg-brand-600 text-white flex items-center justify-center text-sm font-normal flex-shrink-0">4</span>
+						<div>
+							<h3 class="text-xl font-normal text-gray-800">Add web server middleware</h3>
+							<p class="text-gray-600 font-light mt-1 mb-3">
+								Origin-side reporting for Express, Django, Rails. Catches the
+								<code class="px-1 py-0.5 bg-gray-100 rounded border border-gray-200 text-xs font-mono">OA-Telemetry-ID</code> header
+								from cooperative agents and reports corroborated retrieval events. When both your server and the agent report the same fetch,
+								you get a stronger signal than either alone.
+							</p>
+							<a href="/docs" class="inline-flex items-center gap-1.5 px-5 py-2.5 bg-white text-gray-700 border border-gray-300 rounded-lg hover:border-brand-300 hover:text-brand-600 transition font-normal text-sm">
+								View integration guides <ArrowRight size={14} />
+							</a>
+						</div>
+					</div>
+					<div class="lg:hidden">
+						<p class="text-gray-600 font-light mb-3">
 							Origin-side reporting for Express, Django, Rails. Catches the
 							<code class="px-1 py-0.5 bg-gray-100 rounded border border-gray-200 text-xs font-mono">OA-Telemetry-ID</code> header
 							from cooperative agents and reports corroborated retrieval events. When both your server and the agent report the same fetch,
@@ -414,19 +503,37 @@
 			</div>
 
 			<!-- Level 5: Self-host -->
-			<div class="p-6 lg:p-8 rounded-xl bg-white border border-gray-200 shadow-md">
-				<div class="flex items-start gap-4">
-					<span class="w-10 h-10 rounded-full bg-gray-700 text-white flex items-center justify-center text-sm font-normal flex-shrink-0">5</span>
-					<div>
-						<h3 class="text-xl font-normal text-gray-800">Host your own telemetry server</h3>
-						<p class="text-gray-600 font-light mt-1">
+			<div class="rounded-xl bg-white border border-gray-200 shadow-md overflow-hidden">
+				<div class="flex items-center gap-3 px-5 py-2.5 bg-gray-700 text-white lg:hidden">
+					<span class="text-sm font-normal">5</span>
+					<h3 class="text-base font-normal text-white">Host your own telemetry server</h3>
+				</div>
+				<div class="p-6 lg:p-8">
+					<div class="hidden lg:flex items-start gap-4">
+						<span class="w-10 h-10 rounded-full bg-gray-700 text-white flex items-center justify-center text-sm font-normal flex-shrink-0">5</span>
+						<div>
+							<h3 class="text-xl font-normal text-gray-800">Host your own telemetry server</h3>
+							<p class="text-gray-600 font-light mt-1 mb-3">
+								The reference server is open source (Apache 2.0). Deploy it yourself and own the full pipeline -
+								collection, storage, reporting. Point your .well-known file at your own endpoint
+								and every signal routes to infrastructure you control.
+								No third-party dependency. No data leaving your network. The protocol is the same either way.
+							</p>
+							<a href="https://github.com/openattribution-org/oa-telemetry-server" target="_blank" rel="noopener noreferrer"
+								class="inline-flex items-center gap-1.5 px-5 py-2.5 bg-white text-gray-700 border border-gray-300 rounded-lg hover:border-brand-300 hover:text-brand-600 transition font-normal text-sm">
+								Reference server on GitHub <ArrowRight size={14} />
+							</a>
+						</div>
+					</div>
+					<div class="lg:hidden">
+						<p class="text-gray-600 font-light mb-3">
 							The reference server is open source (Apache 2.0). Deploy it yourself and own the full pipeline -
 							collection, storage, reporting. Point your .well-known file at your own endpoint
 							and every signal routes to infrastructure you control.
 							No third-party dependency. No data leaving your network. The protocol is the same either way.
 						</p>
-						<a href="https://github.com/openattribution-org/telemetry/tree/main/server" target="_blank" rel="noopener noreferrer"
-							class="inline-flex items-center gap-1.5 mt-3 px-5 py-2.5 bg-white text-gray-700 border border-gray-300 rounded-lg hover:border-brand-300 hover:text-brand-600 transition font-normal text-sm">
+						<a href="https://github.com/openattribution-org/oa-telemetry-server" target="_blank" rel="noopener noreferrer"
+							class="inline-flex items-center gap-1.5 px-5 py-2.5 bg-white text-gray-700 border border-gray-300 rounded-lg hover:border-brand-300 hover:text-brand-600 transition font-normal text-sm">
 							Reference server on GitHub <ArrowRight size={14} />
 						</a>
 					</div>
@@ -435,7 +542,7 @@
 		</div>
 
 		<!-- Agent builders callout -->
-		<div class="mt-12 p-8 bg-gradient-to-r from-brand-50 to-amber-50 rounded-2xl border-l-4 border-brand-600">
+		<div class="mt-12 p-8 bg-brand-50 rounded-2xl border-l-4 border-brand-600">
 			<h3 class="text-xl font-normal mb-3">Building an agent?</h3>
 			<p class="text-gray-600 font-light leading-relaxed">
 				Chatbots, agentic browsers, shopping assistants - if your agent retrieves and cites content,
@@ -452,14 +559,9 @@
 </section>
 
 <!-- ================================ -->
-<!-- .WELL-KNOWN SHOWCASE             -->
-<!-- ================================ -->
-<WellKnownShowcase />
-
-<!-- ================================ -->
 <!-- JOIN THE INITIATIVE              -->
 <!-- ================================ -->
-<section data-animate class="py-20 px-6 bg-gradient-to-b from-white to-cream">
+<section data-animate class="py-20 px-6 bg-cream">
 	<div class="max-w-6xl mx-auto">
 		<div class="text-center mb-12">
 			<h2 class="text-3xl lg:text-4xl mb-6">This takes <span class="text-brand-600">collective action</span></h2>
@@ -586,7 +688,7 @@
 		<div class="grid lg:grid-cols-2 gap-8">
 			<!-- Telemetry: primary, open by default -->
 			<details class="group" open>
-				<summary class="cursor-pointer p-6 rounded-xl bg-gradient-to-br from-brand-50 to-amber-50 border border-brand-200 hover:shadow-md transition">
+				<summary class="cursor-pointer p-6 rounded-xl bg-brand-50 border border-brand-200 hover:shadow-md transition">
 					<span class="text-xl font-normal text-brand-900">Telemetry - Content Events</span>
 					<span class="block mt-1 text-sm text-gray-600 font-light">Report retrieval and citation events. No AIMS manifest needed.</span>
 				</summary>
@@ -631,7 +733,7 @@
 
 			<!-- AIMS: secondary -->
 			<details class="group">
-				<summary class="cursor-pointer p-6 rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 hover:shadow-md transition">
+				<summary class="cursor-pointer p-6 rounded-xl bg-gray-50 border border-gray-200 hover:shadow-md transition">
 					<span class="text-xl font-normal text-gray-700">AIMS - Agent Identity</span>
 					<span class="block mt-1 text-sm text-gray-500 font-light">Optional. Verifiable agent identity for content marketplace access.</span>
 				</summary>
@@ -646,21 +748,22 @@
 						<div class="bg-gray-800 px-4 py-2">
 							<span class="text-xs text-gray-400 font-mono uppercase tracking-wider">python</span>
 						</div>
-						<pre class="bg-gray-900 px-4 py-3 text-sm font-mono text-gray-200 overflow-x-auto leading-relaxed"><code><span class="text-purple-400">from</span> openattribution.aims <span class="text-purple-400">import</span> AIManifest
-<span class="text-purple-400">from</span> openattribution.aims.layers <span class="text-purple-400">import</span> (
-    DeploymentLayer,
-    ContentAccessLayer,
+						<pre class="bg-gray-900 px-4 py-3 text-sm font-mono text-gray-200 overflow-x-auto leading-relaxed"><code><span class="text-purple-400">from</span> openattribution.aims <span class="text-purple-400">import</span> (
+    AIMSManifest, Operator, Licence,
+    TelemetryCompliance,
 )
 
-manifest = AIManifest(
-    did=<span class="text-green-400">"did:aims:web:example.com:my-agent"</span>,
-    deployment=DeploymentLayer(
-        operator=<span class="text-green-400">"Example Corp"</span>,
-        specialization=<span class="text-green-400">"customer_service"</span>,
-    ),
-    content_access=ContentAccessLayer(
-        licensed_sources=[<span class="text-green-400">"source:internal-docs"</span>],
-        rsl_compliance=<span class="text-purple-400">True</span>,
+manifest = AIMSManifest(
+    id=<span class="text-green-400">"did:web:example.com:agents:my-agent"</span>,
+    operator=Operator(name=<span class="text-green-400">"Example Corp"</span>),
+    licences=[Licence(
+        source=<span class="text-green-400">"internal-docs.example.com"</span>,
+        type=<span class="text-green-400">"partnership"</span>,
+        scope=<span class="text-green-400">"inference"</span>,
+    )],
+    telemetry=TelemetryCompliance(
+        endpoint=<span class="text-green-400">"https://collect.openattribution.org/v1/events"</span>,
+        agent_id=<span class="text-green-400">"did:web:example.com:agents:my-agent"</span>,
     ),
 )</code></pre>
 					</div>
@@ -733,7 +836,7 @@ manifest = AIManifest(
 <!-- ================================ -->
 <!-- STATUS + GOVERNANCE              -->
 <!-- ================================ -->
-<section data-animate class="py-20 px-6 bg-gradient-to-b from-cream to-white">
+<section data-animate class="py-20 px-6 bg-white">
 	<div class="max-w-6xl mx-auto">
 		<div class="text-center mb-12">
 			<h2 class="text-3xl lg:text-4xl mb-4">Open by <span class="text-brand-600">design</span></h2>
@@ -832,14 +935,14 @@ manifest = AIManifest(
 <!-- ================================ -->
 <!-- FAQ + CONTACT                    -->
 <!-- ================================ -->
-<section id="faq" data-animate class="py-20 px-6 bg-gradient-to-b from-cream to-white">
+<section id="faq" data-animate class="py-20 px-6 bg-white">
 	<div class="max-w-3xl mx-auto">
 		<div class="text-center mb-12">
 			<h2 class="text-3xl lg:text-4xl"><span class="text-brand-600">FAQ</span></h2>
 		</div>
 
 		<div class="space-y-4">
-			<details class="p-6 rounded-xl bg-gradient-to-r from-brand-50 to-amber-50 cursor-pointer hover:shadow-md transition">
+			<details class="p-6 rounded-xl bg-brand-50 cursor-pointer hover:shadow-md transition">
 				<summary class="font-normal text-lg">What if AI agents ignore the standard?</summary>
 				<p class="mt-4 text-gray-600 font-light leading-relaxed">
 					That's precisely why server-side and CDN reporting exist. You don't need the agent to cooperate.
@@ -847,7 +950,7 @@ manifest = AIManifest(
 					When an agent does cooperate, you get corroborated events - stronger signal, not a dependency.
 				</p>
 			</details>
-			<details class="p-6 rounded-xl bg-gradient-to-r from-amber-50 to-brand-50 cursor-pointer hover:shadow-md transition">
+			<details class="p-6 rounded-xl bg-brand-50 cursor-pointer hover:shadow-md transition">
 				<summary class="font-normal text-lg">How is this different from GEO?</summary>
 				<p class="mt-4 text-gray-600 font-light leading-relaxed">
 					Generative engine optimisation is probabilistic - you guess how content influences AI responses based on ranking signals and heuristics.
@@ -856,7 +959,7 @@ manifest = AIManifest(
 					It's the difference between estimating TV ad impact and watching the transaction happen.
 				</p>
 			</details>
-			<details class="p-6 rounded-xl bg-gradient-to-r from-brand-50 to-amber-50 cursor-pointer hover:shadow-md transition">
+			<details class="p-6 rounded-xl bg-brand-50 cursor-pointer hover:shadow-md transition">
 				<summary class="font-normal text-lg">Is this opposed to AI development?</summary>
 				<p class="mt-4 text-gray-600 font-light leading-relaxed">
 					No. AI systems need quality content. Content owners need measurement and attribution. These standards make both possible
@@ -864,7 +967,7 @@ manifest = AIManifest(
 					The ones who don't still get tracked at the infrastructure level.
 				</p>
 			</details>
-			<details class="p-6 rounded-xl bg-gradient-to-r from-amber-50 to-brand-50 cursor-pointer hover:shadow-md transition">
+			<details class="p-6 rounded-xl bg-brand-50 cursor-pointer hover:shadow-md transition">
 				<summary class="font-normal text-lg">Why an open standard instead of a product?</summary>
 				<p class="mt-4 text-gray-600 font-light leading-relaxed">
 					Attribution only works if both sides of the transaction trust the data. A proprietary intermediary
@@ -875,7 +978,7 @@ manifest = AIManifest(
 					can all build on the same telemetry layer instead of each inventing their own.
 				</p>
 			</details>
-			<details class="p-6 rounded-xl bg-gradient-to-r from-brand-50 to-amber-50 cursor-pointer hover:shadow-md transition">
+			<details class="p-6 rounded-xl bg-brand-50 cursor-pointer hover:shadow-md transition">
 				<summary class="font-normal text-lg">What does it cost?</summary>
 				<p class="mt-4 text-gray-600 font-light leading-relaxed">
 					Nothing. The specifications, SDKs, and reference server are Apache 2.0 - free to use, modify, distribute.
