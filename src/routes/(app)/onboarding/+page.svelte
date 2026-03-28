@@ -1,7 +1,10 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { getTheme } from '$lib/stores/theme.svelte.js';
-	import { Globe, CheckCircle, AlertCircle, Copy, Check, Mail } from 'lucide-svelte';
+	import { Globe, CheckCircle, AlertCircle, Copy, Check, Mail, ArrowRight, Loader2 } from 'lucide-svelte';
+	import type { AnalysisResult, AnalyzeResponse } from '$lib/policycheck/types.js';
+
+	const POLICYCHECK_API = 'https://policycheck.openattribution.org';
 
 	let { form, data }: { form: any; data: { prefillDomain: string } } = $props();
 
@@ -12,6 +15,68 @@
 	let copiedDns = $state(false);
 	let copiedMeta = $state(false);
 	let copiedWellKnown = $state(false);
+
+	// PolicyCheck state
+	let scanResult = $state<AnalysisResult | null>(null);
+	let scanning = $state(false);
+
+	const allowedCount = $derived(
+		scanResult ? scanResult.ai_bot_analysis.filter((b) => b.status === 'allowed').length : 0
+	);
+	const totalBots = $derived(scanResult ? scanResult.ai_bot_analysis.length : 0);
+	const detectedCdn = $derived(scanResult?.infrastructure?.cdn ?? null);
+	const detectedCms = $derived(scanResult?.infrastructure?.cms ?? null);
+	const wellKnownFound = $derived(scanResult?.well_known_oa?.found ?? false);
+
+	const integrationLabel: Record<string, string> = {
+		cloudflare: 'Cloudflare Worker',
+		vercel: 'Vercel Middleware',
+		netlify: 'Netlify Extension',
+		fastly: 'Fastly Log Stream',
+		akamai: 'Akamai EdgeWorker',
+		cloudfront: 'CloudFront + Kinesis',
+		wordpress: 'WordPress Plugin',
+		shopify: 'Shopify App',
+	};
+
+	const integrationHref: Record<string, string> = {
+		cloudflare: '/docs/integrations/cloudflare',
+		vercel: '/docs/integrations/vercel',
+		netlify: '/docs/integrations/netlify',
+		fastly: '/docs/integrations/fastly',
+		akamai: '/docs/integrations/akamai',
+		cloudfront: '/docs/integrations/cloudfront',
+		wordpress: '/docs/integrations/wordpress',
+		shopify: '/docs/integrations/shopify',
+	};
+
+	async function runScan(domain: string) {
+		scanning = true;
+		try {
+			const url = domain.startsWith('http') ? domain : `https://${domain}`;
+			const res = await fetch(`${POLICYCHECK_API}/analyze`, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ urls: [url], user_agent: '*' })
+			});
+			if (!res.ok) return;
+			const data: AnalyzeResponse = await res.json();
+			if (data.results.length > 0 && data.results[0].status === 'success') {
+				scanResult = data.results[0];
+			}
+		} catch {
+			// Scan is optional - don't block onboarding
+		} finally {
+			scanning = false;
+		}
+	}
+
+	// Auto-scan when domain is registered
+	$effect(() => {
+		if (form?.success && form?.domain && !scanResult && !scanning) {
+			runScan(form.domain);
+		}
+	});
 
 	async function copyToClipboard(text: string, which: 'dns' | 'meta' | 'wellknown') {
 		await navigator.clipboard.writeText(text);
@@ -61,18 +126,18 @@
 						<span class="px-2 py-0.5 rounded-full text-xs font-medium bg-brand-100 text-brand-700">Recommended</span>
 					</div>
 					<p class="text-xs font-light text-gray-500 mb-3">
-						Create <code class="px-1 py-0.5 bg-white rounded border border-brand-200 text-xs">/.well-known/openattribution.json</code> on your site. This also tells AI agents where to send telemetry - so you'll need it anyway.
+						Create <code class="px-1 py-0.5 bg-white rounded border border-brand-200 text-xs">/.well-known/openattribution</code> on your site. This also tells AI agents where to send telemetry - so you'll need it anyway.
 					</p>
 					<div class="flex items-start gap-2">
 						<pre class="flex-1 px-3 py-2 bg-white rounded-lg border border-brand-200 text-sm font-mono text-gray-800 overflow-x-auto">{`{
   "openattribution": {
-    "version": "0.5",
-    "telemetry_endpoint": "https://api.openattribution.org/api/v1/telemetry",
+    "version": "0.1",
+    "telemetry_endpoint": "https://api.openattribution.org",
     "verification": "${form.token}"
   }
 }`}</pre>
 						<button
-							onclick={() => copyToClipboard(JSON.stringify({ openattribution: { version: '0.5', telemetry_endpoint: 'https://api.openattribution.org/api/v1/telemetry', verification: form?.token } }, null, 2), 'wellknown')}
+							onclick={() => copyToClipboard(JSON.stringify({ openattribution: { version: '0.1', telemetry_endpoint: 'https://api.openattribution.org', verification: form?.token } }, null, 2), 'wellknown')}
 							class="shrink-0 p-2 text-gray-400 hover:text-brand-600 transition rounded-lg hover:bg-white mt-1"
 							aria-label="Copy JSON"
 						>
@@ -140,13 +205,106 @@
 				</div>
 			</div>
 
-			<div class="flex justify-center mt-8">
+			<!-- PolicyCheck scan results -->
+			<div class="bg-white rounded-2xl shadow border border-gray-200 p-6 mt-8">
+				{#if scanning}
+					<div class="flex items-center gap-3">
+						<Loader2 size={18} class="text-brand-600 animate-spin" />
+						<p class="text-sm font-light text-gray-600">Scanning {form.domain} for AI bot access and infrastructure...</p>
+					</div>
+				{:else if scanResult}
+					<div class="space-y-4">
+						<div>
+							<p class="text-sm font-normal text-gray-800">
+								{allowedCount} of {totalBots} AI agents can access {form.domain}
+							</p>
+							<p class="text-sm font-light text-gray-500">
+								Every retrieval delivers value to the agent's users - and right now you have no visibility into how often that happens.
+							</p>
+						</div>
+
+						{#if detectedCdn || detectedCms}
+							<div class="p-4 rounded-xl bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200">
+								<p class="text-sm font-normal text-gray-800 mb-1">
+									We detected
+									{#if detectedCms && detectedCdn}
+										{detectedCms.charAt(0).toUpperCase() + detectedCms.slice(1)} behind {detectedCdn.charAt(0).toUpperCase() + detectedCdn.slice(1)}
+									{:else if detectedCms}
+										{detectedCms.charAt(0).toUpperCase() + detectedCms.slice(1)}
+									{:else if detectedCdn}
+										{detectedCdn.charAt(0).toUpperCase() + detectedCdn.slice(1)}
+									{/if}
+									on your domain
+								</p>
+								<p class="text-xs font-light text-gray-600 mb-3">
+									{#if detectedCms === 'wordpress' && detectedCdn}
+										Install the WordPress plugin to catch AI agents that identify themselves, and add a {detectedCdn.charAt(0).toUpperCase() + detectedCdn.slice(1)} integration to catch the ones that don't.
+									{:else if detectedCms === 'wordpress'}
+										The WordPress plugin catches every AI agent that identifies itself via user-agent. Install it and you'll start seeing data.
+									{:else if detectedCdn}
+										A short edge integration detects AI user agents and reports retrieval events. Your {detectedCdn.charAt(0).toUpperCase() + detectedCdn.slice(1)} infrastructure already sees every request.
+									{/if}
+								</p>
+								<div class="flex flex-wrap gap-2">
+									{#if detectedCms && integrationHref[detectedCms]}
+										<a
+											href={integrationHref[detectedCms]}
+											class="inline-flex items-center gap-1.5 px-4 py-2 text-sm bg-green-600 text-white rounded-lg hover:bg-green-700 transition font-normal"
+										>
+											Set up {integrationLabel[detectedCms]} <ArrowRight size={14} />
+										</a>
+									{/if}
+									{#if detectedCdn && integrationHref[detectedCdn]}
+										<a
+											href={integrationHref[detectedCdn]}
+											class="inline-flex items-center gap-1.5 px-4 py-2 text-sm bg-white text-gray-700 border border-gray-300 rounded-lg hover:border-green-300 hover:text-green-700 transition font-light"
+										>
+											{integrationLabel[detectedCdn]} guide <ArrowRight size={14} />
+										</a>
+									{/if}
+								</div>
+							</div>
+						{:else}
+							<div class="p-4 rounded-xl bg-gray-50 border border-gray-200">
+								<p class="text-sm font-normal text-gray-800 mb-1">Connect your infrastructure</p>
+								<p class="text-xs font-light text-gray-600 mb-3">
+									Your CDN or web server already sees every AI bot request. Pick your platform to start reporting telemetry events.
+								</p>
+								<div class="flex flex-wrap gap-2">
+									{#each [
+										{ href: '/docs/integrations/wordpress', label: 'WordPress' },
+										{ href: '/docs/integrations/cloudflare', label: 'Cloudflare' },
+										{ href: '/docs/integrations/vercel', label: 'Vercel' },
+										{ href: '/docs/integrations/netlify', label: 'Netlify' },
+										{ href: '/docs', label: 'All options' },
+									] as item}
+										<a
+											href={item.href}
+											class="px-3 py-1.5 text-sm rounded-lg border border-gray-200 text-gray-700 hover:border-brand-200 hover:text-brand-600 transition font-light"
+										>
+											{item.label}
+										</a>
+									{/each}
+								</div>
+							</div>
+						{/if}
+					</div>
+				{:else}
+					<p class="text-sm font-normal text-gray-800 mb-1">What happens next</p>
+					<p class="text-sm font-light text-gray-600">
+						Once you verify ownership, connect your CDN or web server. Your infrastructure already sees every AI bot request -
+						a short integration turns those into telemetry events so you can see which agents use your content, how often, and which pages they value most.
+					</p>
+				{/if}
+			</div>
+
+			<div class="flex justify-center mt-6">
 				<a
 					href="/domains"
 					class="inline-flex items-center gap-2 px-6 py-3 bg-brand-600 text-white rounded-lg
 					       hover:bg-brand-700 transition shadow-lg font-normal"
 				>
-					Go to domains
+					Verify your domain
 				</a>
 			</div>
 		</div>
@@ -181,9 +339,9 @@
 					What domain do you own? You'll verify ownership next.
 				</p>
 				{#if prefillDomain}
-					<div class="mt-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-200 text-sm text-brand-700">
-						from PolicyCheck
-					</div>
+					<p class="mt-3 text-sm text-brand-700 font-light">
+						We've pre-filled <strong>{prefillDomain}</strong> for you.
+					</p>
 				{/if}
 			</div>
 

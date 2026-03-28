@@ -137,50 +137,22 @@
 
 	<!-- Overlay content -->
 	<div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
-		<p class="text-lg sm:text-xl text-gray-300 font-light mb-3">Not-for-profit. Open standard.</p>
-		<p class="text-2xl sm:text-3xl lg:text-4xl text-white font-light leading-tight mb-4">
-			AI agents retrieve your content every day.<br />
-			<span class="text-brand-400 font-normal">Start seeing it.</span>
-		</p>
-		<p class="text-sm sm:text-base text-gray-300 font-light mb-10 max-w-2xl mx-auto">
-			If you publish content on the web - news, product pages, guides, research - you should know how AI systems use it. OpenAttribution operates free telemetry infrastructure and works with AI platforms, agent developers, and standards bodies to make that visibility the default.
+		<h1 class="text-4xl sm:text-5xl lg:text-6xl text-white font-light leading-tight mb-6">
+			Know when AI<br />uses your content
+		</h1>
+		<p class="text-lg sm:text-xl text-gray-300 font-light mb-10 max-w-2xl mx-auto">
+			Track how AI agents use your content. Free, open source telemetry operated by an independent standards body.
 		</p>
 
 		<!-- Primary CTAs -->
-		<div class="flex flex-wrap justify-center gap-4 mb-6">
+		<div class="flex flex-wrap justify-center gap-4">
 			<a href="/login" class="inline-flex items-center gap-2 px-6 py-3 text-base bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition font-normal shadow-lg">
-				Get visibility <ArrowRight size={16} />
+				Get started <ArrowRight size={16} />
 			</a>
-			<a href="/policycheck" class="inline-flex items-center gap-2 px-6 py-3 text-base bg-white/10 text-white rounded-lg hover:bg-white/15 transition font-light">
-				Check your domain
+			<a href="/membership" class="inline-flex items-center gap-2 px-6 py-3 text-base bg-white/10 text-white rounded-lg hover:bg-white/15 transition font-light">
+				Become a member
 			</a>
 		</div>
-
-		<!-- Agent builder secondary CTA -->
-		<div class="mt-6 pt-6 border-t border-white/10 max-w-xl mx-auto">
-			<p class="text-sm text-gray-300 font-light mb-3">Building an AI agent? Agents that report usage get better content access.</p>
-			<div class="flex flex-wrap justify-center gap-3">
-				<a href="#developers" class="inline-flex items-center gap-1.5 px-4 py-2 text-sm bg-white/8 text-gray-300 rounded-lg hover:bg-white/15 transition font-light">
-					Developer quick start <ArrowRight size={14} />
-				</a>
-				<a href="/docs" class="inline-flex items-center gap-1.5 px-4 py-2 text-sm bg-white/8 text-gray-300 rounded-lg hover:bg-white/15 transition font-light">
-					Documentation <ArrowRight size={14} />
-				</a>
-			</div>
-		</div>
-
-		<div class="mt-8">
-			<OpenInAgent
-				label="Ask an AI agent about this"
-				dark={true}
-				context="This is the OpenAttribution homepage. Read it and help me understand which integration is right for my site - I might be on WordPress, Cloudflare, Fastly, Vercel, or something else."
-			/>
-		</div>
-
-		<a href="#demo" class="inline-flex flex-col items-center gap-1 mt-8 text-gray-400 hover:text-white transition animate-bounce">
-			<span class="text-xs tracking-wide">See how it works</span>
-			<ArrowDown size={24} />
-		</a>
 	</div>
 </section>
 
@@ -189,10 +161,15 @@
 <!-- ========================= -->
 <section id="demo" data-animate class="scroll-mt-20 py-20 px-6 bg-white">
 	<div class="max-w-5xl mx-auto text-center mb-10">
-		<h2 class="text-2xl lg:text-3xl mb-3">One session, three events</h2>
+		<h2 class="text-2xl lg:text-3xl mb-3">One session, four events</h2>
+		<p class="text-gray-600 max-w-2xl mx-auto mb-4">
+			When an AI agent retrieves your content, that is an event.
+			When it loads your content into its working context, that is a second - the grounding event, where your content starts creating value.
+			When it cites your content in a response, that is a third.
+			When a user clicks through, that is a fourth.
+		</p>
 		<p class="text-gray-600 max-w-2xl mx-auto">
-			A user asks a question. The agent retrieves your content, cites it in the response, and the user clicks through.
-			Each step is a telemetry event. This is what that looks like.
+			We built the infrastructure to capture them. We operate it for free. This is what it looks like.
 		</p>
 	</div>
 
@@ -229,13 +206,13 @@
 						Your infrastructure already sees AI bot traffic. The standard gives it structure so you can track, measure, and act on it.
 					</p>
 					<div class="flex items-center gap-1.5">
-						{#each Array(5) as _, i}
+						{#each Array(6) as _, i}
 							<div
 								class="h-1 flex-1 rounded-full transition-all duration-300 {i <= activeStep ? 'bg-brand-500' : 'bg-gray-200'}"
 							></div>
 						{/each}
 					</div>
-					<p class="text-xs text-gray-500 font-light mt-1.5">Step {activeStep + 1} of 5</p>
+					<p class="text-xs text-gray-500 font-light mt-1.5">Step {activeStep + 1} of 6</p>
 				</div>
 
 				<!-- Diagram is desktop-only (sticky sidebar). On mobile the steps stand alone. -->
@@ -264,15 +241,35 @@
 					}} />
 				</FlowStep>
 
-				<FlowStep step={2} title="Your content is cited in the response">
+				<FlowStep step={2} title="Your content enters the agent's context">
 					<p>
 						<span class="inline-block px-2 py-0.5 bg-amber-100 text-amber-700 text-xs rounded-full font-normal mb-2">Requires agent adoption - the standard's core goal</span>
 					</p>
 					<p>
+						The agent loads your article into its working context. This is the grounding event - the moment your content starts creating value.
+						An agent might fetch 30 articles but only load 3 into context. The other 27 were retrieved but never used.
+						Grounding captures the boundary that matters: what actually influenced the response.
+					</p>
+					<p class="mt-2">
+						Content cached by the agent for days still produces a grounding event in every session it influences, even when your CDN sees nothing.
+						This is the invisible middle - where content creates value without credit. Today, it is unmeasurable. Grounding makes it visible.
+					</p>
+					<FlowEventSnippet event={{
+						type: "content_grounded",
+						content_url: "https://example.com/best-headphones",
+						data: {
+							scope: "session",
+							cached: false,
+							tokens_ingested: 4200
+						}
+					}} />
+				</FlowStep>
+
+				<FlowStep step={3} title="Your content is cited in the response">
+					<p>
 						The agent paraphrases your review, quotes your comparison, references your data.
-						Today, visibility ends at retrieval. You can see the fetch but not what happens next.
-						This is the gap the standard closes - when agents adopt it, they report how your content was used.
-						That's the principle that was never conceded for search. It's being built for AI.
+						Not all grounded content gets cited - content can influence every response in a session without receiving credit once.
+						The gap between grounding and citation is where the interesting questions live.
 					</p>
 					<FlowEventSnippet event={{
 						type: "content_cited",
@@ -285,21 +282,22 @@
 					}} />
 				</FlowStep>
 
-				<FlowStep step={3} title="Events flow to your telemetry endpoint">
+				<FlowStep step={4} title="Events flow to your telemetry endpoint">
 					<p>
-						Retrieval events from your infrastructure, citation events from cooperative agents - they all flow to the endpoint
-						declared in your <code class="px-1 py-0.5 bg-gray-100 rounded border border-gray-200 text-xs font-mono">.well-known/openattribution.json</code> file.
+						Retrieval events from your infrastructure, grounding and citation events from cooperative agents - they all flow to the endpoint
+						declared in your <code class="px-1 py-0.5 bg-gray-100 rounded border border-gray-200 text-xs font-mono">.well-known/openattribution</code> file.
 						The OA public server collects them for free, or you self-host. Your data either way.
 					</p>
 				</FlowStep>
 
-				<FlowStep step={4} title="Content owners get visibility">
+				<FlowStep step={5} title="Content owners get visibility">
 					<p>
 						Which AI bots are hitting your site? How often? Which pages?
 						That's what you can see today with server-side reporting.
 					</p>
 					<p class="mt-2">
-						As agent adoption grows, the picture fills in - which agents are citing your content, in what form, how prominently.
+						As agent adoption grows, the picture fills in - which agents are grounding your content, which are citing it, in what form, how prominently.
+						The grounding-to-citation ratio tells you how much of your content's influence goes uncredited.
 						That's the data that makes licensing conversations real instead of guesswork.
 					</p>
 					<p class="mt-4 text-brand-600 font-normal">
@@ -370,7 +368,7 @@
 						<div>
 							<h3 class="text-xl font-normal text-gray-800">Start tracking with a .well-known file</h3>
 							<p class="text-gray-600 font-light mt-1 mb-3">
-								We generate your <code class="px-1 py-0.5 bg-gray-100 rounded border border-gray-200 text-xs font-mono">.well-known/openattribution.json</code> file.
+								We generate your <code class="px-1 py-0.5 bg-gray-100 rounded border border-gray-200 text-xs font-mono">.well-known/openattribution</code> file.
 								Place it on your site - four lines of JSON that declare your telemetry endpoint.
 								Publishing this file costs nothing and positions you for the cooperative future.
 							</p>
@@ -381,7 +379,7 @@
 					</div>
 					<div class="lg:hidden">
 						<p class="text-gray-600 font-light mb-3">
-							We generate your <code class="px-1 py-0.5 bg-gray-100 rounded border border-gray-200 text-xs font-mono">.well-known/openattribution.json</code> file.
+							We generate your <code class="px-1 py-0.5 bg-gray-100 rounded border border-gray-200 text-xs font-mono">.well-known/openattribution</code> file.
 							Place it on your site - four lines of JSON that declare your telemetry endpoint.
 							Publishing this file costs nothing and positions you for the cooperative future.
 						</p>
@@ -545,15 +543,19 @@
 		<div class="mt-12 p-8 bg-brand-50 rounded-2xl border-l-4 border-brand-600">
 			<h3 class="text-xl font-normal mb-3">Building an agent?</h3>
 			<p class="text-gray-600 font-light leading-relaxed">
-				Chatbots, agentic browsers, shopping assistants - if your agent retrieves and cites content,
-				you can respect content owners by emitting telemetry events. Check the .well-known file on any
-				domain to find their preferred endpoint. The direction of travel is clear: CDNs and content marketplaces
-				are exploring requiring agents to declare attribution intent before granting access.
-				RSL and IAB CoMP are developing the licensing frameworks to support this. Get ahead of it.
+				Register for an API key and your agent can report the full event lifecycle - retrieval, grounding, citation, engagement.
+				Publishers already see retrieval from their own infrastructure. Agent-side reporting adds the events only you can observe -
+				starting with grounding, which captures the moment content enters your generation context.
+				CDNs and content marketplaces are moving toward requiring agents to declare attribution intent before granting access. Get ahead of it.
 			</p>
-			<a href="#developers" class="inline-block mt-4 text-brand-600 font-normal hover:underline">
-				Jump to developer SDKs
-			</a>
+			<div class="flex flex-wrap gap-4 mt-4">
+				<a href="/onboarding/agent" class="inline-flex items-center gap-1.5 px-4 py-2 text-sm bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition font-normal">
+					Register your agent
+				</a>
+				<a href="#developers" class="inline-flex items-center gap-1.5 px-4 py-2 text-sm text-brand-600 border border-brand-200 rounded-lg hover:bg-white transition font-light">
+					Developer SDKs
+				</a>
+			</div>
 		</div>
 	</div>
 </section>
@@ -681,16 +683,17 @@
 		<div class="text-center mb-12">
 			<h2 class="text-3xl lg:text-4xl mb-6"><span class="text-brand-600">Developer</span> quick start</h2>
 			<p class="text-xl text-gray-600 font-light max-w-3xl mx-auto">
-				Start emitting telemetry events in minutes. No registration required - just an endpoint and your user agent.
+				Two paths into telemetry. Publishers report retrieval from their own infrastructure - no agent cooperation needed.
+				Agent developers register for an API key and report the full event lifecycle - retrieval, grounding, citation, engagement.
 			</p>
 		</div>
 
 		<div class="grid lg:grid-cols-2 gap-8">
-			<!-- Telemetry: primary, open by default -->
+			<!-- Publisher-side: primary, open by default -->
 			<details class="group" open>
 				<summary class="cursor-pointer p-6 rounded-xl bg-brand-50 border border-brand-200 hover:shadow-md transition">
-					<span class="text-xl font-normal text-brand-900">Telemetry - Content Events</span>
-					<span class="block mt-1 text-sm text-gray-600 font-light">Report retrieval and citation events. No AIMS manifest needed.</span>
+					<span class="text-xl font-normal text-brand-900">Publisher-side telemetry</span>
+					<span class="block mt-1 text-sm text-gray-600 font-light">Your CDN or origin detects AI agents and reports retrieval. Uses your domain API key.</span>
 				</summary>
 				<div class="mt-4 space-y-4">
 					<div class="rounded-xl overflow-hidden shadow-lg">
@@ -731,44 +734,57 @@
 				</div>
 			</details>
 
-			<!-- AIMS: secondary -->
+			<!-- Agent-side telemetry -->
 			<details class="group">
 				<summary class="cursor-pointer p-6 rounded-xl bg-gray-50 border border-gray-200 hover:shadow-md transition">
-					<span class="text-xl font-normal text-gray-700">AIMS - Agent Identity</span>
-					<span class="block mt-1 text-sm text-gray-500 font-light">Optional. Verifiable agent identity for content marketplace access.</span>
+					<span class="text-xl font-normal text-gray-700">Agent-side telemetry</span>
+					<span class="block mt-1 text-sm text-gray-500 font-light">Your agent reports retrieval, grounding, citation, and engagement. Requires <a href="/onboarding/agent" class="text-brand-600 hover:underline">registration</a> for an API key.</span>
 				</summary>
 				<div class="mt-4 space-y-4">
 					<div class="rounded-xl overflow-hidden shadow-lg">
 						<div class="bg-gray-800 px-4 py-2">
 							<span class="text-xs text-gray-400 font-mono uppercase tracking-wider">bash</span>
 						</div>
-						<pre class="bg-gray-900 px-4 py-3 text-sm font-mono text-gray-200 overflow-x-auto">pip install openattribution-aims</pre>
+						<pre class="bg-gray-900 px-4 py-3 text-sm font-mono text-gray-200 overflow-x-auto">pip install openattribution-telemetry</pre>
 					</div>
 					<div class="rounded-xl overflow-hidden shadow-lg">
 						<div class="bg-gray-800 px-4 py-2">
 							<span class="text-xs text-gray-400 font-mono uppercase tracking-wider">python</span>
 						</div>
-						<pre class="bg-gray-900 px-4 py-3 text-sm font-mono text-gray-200 overflow-x-auto leading-relaxed"><code><span class="text-purple-400">from</span> openattribution.aims <span class="text-purple-400">import</span> (
-    AIMSManifest, Operator, Licence,
-    TelemetryCompliance,
-)
+						<pre class="bg-gray-900 px-4 py-3 text-sm font-mono text-gray-200 overflow-x-auto leading-relaxed"><code><span class="text-purple-400">from</span> openattribution.telemetry <span class="text-purple-400">import</span> Client
 
-manifest = AIMSManifest(
-    id=<span class="text-green-400">"did:web:example.com:agents:my-agent"</span>,
-    operator=Operator(name=<span class="text-green-400">"Example Corp"</span>),
-    licences=[Licence(
-        source=<span class="text-green-400">"internal-docs.example.com"</span>,
-        type=<span class="text-green-400">"partnership"</span>,
-        scope=<span class="text-green-400">"inference"</span>,
-    )],
-    telemetry=TelemetryCompliance(
-        endpoint=<span class="text-green-400">"https://collect.openattribution.org/v1/events"</span>,
-        agent_id=<span class="text-green-400">"did:web:example.com:agents:my-agent"</span>,
-    ),
-)</code></pre>
+<span class="text-purple-400">async with</span> Client(
+    endpoint=<span class="text-green-400">"https://api.openattribution.org/v1"</span>,
+    api_key=<span class="text-green-400">"oa_your_key_here"</span>,
+) <span class="text-purple-400">as</span> client:
+
+    session_id = <span class="text-purple-400">await</span> client.start_session(
+        initiator_type=<span class="text-green-400">"agent"</span>,
+        agent_id=<span class="text-green-400">"my-research-agent"</span>,
+    )
+
+    <span class="text-purple-400">await</span> client.record_event(
+        session_id=session_id,
+        event_type=<span class="text-green-400">"content_retrieved"</span>,
+        content_url=<span class="text-green-400">"https://example.com/article"</span>,
+    )
+
+    <span class="text-purple-400">await</span> client.record_event(
+        session_id=session_id,
+        event_type=<span class="text-green-400">"content_grounded"</span>,
+        content_url=<span class="text-green-400">"https://example.com/article"</span>,
+        data={'{'}<span class="text-green-400">"scope"</span>: <span class="text-green-400">"session"</span>, <span class="text-green-400">"tokens_ingested"</span>: 4200{'}'},
+    )
+
+    <span class="text-purple-400">await</span> client.record_event(
+        session_id=session_id,
+        event_type=<span class="text-green-400">"content_cited"</span>,
+        content_url=<span class="text-green-400">"https://example.com/article"</span>,
+    )</code></pre>
 					</div>
 					<p class="text-sm text-gray-500 font-light">
-						<a href="https://github.com/openattribution-org/aims" class="text-brand-600 hover:underline">GitHub: openattribution-org/aims</a>
+						<a href="/onboarding/agent" class="text-brand-600 hover:underline">Register your agent</a> -
+						<a href="https://github.com/openattribution-org/telemetry" class="text-brand-600 hover:underline">GitHub: openattribution-org/telemetry</a>
 					</p>
 				</div>
 			</details>
@@ -943,7 +959,7 @@ manifest = AIMSManifest(
 
 		<div class="space-y-4">
 			<details class="p-6 rounded-xl bg-brand-50 cursor-pointer hover:shadow-md transition">
-				<summary class="font-normal text-lg">What if AI agents ignore the standard?</summary>
+				<summary class="font-normal text-lg text-gray-900">What if AI agents ignore the standard?</summary>
 				<p class="mt-4 text-gray-600 font-light leading-relaxed">
 					That's precisely why server-side and CDN reporting exist. You don't need the agent to cooperate.
 					Your infrastructure can detect AI user agents and report retrieval events regardless.
@@ -951,7 +967,7 @@ manifest = AIMSManifest(
 				</p>
 			</details>
 			<details class="p-6 rounded-xl bg-brand-50 cursor-pointer hover:shadow-md transition">
-				<summary class="font-normal text-lg">How is this different from GEO?</summary>
+				<summary class="font-normal text-lg text-gray-900">How is this different from GEO?</summary>
 				<p class="mt-4 text-gray-600 font-light leading-relaxed">
 					Generative engine optimisation is probabilistic - you guess how content influences AI responses based on ranking signals and heuristics.
 					OpenAttribution is deterministic - you observe the actual events. Today that means retrieval events from your own infrastructure.
@@ -960,7 +976,7 @@ manifest = AIMSManifest(
 				</p>
 			</details>
 			<details class="p-6 rounded-xl bg-brand-50 cursor-pointer hover:shadow-md transition">
-				<summary class="font-normal text-lg">Is this opposed to AI development?</summary>
+				<summary class="font-normal text-lg text-gray-900">Is this opposed to AI development?</summary>
 				<p class="mt-4 text-gray-600 font-light leading-relaxed">
 					No. AI systems need quality content. Content owners need measurement and attribution. These standards make both possible
 					without requiring either party to trust the other blindly. The agents who participate get better content access.
@@ -968,7 +984,7 @@ manifest = AIMSManifest(
 				</p>
 			</details>
 			<details class="p-6 rounded-xl bg-brand-50 cursor-pointer hover:shadow-md transition">
-				<summary class="font-normal text-lg">Why an open standard instead of a product?</summary>
+				<summary class="font-normal text-lg text-gray-900">Why an open standard instead of a product?</summary>
 				<p class="mt-4 text-gray-600 font-light leading-relaxed">
 					Attribution only works if both sides of the transaction trust the data. A proprietary intermediary
 					taking a cut on every interaction creates the wrong incentives. An open protocol that anyone can
@@ -979,7 +995,7 @@ manifest = AIMSManifest(
 				</p>
 			</details>
 			<details class="p-6 rounded-xl bg-brand-50 cursor-pointer hover:shadow-md transition">
-				<summary class="font-normal text-lg">What does it cost?</summary>
+				<summary class="font-normal text-lg text-gray-900">What does it cost?</summary>
 				<p class="mt-4 text-gray-600 font-light leading-relaxed">
 					Nothing. The specifications, SDKs, and reference server are Apache 2.0 - free to use, modify, distribute.
 					OpenAttribution is a not-for-profit standards body, not a vendor. No transaction fees. No data fees.
